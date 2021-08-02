@@ -1,5 +1,5 @@
 local utils = require "kong.tools.utils"
-local key_utils = require "caesar.plugins.proxy-cache.cache_key"
+local key_utils = require "kong.plugins.caesar-proxy-cache.cache_key"
 
 
 describe("prefix_uuid", function()

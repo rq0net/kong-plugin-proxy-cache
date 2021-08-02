@@ -1,4 +1,4 @@
-local proxy_cache_schema = require "caesar.plugins.proxy-cache.schema"
+local proxy_cache_schema = require "kong.plugins.caesar-proxy-cache.schema"
 local v = require("spec.helpers").validate_plugin_config_schema
 
 describe("proxy-cache schema", function()

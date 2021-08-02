@@ -1,4 +1,4 @@
-local strategies = require "caesar.plugins.proxy-cache.strategies"
+local strategies = require "kong.plugins.caesar-proxy-cache.strategies"
 
 
 local ngx = ngx
@@ -14,7 +14,7 @@ end
 
 
 return {
-  name = "proxy-cache",
+  name = "caesar-proxy-cache",
   fields = {
     { config = {
         type = "record",

@@ -16,7 +16,7 @@ _M.LOCAL_DATA_STRATEGIES = {
 }
 
 local function require_strategy(name)
-  return require("caesar.plugins.proxy-cache.strategies." .. name)
+  return require("kong.plugins.caesar-proxy-cache.strategies." .. name)
 end
 
 return setmetatable(_M, {

@@ -1,5 +1,5 @@
 local helpers = require "spec.helpers"
-local strategies = require("caesar.plugins.proxy-cache.strategies")
+local strategies = require("kong.plugins.caesar-proxy-cache.strategies")
 
 
 --local TIMEOUT = 10 -- default timeout for non-memory strategies
