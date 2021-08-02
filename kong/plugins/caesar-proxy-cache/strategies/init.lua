@@ -16,11 +16,11 @@ _M.SESS = {
 
 
 _M.CONTENT_TYPES = {
-  MEDIAS = { "audio/.*", "video/.*", "application/x-shockwave-flash"}
-  IMAGES = { "image/.*", "font/*" },
-  PACKAGES = {"application/zip", "application/java-archive", "application/vnd.android.package-archive", "application/apk"},
-  JS = {"text/javascript"},
-  STATIC = {}
+  ["MEDIAS"] = { "audio/.*", "video/.*", "application/x-shockwave-flash"},
+  ["IMAGES"] = { "image/.*", "font/*" },
+  ["PACKAGES"] = {"application/zip", "application/java-archive", "application/vnd.android.package-archive", "application/apk"},
+  ["JS"] = {"text/javascript"},
+  ["STATIC"] = {}
 }
 
 table.Merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['MEDIAS'] )
@@ -31,7 +31,7 @@ table.Merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['JS'] )
 
 _M.CACHE_DATA = {
   "NONE" = {},
-  "STATIC" = {}
+  "STATIC" = {},
   "AUTO" = {}
 }
 
