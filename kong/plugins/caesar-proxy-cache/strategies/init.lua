@@ -1,6 +1,6 @@
 local require = require
 local setmetatable = setmetatable
-
+local merge           = table.merge
 
 local _M = {}
 
@@ -23,10 +23,10 @@ _M.CONTENT_TYPES = {
   ["STATIC"] = {}
 }
 
-table.Merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['MEDIAS'] )
-table.Merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['IMAGES'] )
-table.Merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['PACKAGES'] )
-table.Merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['JS'] )
+merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['MEDIAS'] )
+merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['IMAGES'] )
+merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['PACKAGES'] )
+merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['JS'] )
 
 
 _M.CACHE_DATA = {
