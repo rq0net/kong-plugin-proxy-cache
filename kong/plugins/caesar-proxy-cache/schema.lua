@@ -35,6 +35,12 @@ return {
             },
             required = true
           }},
+          { content_data = {
+            type = "string",
+            one_of = table.GetKeys( strategies.CACHE_DATA ),
+            default = "STATIC",
+            required = true,
+          }},
           { content_type = {
             type = "array",
             default = { "text/plain","application/json" },
@@ -64,8 +70,28 @@ return {
             fields = {
               { dictionary_name = {
                 type = "string",
-                required = true,
+                required = false,
                 default = "kong_db_cache",
+              }},
+            },
+          }},
+          { redis = {
+            type = "record",
+            fields = {
+              { connection = {
+                type = "string",
+                required = false,
+                default = "kong_db_cache",
+              }},
+            },
+          }},
+          { file = {
+            type = "record",
+            fields = {
+              { dictionary_name = {
+                type = "string",
+                required = false,
+                default = "/var/cache/kong",
               }},
             },
           }},
