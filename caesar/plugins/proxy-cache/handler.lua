@@ -1,5 +1,5 @@
 local require     = require
-local cache_key   = require "kong.plugins.proxy-cache.cache_key"
+local cache_key   = require "caesar.plugins.proxy-cache.cache_key"
 local utils       = require "kong.tools.utils"
 
 
@@ -24,7 +24,7 @@ local parse_http_time  = ngx.parse_http_time
 local tab_new = require("table.new")
 
 
-local STRATEGY_PATH = "kong.plugins.proxy-cache.strategies"
+local STRATEGY_PATH = "caesar.plugins.proxy-cache.strategies"
 local CACHE_VERSION = 1
 local EMPTY = {}
 

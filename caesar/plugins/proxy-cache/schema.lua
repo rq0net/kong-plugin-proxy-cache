@@ -1,4 +1,4 @@
-local strategies = require "kong.plugins.proxy-cache.strategies"
+local strategies = require "caesar.plugins.proxy-cache.strategies"
 
 
 local ngx = ngx

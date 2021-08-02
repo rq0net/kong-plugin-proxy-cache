@@ -1,4 +1,4 @@
-local STRATEGY_PATH = "kong.plugins.proxy-cache.strategies"
+local STRATEGY_PATH = "caesar.plugins.proxy-cache.strategies"
 
 
 local require = require

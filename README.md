@@ -2,7 +2,7 @@
 
 # Kong proxy-cache plugin
 
-HTTP Proxy Caching for Kong
+HTTP Proxy Caching for Kong, Customized by Caesar
 
 ## Synopsis
 

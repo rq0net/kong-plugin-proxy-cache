@@ -1,5 +1,5 @@
 local helpers = require "spec.helpers"
-local strategies = require("kong.plugins.proxy-cache.strategies")
+local strategies = require("caesar.plugins.proxy-cache.strategies")
 
 
 --local TIMEOUT = 10 -- default timeout for non-memory strategies
@@ -17,7 +17,7 @@ do
   describe("proxy-cache access with policy: " .. policy, function()
     local client, admin_client
     --local cache_key
-    local policy_config = { dictionary_name = "kong", }
+    local policy_config = { dictionary_name = "caesar", }
 
     local strategy = strategies({
       strategy_name = policy,
