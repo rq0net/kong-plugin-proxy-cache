@@ -30,9 +30,9 @@ table.Merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['JS'] )
 
 
 _M.CACHE_DATA = {
-  "NONE" = {},
-  "STATIC" = {},
-  "AUTO" = {}
+  ["NONE"] = {},
+  ["STATIC"] = {},
+  ["AUTO"] = {}
 }
 
 
