@@ -81,7 +81,7 @@ end
 --- Create new memory strategy object
 -- @table opts Strategy options: contains 'dictionary_name' and 'ttl' fields
 function _M.new(opts)
-  local fs = _fs.new()
+  local fs = _fs.new(opts)
 
   local self = {
     fs = fs,
