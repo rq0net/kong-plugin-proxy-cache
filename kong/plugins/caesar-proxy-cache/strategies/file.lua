@@ -22,7 +22,7 @@ function Cfs:new(opts)
   }
 
   return setmetatable(self, {
-    __index = _fs,
+    __index = Cfs,
   })
 end
 
