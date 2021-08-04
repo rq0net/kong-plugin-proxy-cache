@@ -9,16 +9,15 @@ curl -X POST http://kong:8001/services/<service-name-or-id>/plugins \
 ]]
 
 local require     = require
+local kong        = kong
+local ngx         = ngx
+local BasePlugin  = require "kong.plugins.base_plugin"
+
+local HostnameHandler = BasePlugin:extend()
 
 
-local kong             = kong
-local ngx              = ngx
-
-local HostnameHandler = {
-  VERSION  = "0.0.1",
-  PRIORITY = 100,
-}
-
+HostnameHandler.VERSION  = "0.0.1"
+HostnameHandler.PRIORITY = 100
 
 
 function HostnameHandler:access(conf)

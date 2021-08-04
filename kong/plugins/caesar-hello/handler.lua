@@ -6,15 +6,14 @@
 ---
 
 local require     = require
+local kong        = kong
+local BasePlugin  = require "kong.plugins.base_plugin"
 
 
-local kong             = kong
+local CaesarHelloHandler = BasePlugin:extend()
 
-
-local CaesarHelloHandler = {
-  VERSION  = "0.0.1",
-  PRIORITY = 100,
-}
+CaesarHelloHandler.VERSION  = "0.0.1"
+CaesarHelloHandler.PRIORITY = 100
 
 
 function CaesarHelloHandler:init_worker()
