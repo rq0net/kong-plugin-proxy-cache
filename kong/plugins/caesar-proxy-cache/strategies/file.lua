@@ -56,7 +56,7 @@ end
 
 function _fs.get(key, content)
   local f1, f2 = strsub(key, 0, 2), strsub(key, 2, 4)
-  local dir = self.cache_path .. '/' . f1 .. '/' .. f2
+  local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
 
   local f, err = io.open(dir .. '/' .. filename, "rb")
   if not f then
