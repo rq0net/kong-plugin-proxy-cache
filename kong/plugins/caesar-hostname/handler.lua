@@ -1,9 +1,12 @@
----
--- curl -X POST http://kong:8001/services/<service-name-or-id>/plugins \
---    -d "name=my-custom-plugin" \
---    -d "config.environment=development" \
---    -d "config.server.host=http://localhost"
----
+--[[
+Add hostname to header
+
+curl -X POST http://kong:8001/services/<service-name-or-id>/plugins \
+    -d "name=my-custom-plugin" \
+    -d "config.environment=development" \
+    -d "config.server.host=http://localhost"
+
+]]
 
 local require     = require
 

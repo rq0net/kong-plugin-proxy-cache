@@ -1,6 +1,12 @@
 local require = require
 local setmetatable = setmetatable
-local merge           = table.merge
+local merge        = table.merge
+
+
+function table_merge(t1, t2)
+  for k,v in pairs(t2) do t1[k] = v end
+end
+
 
 local _M = {}
 
@@ -23,10 +29,10 @@ _M.CONTENT_TYPES = {
   ["STATIC"] = {}
 }
 
-merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['MEDIAS'] )
-merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['IMAGES'] )
-merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['PACKAGES'] )
-merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['JS'] )
+table_merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['MEDIAS'] )
+table_merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['IMAGES'] )
+table_merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['PACKAGES'] )
+table_merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['JS'] )
 
 
 _M.CACHE_DATA = {
