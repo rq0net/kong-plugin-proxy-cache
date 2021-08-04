@@ -7,6 +7,19 @@ return {
   fields = {
     {
       config = {
+        type = "record",
+        fields = {
+          {
+            environment = {
+              type = "string",
+              required = true,
+              one_of = {
+                "production",
+                "development",
+              },
+            },
+          },
+        }
       },
     },
   },
