@@ -38,7 +38,7 @@ function Cfs:set(key, content)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
   mkdir(dir)
 
-  local f, err = io.open(dir .. '/' .. filename, "w")
+  local f, err = io.open(dir .. '/' .. key, "w")
   if not f then 
     return nil, err
     
