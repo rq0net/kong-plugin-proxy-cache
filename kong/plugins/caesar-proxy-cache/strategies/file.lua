@@ -8,8 +8,9 @@ local shared       = ngx.shared
 local setmetatable = setmetatable
 
 
-local _M = {}
 
+
+--- Create Cache File storage
 
 local Cfs = {}   -- CacheFileStorage
 
@@ -76,6 +77,9 @@ function Cfs:delete(key)
   return os.remove(dir .. '/' .. filename)
 end
 
+
+
+local _M = {}
 
 --- Create new memory strategy object
 -- @table opts Strategy options: contains 'dictionary_name' and 'ttl' fields
