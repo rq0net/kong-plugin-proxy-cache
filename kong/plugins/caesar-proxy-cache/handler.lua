@@ -162,6 +162,11 @@ local function cacheable_response(conf, cc)
     end
   end
 
+  local strategy = require(STRATEGY_PATH)({
+    strategy_name = conf.strategy,
+    strategy_opts = conf[conf.strategy],
+  })
+
   do
     local content_type = ngx.var.sent_http_content_type
 
@@ -174,9 +179,21 @@ local function cacheable_response(conf, cc)
 
     local content_match = false
     for i = 1, #conf.content_type do
-      if string.find(content_type, conf.content_type[i]) then
-        content_match = true
-        break
+      if strategy.CONTENT_TYPES[conf.content_type[i]] then
+        for j = 1, #strategy.CONTENT_TYPES[conf.content_type[i]] do
+          if string.find(content_type, conf.content_type[i]) then
+            content_match = true
+            break
+          end
+        end
+        if content_match == true then
+          break
+        end
+      else
+        if string.find(content_type, conf.content_type[i]) then
+          content_match = true
+          break
+        end
       end
     end
 

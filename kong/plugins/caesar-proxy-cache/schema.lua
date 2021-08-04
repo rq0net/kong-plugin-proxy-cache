@@ -37,13 +37,12 @@ return {
           }},
           { content_data = {
             type = "string",
-            one_of = table.GetKeys( strategies.CACHE_DATA ),
             default = "STATIC",
             required = true,
           }},
           { content_type = {
             type = "array",
-            default = { "text/plain","application/json" },
+            default = { "text/plain", "application/json" },
             elements = { type = "string" },
             required = true,
           }},

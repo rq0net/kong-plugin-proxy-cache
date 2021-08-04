@@ -20,6 +20,7 @@ dependencies = {
 build = {
   type = "builtin",
   modules = {
+    ["kong.plugins.caesar-proxy-cache.constants"]            = "kong/plugins/caesar-proxy-cache/constants.lua",
     ["kong.plugins.caesar-proxy-cache.handler"]              = "kong/plugins/caesar-proxy-cache/handler.lua",
     ["kong.plugins.caesar-proxy-cache.cache_key"]            = "kong/plugins/caesar-proxy-cache/cache_key.lua",
     ["kong.plugins.caesar-proxy-cache.schema"]               = "kong/plugins/caesar-proxy-cache/schema.lua",
