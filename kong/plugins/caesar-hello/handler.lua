@@ -25,9 +25,9 @@ end
 function CaesarHelloHandler:access(conf)
   CaesarHelloHandler.super.access(self)
 
-  kong.log.inspect(config.environment) -- "development"
-  kong.log.inspect(config.server.host) -- "http://localhost"
-  kong.log.inspect(config.server.port) -- 80
+  kong.log.inspect(conf.environment) -- "development"
+  kong.log.inspect(conf.server.host) -- "http://localhost"
+  kong.log.inspect(conf.server.port) -- 80
 
 end
 
