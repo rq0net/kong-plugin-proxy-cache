@@ -34,8 +34,8 @@ function Cfs:mkdir(dir)
 
   for dir in tail:gmatch("[^" .. sep .. "]+") do
     pStr = pStr .. dir .. sep
-    print(basedir .. pStr)
-    -- lfs.mkdir(basedir .. pStr)
+    -- print(basedir .. pStr)
+    lfs.mkdir(basedir .. pStr)
   end
 end
 
