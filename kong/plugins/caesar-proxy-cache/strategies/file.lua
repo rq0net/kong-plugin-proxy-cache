@@ -42,7 +42,7 @@ end
 function Cfs:set(key, content)
   local f1, f2 = string.sub(key, 1, 2), string.sub(key, 3, 4)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
-  self.mkdir(dir)
+  self:mkdir(dir)
 
   local f, err = io.open(dir .. '/' .. key, "w")
   if not f then 
