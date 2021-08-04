@@ -57,7 +57,7 @@ function Cfs:get(key, content)
   local f1, f2 = string.sub(key, 1, 2), string.sub(key, 3, 4)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
 
-  local f, err = io.open(dir .. '/' .. filename, "rb")
+  local f, err = io.open(dir .. '/' .. key, "rb")
   if not f then
     return nil, err
   end
@@ -73,7 +73,7 @@ end
 function Cfs:delete(key)
   local f1, f2 = string.sub(key, 1, 2), string.sub(key, 3, 4)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
-  return os.remove(dir .. '/' .. filename)
+  return os.remove(dir .. '/' .. key)
 end
 
 
