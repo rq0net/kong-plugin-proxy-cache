@@ -34,7 +34,6 @@ function Cfs:mkdir(dir)
 
   for dir in tail:gmatch("[^" .. sep .. "]+") do
     pStr = pStr .. dir .. sep
-    -- print(basedir .. pStr)
     lfs.mkdir(basedir .. pStr)
   end
 end
@@ -42,9 +41,6 @@ end
 function Cfs:set(key, content)
   local f1, f2 = string.sub(key, 1, 2), string.sub(key, 3, 4)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
-
-  kong.log.inspect(key) -- "development"
-  kong.log.inspect(dir) -- "development"
 
   self:mkdir(dir)
 
