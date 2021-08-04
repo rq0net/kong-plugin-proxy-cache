@@ -35,7 +35,7 @@ function _fs.mkdir(opts)
 end
 
 function _fs.set(key, content)
-  local f1, f2 = strsub(key, 0, 2), strsub(key, 2, 4)
+  local f1, f2 = string.sub(key, 1, 2), string.sub(key, 3, 4)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
   mkdir(dir)
 
@@ -55,7 +55,7 @@ end
 
 
 function _fs.get(key, content)
-  local f1, f2 = strsub(key, 0, 2), strsub(key, 2, 4)
+  local f1, f2 = string.sub(key, 1, 2), string.sub(key, 3, 4)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
 
   local f, err = io.open(dir .. '/' .. filename, "rb")
@@ -72,7 +72,7 @@ function _fs.get(key, content)
 end
 
 function _fs.delete(key)
-  local f1, f2 = strsub(key, 0, 2), strsub(key, 2, 4)
+  local f1, f2 = string.sub(key, 1, 2), string.sub(key, 3, 4)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
   return os.remove(dir .. '/' .. filename)
 end
