@@ -58,6 +58,10 @@ function Cfs:get(key, content)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
 
   local f, err = io.open(dir .. '/' .. key, "rb")
+
+  -- Error may:
+  -- No such file or directory
+
   if not f then
     return nil, "request object not in cache"
   end

@@ -172,6 +172,9 @@ local function cacheable_response(conf, cc)
       return false
     end
 
+
+    kong.log.inspect("content_type/" .. content_type) -- "development"
+
     local content_match = false
     for i = 1, #conf.content_type do
       if constants.CONTENT_TYPES[conf.content_type[i]] then
@@ -386,6 +389,9 @@ function ProxyCacheHandler:header_filter(conf)
   end
 
   local cc = res_cc()
+
+  kong.log.inspect("header_filter")
+
 
   -- if this is a cacheable request, gather the headers and mark it so
   if cacheable_response(conf, cc) then
