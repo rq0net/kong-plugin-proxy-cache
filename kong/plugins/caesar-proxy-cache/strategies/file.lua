@@ -11,10 +11,9 @@ local setmetatable = setmetatable
 local _M = {}
 
 
+local Cfs = {}   -- CacheFileStorage
 
-local _fs = {}
-
-function _fs.new(opts)
+function Cfs:new(opts)
   local cache_path = opts.dictionary_name
   local self = {
     fs = cache_path,
@@ -26,7 +25,7 @@ function _fs.new(opts)
   })
 end
 
-function _fs.mkdir(opts)
+function Cfs:mkdir(opts)
   local sep, pStr = package.config:sub(1, 1), ""
   for dir in path:gmatch("[^" .. sep .. "]+") do
     pStr = pStr .. dir .. sep
@@ -34,7 +33,7 @@ function _fs.mkdir(opts)
   end
 end
 
-function _fs.set(key, content)
+function Cfs:set(key, content)
   local f1, f2 = string.sub(key, 1, 2), string.sub(key, 3, 4)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
   mkdir(dir)
@@ -54,7 +53,7 @@ function _fs.set(key, content)
 end
 
 
-function _fs.get(key, content)
+function Cfs:sget(key, content)
   local f1, f2 = string.sub(key, 1, 2), string.sub(key, 3, 4)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
 
@@ -71,7 +70,7 @@ function _fs.get(key, content)
   return contents, err
 end
 
-function _fs.delete(key)
+function Cfs:delete(key)
   local f1, f2 = string.sub(key, 1, 2), string.sub(key, 3, 4)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
   return os.remove(dir .. '/' .. filename)
@@ -81,10 +80,10 @@ end
 --- Create new memory strategy object
 -- @table opts Strategy options: contains 'dictionary_name' and 'ttl' fields
 function _M.new(opts)
-  local fs = _fs.new(opts)
+  local cfs = Cfs.new(opts)
 
   local self = {
-    fs = fs,
+    cfs = cfs,
     opts = opts,
   }
 
@@ -113,7 +112,7 @@ function _M:store(key, req_obj, req_ttl)
     return nil, "could not encode request object"
   end
 
-  local succ, err = self.fs:set(key, req_json)
+  local succ, err = self.cfs:set(key, req_json)
   return succ and req_json or nil, err
 end
 
@@ -127,7 +126,7 @@ function _M:fetch(key)
   end
 
   -- retrieve object from shared dict
-  local req_json, err = self.fs:get(key)
+  local req_json, err = self.cfs:get(key)
   if not req_json then
     if not err then
       return nil, "request object not in cache"
@@ -157,7 +156,7 @@ function _M:purge(key)
     return nil, "key must be a string"
   end
 
-  self.fs:delete(key)
+  self.cfs:delete(key)
   return true
 end
 
@@ -169,7 +168,7 @@ function _M:touch(key, req_ttl, timestamp)
   end
 
   -- check if entry actually exists
-  local req_json, err = self.fs:get(key)
+  local req_json, err = self.cfs:get(key)
   if not req_json then
     if not err then
       return nil, "request object not in cache"
