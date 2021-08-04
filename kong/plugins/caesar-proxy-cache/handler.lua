@@ -182,12 +182,12 @@ local function cacheable_response(conf, cc)
       if string.sub(conf.content_type[i], 1, 1) == "*" then
         for j = 1, #constants.CONTENT_TYPES[conf.content_type[i]] do
 
-          kong.log.inspect("try match: " .. content_type .. " with " .. conf.content_type[i] )
-          
-          if string.find(content_type, conf.content_type[i]) then
+          kong.log.inspect("try match: " .. content_type .. " with " .. constants.CONTENT_TYPES[conf.content_type[i]][j] )
+
+          if string.find(content_type, constants.CONTENT_TYPES[conf.content_type[i]][j]) then
             content_match = true
 
-            kong.log.inspect("content_type matched " .. constants.CONTENT_TYPES[conf.content_type[i]]) 
+            kong.log.inspect("content_type matched " .. constants.CONTENT_TYPES[conf.content_type[i]][j]) 
 
             break
           end
