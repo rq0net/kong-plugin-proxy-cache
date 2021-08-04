@@ -134,6 +134,31 @@ local function cacheable_request(conf, cc)
     end
   end
 
+  -- if cookie has cookie
+  -- cookie: ajs_anonymous_id=%222d19cbbe-a311-47c9-9af8-37542b0e5aca%22; cookieconsent_status=dismiss; __qca=P0-579471318-1599454978174; first_landing_page=/community/questions/hacking-attempt-fixed-with-fail2ban-but-high-memory-usage-remains; referrer=https://www.google.com/; _gcl_au=1.1.1049864786.1622515890; last_landing_page=/community/tutorials/how-to-create-a-sudo-user-on-centos-quickstart; _gid=GA1.2.1047613221.1628063145; _community_session=YkFXVzdPSW1aMW83bmp3a3hxL1hTbERhWnpad2VMSXRkaTB0K08yWDV0QVJ6QUE3Y3VmYkxZOURJQlFveEp1R3pwVGplVXdzY256ZzJScSs3MzFuYStjYUpUTC9zVlI5RjdNZU1zSW8wTzZ1L25XeHQ3UTFoQlRDNlJOYkIrY0s3TG9OUzVieTBSMFZrTjUyZkF2U0RVREJCbVNJMzRNTXczaWpoUWJENlN1QWJ2TkJ3dUlUSWRPdEwxRTBKMy9Dc1U2Vk5GdWthaUoyWFJSdGFSc3I1bTgwMDVSbWhTRmxjVjF6VjNjMkRQbXJPaTE3NHZxeVREUGNKbi9VV3IvOC0tdGtGZUttY21ucUJpTzRnWFpraWExUT09--ca5262562c773c20293c06326043cebacc115be2; _ga_TYR2BYTLL0=GS1.1.1628063145.4.0.1628063145.0; _ga=GA1.2.629097645.1597047391; __cf_bm=0f525351aebfe7cc39414ef52b89e047ae86c416-1628081052-1800-AR/bcHPjgal/fefkwsEbBbHBkZLm7/LdBnfWfOsFGxlf8JPtVIzgW6uBScoON4XZ5A==
+  do
+    if ngx.var.http_cookie:
+      local cookie_match = false
+      local ngx_cookie = string.upper(ngx.var.http_cookie)
+      
+      for i = 1, #constants.SESS do
+        if string.find(ngx_cookie, constants.SESS[i]) then
+          cookie_match = true
+          break
+        end
+      end
+    end
+
+    if not cookie_match then
+      return false
+    end
+  end
+
+  -- if auth header, set cacheable to false
+  if ngx.var.http_authorization then
+    return false
+  end
+
   -- check for explicit disallow directives
   -- TODO note that no-cache isnt quite accurate here
   if conf.cache_control and (cc["no-store"] or cc["no-cache"] or
@@ -158,6 +183,15 @@ local function cacheable_response(conf, cc)
     end
 
     if not status_match then
+      return false
+    end
+  end
+
+  -- if set cookie in response, mark it cacheable to false.
+  -- set-cookie: PHPSESSID=snduk4l6un81lofrqsb6k3b782; path=/; HttpOnly
+  do
+    local set_cookies = kong.response.get_header("Set-Cookie")
+    if not set_cookies then
       return false
     end
   end

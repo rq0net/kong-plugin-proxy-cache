@@ -16,11 +16,15 @@ _M.SESS = {
   ".*[J|S]ESS.*"
 }
 
+_M.CACHE_PATHES = {
+    "/static", "/uploads"
+}
+
 _M.CONTENT_TYPES = {
-  ["MEDIAS"] = { "audio/.*", "video/.*", "application/x-shockwave-flash"},
+  ["MEDIAS"] = { "audio/.*", "video/.*", "application/x-shockwave-flash", "text/css"},
   ["IMAGES"] = { "image/.*", "font/*" },
   ["PACKAGES"] = {"application/zip", "application/java-archive", "application/vnd.android.package-archive", "application/apk"},
-  ["JS"] = {"text/javascript"},
+  ["JS"] = {"text/javascript", "application/javascript"},
   ["*STATIC"] = {},
   ["*NONE"] = {},
   ["*AUTO"] = {},
@@ -37,7 +41,5 @@ _M.CACHE_DATA = {
     ["STATIC"] = {},
     ["AUTO"] = {}
 }
-
-
 
 return _M
