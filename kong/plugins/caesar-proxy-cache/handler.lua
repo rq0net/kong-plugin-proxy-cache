@@ -177,7 +177,7 @@ local function cacheable_response(conf, cc)
 
     if true then
       return true
-    
+    end
 
     local content_match = false
     for i = 1, #conf.content_type do
