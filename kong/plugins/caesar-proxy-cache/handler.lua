@@ -175,6 +175,10 @@ local function cacheable_response(conf, cc)
 
     kong.log.inspect("content_type/" .. content_type) -- "development"
 
+    if true then
+      return true
+    
+
     local content_match = false
     for i = 1, #conf.content_type do
       if constants.CONTENT_TYPES[conf.content_type[i]] then
