@@ -46,6 +46,12 @@ return {
             elements = { type = "string" },
             required = true,
           }},
+          { nocache_pathes = {
+            type = "array",
+            default = { "/api" },
+            elements = { type = "string" },
+            required = true,
+          }},
           { cache_ttl = {
             type = "integer",
             default = 300,
