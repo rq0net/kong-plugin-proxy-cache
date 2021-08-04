@@ -59,7 +59,7 @@ function Cfs:get(key, content)
 
   local f, err = io.open(dir .. '/' .. key, "rb")
   if not f then
-    return nil, err
+    return nil, "request object not in cache"
   end
 
   local contents = f:read( "*a" )
