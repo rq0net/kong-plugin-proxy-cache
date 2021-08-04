@@ -28,20 +28,24 @@ end
 function Cfs:mkdir(dir)
   local sep, pStr = package.config:sub(1, 1), ""
 
-  -- /var/cache/kong/07/7e/077ed559466401c9e1a0030ff74ad637
-  local bashdir = string.sub(dir, 1, #dir - 38)
-  local tail = string.sub(dir, #dir - 38, #dir - 32)
+  -- /var/cache/kong/07/7e
+  local basedir = string.sub(dir, 1, #dir - 5)
+  local tail = string.sub(dir, #dir - 5, #dir)
 
   for dir in tail:gmatch("[^" .. sep .. "]+") do
     pStr = pStr .. dir .. sep
-    --print(bashdir .. pStr)
-    lfs.mkdir(pStr)
+    print(basedir .. pStr)
+    -- lfs.mkdir(basedir .. pStr)
   end
 end
 
 function Cfs:set(key, content)
   local f1, f2 = string.sub(key, 1, 2), string.sub(key, 3, 4)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
+
+  kong.log.inspect(key) -- "development"
+  kong.log.inspect(dir) -- "development"
+
   self:mkdir(dir)
 
   local f, err = io.open(dir .. '/' .. key, "w")
