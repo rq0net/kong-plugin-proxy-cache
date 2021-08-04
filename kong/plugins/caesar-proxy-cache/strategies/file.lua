@@ -15,9 +15,8 @@ local setmetatable = setmetatable
 local Cfs = {}   -- CacheFileStorage
 
 function Cfs:new(opts)
-  local cache_path = opts.dictionary_name
   local self = {
-    fs = cache_path,
+    cache_path = opts.dictionary_name,
     opts = opts,
   }
 
