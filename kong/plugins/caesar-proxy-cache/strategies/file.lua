@@ -73,7 +73,7 @@ end
 
 function _fs.delete(key)
   local f1, f2 = strsub(key, 0, 2), strsub(key, 2, 4)
-  local dir = self.cache_path .. '/' . f1 .. '/' .. f2
+  local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
   return os.remove(dir .. '/' .. filename)
 end
 
