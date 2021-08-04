@@ -2,7 +2,7 @@ local require = require
 local setmetatable = setmetatable
 
 function table_merge(t1, t2)
-  for k,v in pairs(t2) do t1[k] = v end
+  for k,v in pairs(t2) do table.insert(t1, v) end
 end
 
 

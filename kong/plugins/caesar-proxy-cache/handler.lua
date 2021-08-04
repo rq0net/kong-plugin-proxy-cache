@@ -174,7 +174,7 @@ local function cacheable_response(conf, cc)
 
     local content_match = false
     for i = 1, #conf.content_type do
-      if conf.content_type[i] == content_type then
+      if string.find(content_type, conf.content_type[i]) then
         content_match = true
         break
       end
