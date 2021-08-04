@@ -36,7 +36,7 @@ end
 
 function _fs.set(key, content)
   local f1, f2 = strsub(key, 0, 2), strsub(key, 2, 4)
-  local dir = self.cache_path .. '/' . f1 .. '/' .. f2
+  local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
   mkdir(dir)
 
   local f, err = io.open(dir .. '/' .. filename, "w")
