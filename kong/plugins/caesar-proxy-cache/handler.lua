@@ -1,7 +1,7 @@
 local require     = require
 local cache_key   = require "kong.plugins.caesar-proxy-cache.cache_key"
 local utils       = require "kong.tools.utils"
-
+local constants   = require "kong.plugins.caesar-proxy-cache.constants"
 
 local ngx              = ngx
 local kong             = kong
@@ -162,11 +162,6 @@ local function cacheable_response(conf, cc)
     end
   end
 
-  local strategy = require(STRATEGY_PATH)({
-    strategy_name = conf.strategy,
-    strategy_opts = conf[conf.strategy],
-  })
-
   do
     local content_type = ngx.var.sent_http_content_type
 
@@ -179,8 +174,8 @@ local function cacheable_response(conf, cc)
 
     local content_match = false
     for i = 1, #conf.content_type do
-      if strategy.CONTENT_TYPES[conf.content_type[i]] then
-        for j = 1, #strategy.CONTENT_TYPES[conf.content_type[i]] do
+      if constants.CONTENT_TYPES[conf.content_type[i]] then
+        for j = 1, #constants.CONTENT_TYPES[conf.content_type[i]] do
           if string.find(content_type, conf.content_type[i]) then
             content_match = true
             break
