@@ -23,6 +23,7 @@ _M.CONTENT_TYPES = {
   ["JS"] = {"text/javascript"},
   ["*STATIC"] = {},
   ["*NONE"] = {},
+  ["*AUTO"] = {},
 }
 
 table_merge( _M.CONTENT_TYPES["*STATIC"], _M.CONTENT_TYPES['MEDIAS'] )
