@@ -54,7 +54,7 @@ function Cfs:set(key, content)
 end
 
 
-function Cfs:sget(key, content)
+function Cfs:get(key, content)
   local f1, f2 = string.sub(key, 1, 2), string.sub(key, 3, 4)
   local dir = self.cache_path .. '/' .. f1 .. '/' .. f2
 
@@ -84,7 +84,7 @@ local _M = {}
 --- Create new memory strategy object
 -- @table opts Strategy options: contains 'dictionary_name' and 'ttl' fields
 function _M.new(opts)
-  local cfs = Cfs.new(opts)
+  local cfs = Cfs:new(opts)
 
   local self = {
     cfs = cfs,
