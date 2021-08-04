@@ -21,14 +21,14 @@ _M.CONTENT_TYPES = {
   ["IMAGES"] = { "image/.*", "font/*" },
   ["PACKAGES"] = {"application/zip", "application/java-archive", "application/vnd.android.package-archive", "application/apk"},
   ["JS"] = {"text/javascript"},
-  ["STATIC"] = {},
-  ["NONE"] = {},
+  ["*STATIC"] = {},
+  ["*NONE"] = {},
 }
 
-table_merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['MEDIAS'] )
-table_merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['IMAGES'] )
-table_merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['PACKAGES'] )
-table_merge( _M.CONTENT_TYPES["STATIC"], _M.CONTENT_TYPES['JS'] )
+table_merge( _M.CONTENT_TYPES["*STATIC"], _M.CONTENT_TYPES['MEDIAS'] )
+table_merge( _M.CONTENT_TYPES["*STATIC"], _M.CONTENT_TYPES['IMAGES'] )
+table_merge( _M.CONTENT_TYPES["*STATIC"], _M.CONTENT_TYPES['PACKAGES'] )
+table_merge( _M.CONTENT_TYPES["*STATIC"], _M.CONTENT_TYPES['JS'] )
 
 
 _M.CACHE_DATA = {
