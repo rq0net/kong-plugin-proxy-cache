@@ -12,7 +12,7 @@ local BasePlugin  = require "kong.plugins.base_plugin"
 
 local CaesarChallengeHandler = BasePlugin:extend()
 
-CaesarChallengeHandler.VERSION  = "0.0.1"
+CaesarChallengeHandler.VERSION  = "0.0.2"
 CaesarChallengeHandler.PRIORITY = 100
 
 
@@ -27,13 +27,14 @@ function CaesarChallengeHandler:preread(config)
   -- Implement logic for the preread phase here (stream)
   kong.log.err("test preread")
   ngx.var.testcookie_var = "on"
-  ProxyCacheHandler.super.preread(self)
+  CaesarChallengeHandler.super.preread(self)
 end
 
 
 function CaesarChallengeHandler:rewrite(config)
   -- Implement logic for the rewrite phase here (http)
   kong.log.err("test rewrite")
+  CaesarChallengeHandler.super.preread(self)
 end
 
 
