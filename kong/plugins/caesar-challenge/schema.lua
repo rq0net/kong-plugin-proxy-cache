@@ -1,4 +1,5 @@
 -- schema.lua
+local challenges = require "kong.plugins.caesar-challenge.challenges"
 local typedefs = require "kong.db.schema.typedefs"
 
 
@@ -9,9 +10,9 @@ return {
       config = {
         type = "record",
         fields = {
-          { strategy = {
+          { challenge = {
             type = "string",
-            one_of = strategies.CHALLENGE_TYPES,
+            one_of = challenges.CHALLENGE_TYPES,
             required = true,
           }}
         },
