@@ -23,8 +23,8 @@ build = {
     ["kong.plugins.caesar-challenge.handler"]              = "kong/plugins/caesar-challenge/handler.lua",
     ["kong.plugins.caesar-challenge.schema"]               = "kong/plugins/caesar-challenge/schema.lua",
     ["kong.plugins.caesar-challenge.challenges"]           = "kong/plugins/caesar-challenge/challenges/init.lua",
-    ["kong.plugins.caesar-challenge.challenges.js"]    = "kong/plugins/caesar-proxy-cache/challenges/js.lua",
-    ["kong.plugins.caesar-challenge.challenges.cookie"]    = "kong/plugins/caesar-proxy-cache/strategies/cookie.lua"
+    ["kong.plugins.caesar-challenge.challenges.js"]        = "kong/plugins/caesar-challenge/challenges/js.lua",
+    ["kong.plugins.caesar-challenge.challenges.cookie"]    = "kong/plugins/caesar-challenge/challenges/cookie.lua"
 
   }
 }
