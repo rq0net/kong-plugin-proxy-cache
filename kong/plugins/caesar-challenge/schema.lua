@@ -11,7 +11,7 @@ return {
         fields = {
           { strategy = {
             type = "string",
-            one_of = strategies.STRATEGY_TYPES,
+            one_of = strategies.CHALLENGE_TYPES,
             required = true,
           }}
         },
