@@ -22,9 +22,9 @@ function CaesarChallengeHandler:init_worker()
 end
 
 
-
 -- https://stackoverflow.com/questions/64301671/how-to-set-proxy-http-version-in-lua-code-before-upstreaming-the-request-in-ngin
 function CaesarChallengeHandler:access(conf)
+  ngx.var.testcookie_var = "on"
   CaesarChallengeHandler.super.access(self)
 end
 
