@@ -18,14 +18,14 @@ CaesarChallengeHandler.PRIORITY = 100
 
 function CaesarChallengeHandler:init_worker()
   -- Implement logic for the init_worker phase here (http/stream)
-  kong.log("init_worker: test challenge!")
+  kong.log.err("init_worker: test challenge!")
 end
 
 
 
 function CaesarChallengeHandler:preread(config)
   -- Implement logic for the preread phase here (stream)
-  kong.log("test preread")
+  kong.log.err("test preread")
   ngx.var.testcookie_var = "on"
   ProxyCacheHandler.super.preread(self)
 end
@@ -33,13 +33,13 @@ end
 
 function CaesarChallengeHandler:rewrite(config)
   -- Implement logic for the rewrite phase here (http)
-  kong.log("rewrite")
+  kong.log.err("test rewrite")
 end
 
 
 -- https://stackoverflow.com/questions/64301671/how-to-set-proxy-http-version-in-lua-code-before-upstreaming-the-request-in-ngin
 function CaesarChallengeHandler:access(conf)
-  kong.log("access: testcookie!")
+  kong.log.err("access: testcookie!")
   ngx.var.testcookie_var = "on"
   CaesarChallengeHandler.super.access(self)
 end
