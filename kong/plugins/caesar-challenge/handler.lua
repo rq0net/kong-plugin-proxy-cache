@@ -31,6 +31,11 @@ function CaesarChallengeHandler:preread(config)
 end
 
 
+function CaesarChallengeHandler:rewrite(config)
+  -- Implement logic for the rewrite phase here (http)
+  kong.log("rewrite")
+end
+
 
 -- https://stackoverflow.com/questions/64301671/how-to-set-proxy-http-version-in-lua-code-before-upstreaming-the-request-in-ngin
 function CaesarChallengeHandler:access(conf)
