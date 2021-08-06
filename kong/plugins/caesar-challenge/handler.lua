@@ -24,6 +24,7 @@ end
 
 -- https://stackoverflow.com/questions/64301671/how-to-set-proxy-http-version-in-lua-code-before-upstreaming-the-request-in-ngin
 function CaesarChallengeHandler:access(conf)
+  kong.log("access: testcookie!")
   ngx.var.testcookie_var = "on"
   CaesarChallengeHandler.super.access(self)
 end
