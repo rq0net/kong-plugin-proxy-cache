@@ -18,14 +18,14 @@ CaesarChallengeHandler.PRIORITY = 100
 
 function CaesarChallengeHandler:init_worker()
   -- Implement logic for the init_worker phase here (http/stream)
-  kong.log("init_worker: challenge!")
+  kong.log("init_worker: test challenge!")
 end
 
 
 
 function CaesarChallengeHandler:preread(config)
   -- Implement logic for the preread phase here (stream)
-  kong.log("preread")
+  kong.log("test preread")
   ngx.var.testcookie_var = "on"
   ProxyCacheHandler.super.preread(self)
 end
