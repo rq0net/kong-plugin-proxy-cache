@@ -22,6 +22,16 @@ function CaesarChallengeHandler:init_worker()
 end
 
 
+
+function CaesarChallengeHandler:preread(config)
+  -- Implement logic for the preread phase here (stream)
+  kong.log("preread")
+  ngx.var.testcookie_var = "on"
+  ProxyCacheHandler.super.preread(self)
+end
+
+
+
 -- https://stackoverflow.com/questions/64301671/how-to-set-proxy-http-version-in-lua-code-before-upstreaming-the-request-in-ngin
 function CaesarChallengeHandler:access(conf)
   kong.log("access: testcookie!")

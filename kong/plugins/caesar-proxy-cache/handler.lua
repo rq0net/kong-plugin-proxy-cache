@@ -329,7 +329,6 @@ function ProxyCacheHandler:init_worker()
   end)
 end
 
-
 function ProxyCacheHandler:access(conf)
   local cc = req_cc()
 
