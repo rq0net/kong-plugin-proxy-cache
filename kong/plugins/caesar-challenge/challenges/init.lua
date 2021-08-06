@@ -12,7 +12,6 @@ _M.CHALLENGE_TYPES = {
 }
 
 
-
 local function require_strategy(name)
   return require("kong.plugins.caesar-challenge.challenges." .. name)
 end
