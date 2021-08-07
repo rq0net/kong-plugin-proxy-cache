@@ -39,6 +39,7 @@ function CaesarChallengeHandler:access(conf)
 
   kong.log.err("access: caesar challenges!" .. conf.challenge .. conf[conf.challenge].dictionary_name)
 
+  local secret = " abcdefg"
 
   -- try to fetch the cached object from the computed cache key
   local challenge = require(CHALLENGE_PATH)({
@@ -48,7 +49,9 @@ function CaesarChallengeHandler:access(conf)
 
   local res, err = challenge:challenge()
 
+  --if res then
   return kong.response.exit(res.status, res.body, res.headers)
+  
 
 end
 

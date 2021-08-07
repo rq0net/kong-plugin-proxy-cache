@@ -23,29 +23,18 @@ function _M.new(opts)
     })
 end
 
+function _M:check_authorization(authorization, authorization_dynamic)
+    return anti.check_authorization(authorization, authorization_dynamic)
 
 function _M:challenge()
-    -- ngx.var.testcookie_var = "on"
     res = {}
-    res.status = 200
-    res.body = "hello"
+    res.status = anti.authentication_page_status_output
+    res.body = anti.anti_ddos_html_output
     res.header = {
-        content_type = "text/html"
+        content_type = "text/html; charset=" .. anti.default_charset
     }
   
     return res, nil
 end
-
--- function _M:challenge()
---   -- ngx.var.testcookie_var = "on"
---   res = {}
---   res.status = anti.authentication_page_status_output
---   res.body = anti.anti_ddos_html_output
---   res.header = {
---       content_type = "text/html; charset=" .. anti.default_charset
---   }
-
---   return res, nil
--- end
 
 return _M
