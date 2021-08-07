@@ -3284,6 +3284,16 @@ local _M = {
     default_charset = default_charset,
 }
 
+function _M.new(opts)
+    local self = {
+      opts = opts,
+    }
+  
+    return setmetatable(self, {
+      __index = _M,
+    })
+end
+
 function _M:challenge()
     --All previous checks failed and no access_granted permited so display authentication check page.
     --Output Anti-DDoS Authentication Page

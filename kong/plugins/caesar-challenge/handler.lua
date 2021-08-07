@@ -59,8 +59,6 @@ function CaesarChallengeHandler:access(conf)
     return kong.response.exit(res.status, res.body, res.headers)
   end
 
-  --Go to content
-
 end
 
 return CaesarChallengeHandler
