@@ -29,7 +29,9 @@ function _M:challenge()
     res = {}
     res.status = 200
     res.body = "hello"
-    res.header.content_type = "text/html"
+    res.header = {
+        content_type = "text/html"
+    }
   
     return res, nil
 end

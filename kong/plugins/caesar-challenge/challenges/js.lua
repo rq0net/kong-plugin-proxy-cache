@@ -1,7 +1,6 @@
 local cjson = require "cjson.safe"
--- require "kong.plugins.caesar-challenge.challenges.anti_ddos_challenge"
+local anti = require "kong.plugins.caesar-challenge.challenges.anti_ddos_challenge"
 
-local anti = kong.plugins.caesar-challenge.challenges.anti_ddos_challenge
 
 local ngx          = ngx
 local type         = type
@@ -29,7 +28,9 @@ function _M:challenge()
   res = {}
   res.status = anti.authentication_page_status_output
   res.body = anti.anti_ddos_html_output
-  res.header.content_type = "text/html; charset=" .. anti.default_charset
+  res.header = {
+      content_type = "text/html; charset=" .. anti.default_charset
+  }
 
   return res, nil
 end
