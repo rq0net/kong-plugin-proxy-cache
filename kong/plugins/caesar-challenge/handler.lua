@@ -19,15 +19,7 @@ CaesarChallengeHandler.PRIORITY = 100
 function CaesarChallengeHandler:init_worker()
   -- Implement logic for the init_worker phase here (http/stream)
   kong.log.err("init_worker: test challenge!")
-end
-
-
-
-function CaesarChallengeHandler:preread(config)
-  -- Implement logic for the preread phase here (stream)
-  kong.log.err("test preread")
   ngx.var.testcookie_var = "on"
-  CaesarChallengeHandler.super.preread(self)
 end
 
 
@@ -42,6 +34,15 @@ end
 function CaesarChallengeHandler:access(conf)
   kong.log.err("access: testcookie!")
   ngx.var.testcookie_var = "on"
+
+  local res = ngx.location.capture("@testcookie")
+  if res then
+      ngx.say("status: ", res.status)
+      ngx.say("body:")
+      ngx.print(res.body)
+      return
+  end
+
   CaesarChallengeHandler.super.access(self)
 end
 
