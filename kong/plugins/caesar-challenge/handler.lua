@@ -50,7 +50,7 @@ function CaesarChallengeHandler:access(conf)
   local res, err = challenge:challenge()
 
   if res then
-    return kong.response.exit(res.status, res.body, res.headers)
+    return kong.response.exit(res.status, res.content, res.headers)
   end
 
 end
