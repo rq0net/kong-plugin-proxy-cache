@@ -1,5 +1,5 @@
 local cjson = require "cjson.safe"
-local anti = require "kong.plugins.caesar-challenge.challenges.anti_ddos_challenge"
+require "kong.plugins.caesar-challenge.challenges.anti_ddos_challenge"
 
 local ngx          = ngx
 local type         = type
@@ -10,7 +10,7 @@ local setmetatable = setmetatable
 local _M = {}
 
 
---- Create new memory strategy object
+--- Create new js challange object
 -- @table opts Strategy options: contains 'dictionary_name' and 'ttl' fields
 function _M.new(opts)
   local self = {
