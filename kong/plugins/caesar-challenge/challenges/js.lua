@@ -1,5 +1,7 @@
 local cjson = require "cjson.safe"
-local anti = require "kong.plugins.caesar-challenge.challenges.anti_ddos_challenge"
+require "kong.plugins.caesar-challenge.challenges.anti_ddos_challenge"
+
+local anti = kong.plugins.caesar-challenge.challenges.anti_ddos_challenge
 
 local ngx          = ngx
 local type         = type
