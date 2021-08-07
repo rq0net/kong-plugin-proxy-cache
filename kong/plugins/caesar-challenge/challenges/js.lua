@@ -3368,8 +3368,8 @@ function _M:grant_access()
             -- ngx.exit(ngx.HTTP_NO_CONTENT)
 
             return {
-                status = expected_header_status,
-                body = ngx.HTTP_NO_CONTENT,
+                status = ngx.HTTP_NO_CONTENT,
+                body = nil,
                 headers = { 
                     ["Set-Cookie"] = {set_cookie1 , set_cookie2 , set_cookie3 , set_cookie4, set_cookie5},
                     ["X-Content-Type-Options"] = "nosniff",
@@ -3401,8 +3401,8 @@ function _M:grant_access()
             -- ngx.exit(ngx.HTTP_NO_CONTENT)
 
             return {
-                status = expected_header_status,
-                body = ngx.HTTP_NO_CONTENT,
+                status = ngx.HTTP_NO_CONTENT,
+                body = nil,
                 headers = {
                     ["Set-Cookie"] = {set_cookie1 , set_cookie2 , set_cookie3 , set_cookie4},
                     ["X-Content-Type-Options"] = "nosniff",
