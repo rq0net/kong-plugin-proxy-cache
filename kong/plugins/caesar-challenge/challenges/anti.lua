@@ -3389,7 +3389,7 @@ function _M:grant_access()
             -- ngx.header.content_type = "text/html; charset=" .. default_charset
             -- ngx.status = expected_header_status
             -- ngx.exit(ngx.HTTP_NO_CONTENT)
-
+            
             return {
                 status = expected_header_status,
                 body = ngx.HTTP_NO_CONTENT,
