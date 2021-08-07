@@ -3041,7 +3041,7 @@ End Required Functions
 Build HTML Template
 ]]
 
-local title = host .. [[ | Anti-DDoS Flood Protection and Firewall]]
+local title = host .. " / Anti-DDoS"
 
 --[[
 Javascript after setting cookie run xmlhttp GET request
@@ -3170,14 +3170,8 @@ end
 
 
 --Adverts positions
-local head_ad_slot = [[
-<!-- Start: Ad code and script tags for header of page -->
-<!-- End: Ad code and script tags for header of page -->
-]]
-local top_body_ad_slot = [[
-<!-- Start: Ad code and script tags for top of page -->
-<!-- End: Ad code and script tags for top of page -->
-]]
+local head_ad_slot = [[]]
+local top_body_ad_slot = [[]]
 local left_body_ad_slot = [[
 <!-- Start: Ad code and script tags for left of page -->
 <!-- End: Ad code and script tags for left of page -->
@@ -3193,9 +3187,6 @@ local footer_body_ad_slot = [[
 --End advert positions
 
 local ddos_credits = [[
-<div class="credits" style="text-align:center;font-size:100%;">
-<a href="//facebook.com/C0nw0nk" target="_blank">DDoS protection by &copy; Conor McKnight</a>
-</div>
 ]]
 
 if credits == 2 then
@@ -3212,42 +3203,27 @@ remote_addr = ngx.var.remote_addr
 end
 
 local request_details = [[
-<br>
-<div id="status" style="color:#bd2426;font-size:200%;">
 <noscript>Please turn JavaScript on and reload the page.<br></noscript>
-This process is automatic. Your browser will redirect to your requested content shortly.
-<br>
-Please allow up to <span id="countdowntimer">]] .. refresh_auth .. [[</span> seconds&hellip;
-</div>
-<br>
-<br>
-<h3 style="color:#bd2426;">Request Details :</h3>
-IP address : ]] .. remote_addr .. [[
-<br>
-Request URL : ]] .. URL .. [[
-<br>
-User-Agent : ]] .. user_agent .. [[
-<br>
+<p><small>数秒后，系统将自动跳转到请求页面</small></p>
+<p><small>Please allow up to <span id="countdowntimer">]] .. refresh_auth .. [[</span> seconds to automatic redirect &hellip;</small></p>
+<hr />
+<ol id="diagnose_info">
+  <li>Client IP: ]] .. remote_addr .. [[</li>
+  <li>Request URL: : ]] .. URL .. [[</li>
+  <li>User-Agent: ]] .. user_agent .. [[</li>
+  <li>Hostname: ]] .. host .. [[</li>
+  <li>Server time: ]] .. currenttime .. [[</li>
+</ol>
 ]]
 
+
 local style_sheet = [[
-html, body {/*width: 100%; height: 100%;*/ margin: 0; padding: 0; overflow-wrap: break-word; word-wrap: break-word;}
-body {background-color: #ffffff; font-family: Helvetica, Arial, sans-serif; font-size: 100%;}
-h1 {font-size: 1.5em; color: #404040; text-align: center;}
-p {font-size: 1em; color: #404040; text-align: center; margin: 10px 0 0 0;}
-#spinner {margin: 0 auto 30px auto; display: block;}
-.attribution {margin-top: 20px;}
-@-webkit-keyframes bubbles { 33%: { -webkit-transform: translateY(10px); transform: translateY(10px); } 66% { -webkit-transform: translateY(-10px); transform: translateY(-10px); } 100% { -webkit-transform: translateY(0); transform: translateY(0); } }
-@keyframes bubbles { 33%: { -webkit-transform: translateY(10px); transform: translateY(10px); } 66% { -webkit-transform: translateY(-10px); transform: translateY(-10px); } 100% { -webkit-transform: translateY(0); transform: translateY(0); } }
-.bubbles { background-color: #404040; width:15px; height: 15px; margin:2px; border-radius:100%; -webkit-animation:bubbles 0.6s 0.07s infinite ease-in-out; animation:bubbles 0.6s 0.07s infinite ease-in-out; -webkit-animation-fill-mode:both; animation-fill-mode:both; display:inline-block; }
+*{-webkit-box-sizing:border-box;box-sizing:border-box}body{padding:0;margin:0}ol {color:grey;text-align: right;font-size: x-small;list-style-type: none;}ol li {line-height: normal;}#errpage{position:relative;height:100vh;background:#f6f6f6}#errpage .errpage{position:absolute;left:50%;top:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.errpage{max-width:767px;width:100%;line-height:1.2;padding:60px 40px;text-align:center;background:#fff;-webkit-box-shadow:0 15px 15px -10px rgba(0,0,0,.1);box-shadow:0 15px 15px -10px rgba(0,0,0,.1)}.errpage .errpage-202{position:relative;height:180px}.errpage .errpage-202 h1{font-family:roboto,sans-serif;position:absolute;left:50%;top:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);font-size:165px;font-weight:700;margin:0;color:#262626;text-transform:uppercase}.errpage .errpage-202 h1>span{color:#00b7ff}.errpage h2{font-family:roboto,sans-serif;font-size:22px;font-weight:400;text-transform:uppercase;color:#151515;margin-top:0;margin-bottom:25px}.errpage .errpage-search{position:relative;max-width:320px;width:100%;margin:auto}.errpage .errpage-search>input{font-family:roboto,sans-serif;width:100%;height:50px;padding:3px 65px 3px 30px;color:#151515;font-size:16px;background:0 0;border:2px solid #c5c5c5;border-radius:40px;-webkit-transition:.2s all;transition:.2s all}.errpage .errpage-search>input:focus{border-color:#00b7ff}.errpage .errpage-search>button{position:absolute;right:15px;top:5px;width:40px;height:40px;text-align:center;border:none;background:0 0;padding:0;cursor:pointer}.errpage .errpage-search>button>span{width:15px;height:15px;position:absolute;left:50%;top:50%;-webkit-transform:translate(-50%,-50%) rotate(-45deg);-ms-transform:translate(-50%,-50%) rotate(-45deg);transform:translate(-50%,-50%) rotate(-45deg);margin-left:-3px}.errpage .errpage-search>button>span:after{position:absolute;content:'';width:10px;height:10px;left:0;top:0;border-radius:50%;border:4px solid #c5c5c5;-webkit-transition:.2s all;transition:.2s all}.errpage-search>button>span:before{position:absolute;content:'';width:4px;height:10px;left:7px;top:17px;border-radius:2px;background:#c5c5c5;-webkit-transition:.2s all;transition:.2s all}.errpage .errpage-search>button:hover>span:after{border-color:#00b7ff}.errpage .errpage-search>button:hover>span:before{background-color:#00b7ff}@media only screen and (max-width:767px){.errpage h2{font-size:18px}}@media only screen and (max-width:480px){.errpage .errpage-202 h1{font-size:141px}}
 ]]
 
 
 local anti_ddos_html_output = [[
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="]] .. default_charset .. [[" />
+<!DOCTYPE html><html lang="en"><head><meta charset="]] .. default_charset .. [[" />
 <meta http-equiv="Content-Type" content="text/html; charset=]] .. default_charset .. [[" />
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -3259,26 +3235,19 @@ local anti_ddos_html_output = [[
 ]] .. head_ad_slot .. [[
 ]] .. javascript_anti_ddos .. [[
 </head>
-<body style="background-color:#EEEEEE;color:#000000;font-family:Arial,Helvetica,sans-serif;font-size:100%;">
-<div style="width:auto;margin:16px auto;border:1px solid #CCCCCC;background-color:#FFFFFF;border-radius:3px 3px 3px 3px;padding:10px;">
-<div style="float:right;margin-top:10px;">
-<br>
-<h1>Checking your browser</h1>
+<body>
+<div id="errpage">
+<div class="errpage">
+<div class="errpage-202">
+<h1>202</h1>
 </div>
-<br>
-<h1>]] .. title .. [[</h1>
-<p>
-<b>Please wait a moment while we verify your request</b>
-<br>
-<br>
-<br>
+<h2>Checking your browser</h2>
+<hr />
+<p>请求认证中，请稍候</p>
+<p>Please wait a moment while we verify your request</p>
+<hr />
 ]] .. top_body_ad_slot .. [[
-<br>
-<br>
-<center>
-<h2>Information :</h2>
-]] .. request_details .. [[
-</center>
+]] .. request_details .. [[ 
 ]] .. footer_body_ad_slot .. [[
 </div>
 ]] .. ddos_credits .. [[
