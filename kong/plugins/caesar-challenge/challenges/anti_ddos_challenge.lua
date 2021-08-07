@@ -196,7 +196,7 @@ Encrypt/Obfuscate Javascript output to prevent content scrappers and bots decryp
 4 = Base64 Javascript Encryption
 5 = Conor Mcknight's Javascript Scrambler (Obfuscate Javascript by putting it into vars and shuffling them like a deck of cards)
 ]]
-local encrypt_javascript_output = 0
+local encrypt_javascript_output = 1
 
 --[[
 IP Address Whitelist

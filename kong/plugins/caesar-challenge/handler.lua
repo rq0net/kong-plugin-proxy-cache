@@ -48,15 +48,16 @@ function CaesarChallengeHandler:access(conf)
   })
 
   local res, err = challenge:grant_access()
-  if err then
-    res, err = challenge:challenge()
-    if res then
-      return kong.response.exit(res.status, res.content, res.headers)
-    end
+  if res then
+    return kong.response.exit(res.status, res.content, res.headers)
+  
+  res, err = challenge:challenge()
+  if res then
+    return kong.response.exit(res.status, res.content, res.headers)
   end
 
   --Go to content
-  
+
 end
 
 return CaesarChallengeHandler

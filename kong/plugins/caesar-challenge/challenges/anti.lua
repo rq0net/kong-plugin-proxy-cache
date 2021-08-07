@@ -196,7 +196,7 @@ Encrypt/Obfuscate Javascript output to prevent content scrappers and bots decryp
 4 = Base64 Javascript Encryption
 5 = Conor Mcknight's Javascript Scrambler (Obfuscate Javascript by putting it into vars and shuffling them like a deck of cards)
 ]]
-local encrypt_javascript_output = 0
+local encrypt_javascript_output = 1
 
 --[[
 IP Address Whitelist
@@ -290,36 +290,36 @@ You can also specify full domain names like "github.com" to protect specific dom
 2 = bypass auth checks
 ]]
 local master_switch_custom_hosts = {
-	{
-		1, --run auth checks
-		"localhost/ddos.*", --authenticate Tor websites
-	},
-	{
-		1, --run auth checks
-		".onion/.*", --authenticate Tor websites
-	},
-	{
-		1, --run auth checks
-		"github.com/.*", --authenticate github
-	},
-	--[[
-	{
-		1, --run auth checks
-		"localhost",
-	}, --authenticate localhost
-	]]
-	--[[
-	{
-		1, --run auth checks
-		"127.0.0.1",
-	}, --authenticate localhost
-	]]
-	--[[
-	{
-		1, --run auth checks
-		".com",
-	}, --authenticate .com domains
-	]]
+    {
+        1, --run auth checks
+        "localhost/ddos.*", --authenticate Tor websites
+    },
+    {
+        1, --run auth checks
+        ".onion/.*", --authenticate Tor websites
+    },
+    {
+        1, --run auth checks
+        "github.com/.*", --authenticate github
+    },
+    --[[
+    {
+        1, --run auth checks
+        "localhost",
+    }, --authenticate localhost
+    ]]
+    --[[
+    {
+        1, --run auth checks
+        "127.0.0.1",
+    }, --authenticate localhost
+    ]]
+    --[[
+    {
+        1, --run auth checks
+        ".com",
+    }, --authenticate .com domains
+    ]]
 }
 
 --[[
@@ -354,38 +354,38 @@ I added some examples of bad bots to block access to.
 ]]
 local user_agent_blacklist_var = ngx.var.http_user_agent
 local user_agent_blacklist_table = {
-	{
-		"^$",
-		3,
-	}, --blocks blank / empty user-agents
-	{
-		"Kodi",
-		1,
-	},
-	{
-		"XBMC",
-		1,
-	},
-	{
-		"curl",
-		1,
-	},
-	{
-		"winhttp",
-		1,
-	},
-	{
-		"HTTrack",
-		1,
-	},
-	{
-		"libwww-perl",
-		1,
-	},
-	{
-		"python",
-		1,
-	},
+    {
+        "^$",
+        3,
+    }, --blocks blank / empty user-agents
+    {
+        "Kodi",
+        1,
+    },
+    {
+        "XBMC",
+        1,
+    },
+    {
+        "curl",
+        1,
+    },
+    {
+        "winhttp",
+        1,
+    },
+    {
+        "HTTrack",
+        1,
+    },
+    {
+        "libwww-perl",
+        1,
+    },
+    {
+        "python",
+        1,
+    },
 }
 
 --[[
@@ -401,46 +401,46 @@ I added some examples of user-agents you could whitelist mostly search engine cr
 local user_agent_whitelist_var = ngx.var.http_user_agent
 local user_agent_whitelist_table = {
 --[[
-	{
-		"^Mozilla%/5%.0 %(compatible%; Googlebot%/2%.1%; %+http%:%/%/www%.google%.com%/bot%.html%)$",
-		2,
-	},
-	{
-		"^Mozilla%/5%.0 %(compatible%; Bingbot%/2%.0%; %+http%:%/%/www%.bing%.com%/bingbot%.htm%)$",
-		2,
-	},
-	{
-		"^Mozilla%/5%.0 %(compatible%; Yahoo%! Slurp%; http%:%/%/help%.yahoo%.com%/help%/us%/ysearch%/slurp%)$",
-		2,
-	},
-	{
-		"^DuckDuckBot%/1%.0%; %(%+http%:%/%/duckduckgo%.com%/duckduckbot%.html%)$",
-		2,
-	},
-	{
-		"^Mozilla%/5%.0 %(compatible%; Baiduspider%/2%.0%; %+http%:%/%/www%.baidu%.com%/search%/spider%.html%)$",
-		2,
-	},
-	{
-		"^Mozilla%/5%.0 %(compatible%; YandexBot%/3%.0%; %+http%:%/%/yandex%.com%/bots%)$",
-		2,
-	},
-	{
-		"^facebot$",
-		2,
-	},
-	{
-		"^facebookexternalhit%/1%.0 %(%+http%:%/%/www%.facebook%.com%/externalhit_uatext%.php%)$",
-		2,
-	},
-	{
-		"^facebookexternalhit%/1%.1 %(%+http%:%/%/www%.facebook%.com%/externalhit_uatext%.php%)$",
-		2,
-	},
-	{
-		"^ia_archiver %(%+http%:%/%/www%.alexa%.com%/site%/help%/webmasters%; crawler%@alexa%.com%)$",
-		2,
-	},
+    {
+        "^Mozilla%/5%.0 %(compatible%; Googlebot%/2%.1%; %+http%:%/%/www%.google%.com%/bot%.html%)$",
+        2,
+    },
+    {
+        "^Mozilla%/5%.0 %(compatible%; Bingbot%/2%.0%; %+http%:%/%/www%.bing%.com%/bingbot%.htm%)$",
+        2,
+    },
+    {
+        "^Mozilla%/5%.0 %(compatible%; Yahoo%! Slurp%; http%:%/%/help%.yahoo%.com%/help%/us%/ysearch%/slurp%)$",
+        2,
+    },
+    {
+        "^DuckDuckBot%/1%.0%; %(%+http%:%/%/duckduckgo%.com%/duckduckbot%.html%)$",
+        2,
+    },
+    {
+        "^Mozilla%/5%.0 %(compatible%; Baiduspider%/2%.0%; %+http%:%/%/www%.baidu%.com%/search%/spider%.html%)$",
+        2,
+    },
+    {
+        "^Mozilla%/5%.0 %(compatible%; YandexBot%/3%.0%; %+http%:%/%/yandex%.com%/bots%)$",
+        2,
+    },
+    {
+        "^facebot$",
+        2,
+    },
+    {
+        "^facebookexternalhit%/1%.0 %(%+http%:%/%/www%.facebook%.com%/externalhit_uatext%.php%)$",
+        2,
+    },
+    {
+        "^facebookexternalhit%/1%.1 %(%+http%:%/%/www%.facebook%.com%/externalhit_uatext%.php%)$",
+        2,
+    },
+    {
+        "^ia_archiver %(%+http%:%/%/www%.alexa%.com%/site%/help%/webmasters%; crawler%@alexa%.com%)$",
+        2,
+    },
 ]]
 }
 
@@ -466,28 +466,28 @@ If we should show the client seeing the box what login they can use (Tor website
 1 = Display login details
 ]]
 local authorization_paths = {
-	{
-		1, --show auth box on this path
-		"localhost/ddos.*", --regex paths i recommend having the domain in there too
-		1, --display username/password
-	},
-	{
-		1, --show auth box on this path
-		".onion/administrator.*", --regex paths i recommend having the domain in there too
-		0, --do NOT display username/password
-	},
-	{
-		1, --show auth box on this path
-		".com/admin.*", --regex paths i recommend having the domain in there too
-		0, --do NOT display username/password
-	},
-	--[[
-	{ --Show on All sites and paths
-		1, --show auth box on this path
-		".*", --match all sites/domains paths
-		1, --display username/password
-	},
-	]]
+    {
+        1, --show auth box on this path
+        "localhost/ddos.*", --regex paths i recommend having the domain in there too
+        1, --display username/password
+    },
+    {
+        1, --show auth box on this path
+        ".onion/administrator.*", --regex paths i recommend having the domain in there too
+        0, --do NOT display username/password
+    },
+    {
+        1, --show auth box on this path
+        ".com/admin.*", --regex paths i recommend having the domain in there too
+        0, --do NOT display username/password
+    },
+    --[[
+    { --Show on All sites and paths
+        1, --show auth box on this path
+        ".*", --match all sites/domains paths
+        1, --display username/password
+    },
+    ]]
 }
 
 --[[
@@ -506,14 +506,14 @@ local authorization_username_message = "Your username is :" --Message to show us
 local authorization_password_message = "Your password is :" --Message to show password
 
 local authorization_logins = { --static password list
-	{
-		"userid1", --username
-		"pass1", --password
-	},
-	{
-		"userid2", --username
-		"pass2", --password
-	},
+    {
+        "userid1", --username
+        "pass1", --password
+    },
+    {
+        "userid2", --username
+        "pass2", --password
+    },
 }
 
 --[[
@@ -530,14 +530,14 @@ Highly usefull for protecting your web application and backends from attacks zer
 ]]
 local WAF_POST_Request_table = {
 --[[
-	{
-		"^task$", --match post data in requests with value task
-		".*", --matching any
-	},
-	{
-		"^name1$", --regex match
-		"^.*y$", --regex or exact match
-	},
+    {
+        "^task$", --match post data in requests with value task
+        ".*", --matching any
+    },
+    {
+        "^name1$", --regex match
+        "^.*y$", --regex or exact match
+    },
 ]]
 }
 
@@ -550,18 +550,18 @@ Header exploits in requests they might send such as SQL info to inject into site
 ]]
 local WAF_Header_Request_table = {
 --[[
-	{
-		"^foo$", --match header name
-		".*", --matching any value
-	},
-	{
-		"^user-agent$", --header name
-		"^.*MJ12Bot.*$", --block a bad bot with user-agent header
-	},
-	{
-		"^cookie$", --Block a Cookie Exploit
-		".*SNaPjpCNuf9RYfAfiPQgklMGpOY.*",
-	},
+    {
+        "^foo$", --match header name
+        ".*", --matching any value
+    },
+    {
+        "^user-agent$", --header name
+        "^.*MJ12Bot.*$", --block a bad bot with user-agent header
+    },
+    {
+        "^cookie$", --Block a Cookie Exploit
+        ".*SNaPjpCNuf9RYfAfiPQgklMGpOY.*",
+    },
 ]]
 }
 
@@ -571,52 +571,52 @@ WAF Web Application Firewall Filter for query strings in requests
 To block exploits in query strings from potential bots and hackers
 ]]
 local WAF_query_string_Request_table = {
-	--[[
-		PHP easter egg exploit blocking
-		[server with expose_php = on]
-		.php?=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000
-		.php?=PHPE9568F34-D428-11d2-A769-00AA001ACF42
-		.php?=PHPE9568F35-D428-11d2-A769-00AA001ACF42
-		.php?=PHPE9568F36-D428-11d2-A769-00AA001ACF42
-	]]
-	{
-		"^.*$", --match any name
-		"^PHP.*$", --matching any value
-	},
-	{
-		"base64%_encode", --regex match name
-		"^.*$", --regex or exact match value
-	},
-	{
-		"base64%_decode", --regex match name
-		"^.*$", --regex or exact match value
-	},
-	--[[
-		File injection protection
-	]]
-	{
-		"[a-zA-Z0-9_]", --regex match name
-		"http%:%/%/", --regex or exact match value
-	},
-	{
-		"[a-zA-Z0-9_]", --regex match name
-		"https%:%/%/", --regex or exact match value
-	},
-	--[[
-		SQLi SQL Injections
-	]]
-	{
-		"^.*$",
-		"union.*select.*%(",
-	},
-	{
-		"^.*$",
-		"concat.*%(",
-	},
-	{
-		"^.*$",
-		"union.*all.*select.*",
-	},
+    --[[
+        PHP easter egg exploit blocking
+        [server with expose_php = on]
+        .php?=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000
+        .php?=PHPE9568F34-D428-11d2-A769-00AA001ACF42
+        .php?=PHPE9568F35-D428-11d2-A769-00AA001ACF42
+        .php?=PHPE9568F36-D428-11d2-A769-00AA001ACF42
+    ]]
+    {
+        "^.*$", --match any name
+        "^PHP.*$", --matching any value
+    },
+    {
+        "base64%_encode", --regex match name
+        "^.*$", --regex or exact match value
+    },
+    {
+        "base64%_decode", --regex match name
+        "^.*$", --regex or exact match value
+    },
+    --[[
+        File injection protection
+    ]]
+    {
+        "[a-zA-Z0-9_]", --regex match name
+        "http%:%/%/", --regex or exact match value
+    },
+    {
+        "[a-zA-Z0-9_]", --regex match name
+        "https%:%/%/", --regex or exact match value
+    },
+    --[[
+        SQLi SQL Injections
+    ]]
+    {
+        "^.*$",
+        "union.*select.*%(",
+    },
+    {
+        "^.*$",
+        "concat.*%(",
+    },
+    {
+        "^.*$",
+        "union.*all.*select.*",
+    },
 }
 
 --[[
@@ -625,25 +625,25 @@ WAF Web Application Firewall Filter for URL Paths in requests
 You can use this to protect server configuration files / paths and sensative material on sites
 ]]
 local WAF_URI_Request_table = {
-	{
-		"^.*$", --match any website on server
-		".*%.htaccess.*", --protect apache server .htaccess files
-	},
-	{
-		"^.*$", --match any website on server
-		".*config%.php.*", --protect config files
-	},
-	{
-		"^.*$", --match any website on server
-		".*configuration%.php.*", --protect joomla configuration.php files
-	},
-	--[[
-		Disallow direct access to system directories
-	]]
-	{
-		"^.*$", --match any website on server
-		".*%/cache.*", --protect /cache folder
-	},
+    {
+        "^.*$", --match any website on server
+        ".*%.htaccess.*", --protect apache server .htaccess files
+    },
+    {
+        "^.*$", --match any website on server
+        ".*config%.php.*", --protect config files
+    },
+    {
+        "^.*$", --match any website on server
+        ".*configuration%.php.*", --protect joomla configuration.php files
+    },
+    --[[
+        Disallow direct access to system directories
+    ]]
+    {
+        "^.*$", --match any website on server
+        ".*%/cache.*", --protect /cache folder
+    },
 }
 
 --[[
@@ -664,14 +664,14 @@ This will result in your backend applications and webserver having better perfor
 1 = Enabled
 ]]
 local query_string_sort_table = {
-	{
-		".*", --regex match any site / path
-		1, --enable
-	},
-	{
-		"domain.com/.*", --regex match this domain
-		1, --enable
-	},
+    {
+        ".*", --regex match any site / path
+        1, --enable
+    },
+    {
+        "domain.com/.*", --regex match this domain
+        1, --enable
+    },
 }
 
 --[[
@@ -681,208 +681,208 @@ So this is useful for those who know what URL arguments their sites use and want
 ]]
 local query_string_expected_args_only_table = {
 --[[
-	{
-		".*", --any site
-		{ --query strings to allow ONLY all others apart from those you list here will be removed from the URL
-			"punch",
-			"chickens",
-		},
-	},
-	{
-		"domain.com", --this domain
-		{ --query strings to allow ONLY all others apart from those you list here will be removed from the URL
-			"punch",
-			"chickens",
-		},
-	},
+    {
+        ".*", --any site
+        { --query strings to allow ONLY all others apart from those you list here will be removed from the URL
+            "punch",
+            "chickens",
+        },
+    },
+    {
+        "domain.com", --this domain
+        { --query strings to allow ONLY all others apart from those you list here will be removed from the URL
+            "punch",
+            "chickens",
+        },
+    },
 ]]
-	--for all sites specific static files that should never have query strings on the end of the URL (This will improve Caching and performance)
-	{
-		"%/.*%.js",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.css",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.ico",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.jpg",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.jpeg",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.bmp",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.gif",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.xml",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.txt",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.png",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.swf",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.pdf",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.zip",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.rar",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.7z",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.woff2",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.woff",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.wof",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.eot",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.ttf",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.svg",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.ejs",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.ps",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.pict",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.webp",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.eps",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.pls",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.csv",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.mid",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.doc",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.ppt",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.tif",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.xls",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.otf",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.jar",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	--video file formats
-	{
-		"%/.*%.mp4",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.webm",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.ogg",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.flv",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.mov",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	--music file formats
-	{
-		"%/.*%.mp3",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.m4a",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.aac",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.oga",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.flac",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
-	{
-		"%/.*%.wav",
-		{}, --no args to accept so any provided in the url will be removed.
-	},
+    --for all sites specific static files that should never have query strings on the end of the URL (This will improve Caching and performance)
+    {
+        "%/.*%.js",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.css",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.ico",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.jpg",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.jpeg",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.bmp",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.gif",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.xml",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.txt",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.png",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.swf",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.pdf",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.zip",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.rar",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.7z",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.woff2",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.woff",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.wof",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.eot",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.ttf",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.svg",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.ejs",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.ps",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.pict",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.webp",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.eps",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.pls",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.csv",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.mid",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.doc",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.ppt",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.tif",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.xls",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.otf",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.jar",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    --video file formats
+    {
+        "%/.*%.mp4",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.webm",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.ogg",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.flv",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.mov",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    --music file formats
+    {
+        "%/.*%.mp3",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.m4a",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.aac",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.oga",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.flac",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
+    {
+        "%/.*%.wav",
+        {}, --no args to accept so any provided in the url will be removed.
+    },
 }
 
 --[[
@@ -893,73 +893,73 @@ To remove Query strings that bypass the cache Intentionally Facebook and Google 
 Traffic to your site from facebook Posts / Shares the URL's will all contain this .com/index.html?fbclid=blah-blah-blah
 ]]
 local query_string_remove_args_table = {
-	{
-		".*", --all sites
-		{ --query strings to remove to improve Cache HIT Ratios and Stop attacks / Cache bypassing and Busting.
-			--Cloudflare cache busting query strings (get added to url from captcha and javascript pages very naughty breaking sites caches)
-			"__cf_chl_jschl_tk__",
-			"__cf_chl_captcha_tk__",
-			--facebook cache busting query strings
-			"fb_action_ids",
-			"fb_action_types",
-			"fb_source",
-			"fbclid",
-			--google cache busting query strings
-			"_ga",
-			"gclid",
-			"utm_source",
-			"utm_campaign",
-			"utm_medium",
-			"utm_expid",
-			"utm_term",
-			"utm_content",
-			--other cache busting query strings
-			"cache",
-			"caching",
-			"age-verified",
-			"ao_noptimize",
-			"usqp",
-			"cn-reloaded",
-			"dos",
-			"ddos",
-			"lol",
-			"rnd",
-			"random",
-			"v", --some urls use ?v1.2 as a file version causing cache busting
-			"ver",
-			"version",
-		},
-	},
-	{
-		"domain.com/.*", --this site
-		{ --query strings to remove to improve Cache HIT Ratios and Stop attacks / Cache bypassing and Busting.
-			--facebook cache busting query strings
-			"fbclid",
-		},
-	},
+    {
+        ".*", --all sites
+        { --query strings to remove to improve Cache HIT Ratios and Stop attacks / Cache bypassing and Busting.
+            --Cloudflare cache busting query strings (get added to url from captcha and javascript pages very naughty breaking sites caches)
+            "__cf_chl_jschl_tk__",
+            "__cf_chl_captcha_tk__",
+            --facebook cache busting query strings
+            "fb_action_ids",
+            "fb_action_types",
+            "fb_source",
+            "fbclid",
+            --google cache busting query strings
+            "_ga",
+            "gclid",
+            "utm_source",
+            "utm_campaign",
+            "utm_medium",
+            "utm_expid",
+            "utm_term",
+            "utm_content",
+            --other cache busting query strings
+            "cache",
+            "caching",
+            "age-verified",
+            "ao_noptimize",
+            "usqp",
+            "cn-reloaded",
+            "dos",
+            "ddos",
+            "lol",
+            "rnd",
+            "random",
+            "v", --some urls use ?v1.2 as a file version causing cache busting
+            "ver",
+            "version",
+        },
+    },
+    {
+        "domain.com/.*", --this site
+        { --query strings to remove to improve Cache HIT Ratios and Stop attacks / Cache bypassing and Busting.
+            --facebook cache busting query strings
+            "fbclid",
+        },
+    },
 }
 
 --[[
 To restore original visitor IP addresses at your origin web server this will send a request header to your backend application or proxy containing the clients real IP address
 ]]
 local send_ip_to_backend_custom_headers = {
-	{
-		".*",
-		{
-			{"CF-Connecting-IP",}, --CF-Connecting-IP Cloudflare CDN
-			{"True-Client-IP",}, --True-Client-IP Akamai CDN
-			{"X-Client-IP",} --Amazon Cloudfront
-		},
-	},
-	--[[
-	{
-		"%/.*%.mp4", --custom url paths
-		{
-			{"CF-Connecting-IP",}, --CF-Connecting-IP
-			{"True-Client-IP",}, --True-Client-IP
-		},
-	},
-	]]
+    {
+        ".*",
+        {
+            {"CF-Connecting-IP",}, --CF-Connecting-IP Cloudflare CDN
+            {"True-Client-IP",}, --True-Client-IP Akamai CDN
+            {"X-Client-IP",} --Amazon Cloudfront
+        },
+    },
+    --[[
+    {
+        "%/.*%.mp4", --custom url paths
+        {
+            {"CF-Connecting-IP",}, --CF-Connecting-IP
+            {"True-Client-IP",}, --True-Client-IP
+        },
+    },
+    ]]
 }
 
 --[[
@@ -969,346 +969,346 @@ To add custom headers to URLs paths to increase server performance and speed to 
 and to remove headers for security purposes that could expose software the server is running etc
 ]]
 local custom_headers = {
-	{
-		".*",
-		{ --headers to improve server security for all websites
-			{"Server",nil,}, --Server version / identity exposure remove
-			{"X-Powered-By",nil,}, --PHP Powered by version / identity exposure remove
-			{"X-Content-Encoded-By",nil,}, --Joomla Content encoded by remove
-			{"X-Content-Type-Options","nosniff",}, --block MIME-type sniffing
-			{"X-XSS-Protection","1; mode=block",}, --block cross-site scripting (XSS) attacks
-			{"x-turbo-charged-by",nil,}, --remove x-turbo-charged-by LiteSpeed
-		},
-	},
-	{
-		"%/.*%.js",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.css",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.ico",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.jpg",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.jpeg",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.bmp",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.gif",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.xml",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.txt",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.png",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.swf",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.pdf",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.zip",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.rar",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.7z",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.woff2",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.woff",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.wof",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.eot",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.ttf",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.svg",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.ejs",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.ps",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.pict",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.webp",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.eps",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.pls",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.csv",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.mid",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.doc",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.ppt",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.tif",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.xls",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.otf",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.jar",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	--video file formats
-	{
-		"%/.*%.mp4",
-		{
-			{"X-Frame-Options","SAMEORIGIN",}, --this file can only be embeded within a iframe on the same domain name stops hotlinking and leeching
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.webm",
-		{
-			{"X-Frame-Options","SAMEORIGIN",}, --this file can only be embeded within a iframe on the same domain name stops hotlinking and leeching
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.ogg",
-		{
-			{"X-Frame-Options","SAMEORIGIN",}, --this file can only be embeded within a iframe on the same domain name stops hotlinking and leeching
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.flv",
-		{
-			{"X-Frame-Options","SAMEORIGIN",}, --this file can only be embeded within a iframe on the same domain name stops hotlinking and leeching
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.mov",
-		{
-			{"X-Frame-Options","SAMEORIGIN",}, --this file can only be embeded within a iframe on the same domain name stops hotlinking and leeching
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	--music file formats
-	{
-		"%/.*%.mp3",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.m4a",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.aac",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.oga",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.flac",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
-	{
-		"%/.*%.wav",
-		{
-			{"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
-			{"Pragma","public",},
-		},
-	},
+    {
+        ".*",
+        { --headers to improve server security for all websites
+            {"Server",nil,}, --Server version / identity exposure remove
+            {"X-Powered-By",nil,}, --PHP Powered by version / identity exposure remove
+            {"X-Content-Encoded-By",nil,}, --Joomla Content encoded by remove
+            {"X-Content-Type-Options","nosniff",}, --block MIME-type sniffing
+            {"X-XSS-Protection","1; mode=block",}, --block cross-site scripting (XSS) attacks
+            {"x-turbo-charged-by",nil,}, --remove x-turbo-charged-by LiteSpeed
+        },
+    },
+    {
+        "%/.*%.js",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.css",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.ico",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.jpg",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.jpeg",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.bmp",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.gif",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.xml",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.txt",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.png",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.swf",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.pdf",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.zip",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.rar",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.7z",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.woff2",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.woff",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.wof",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.eot",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.ttf",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.svg",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.ejs",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.ps",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.pict",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.webp",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.eps",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.pls",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.csv",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.mid",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.doc",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.ppt",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.tif",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.xls",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.otf",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.jar",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    --video file formats
+    {
+        "%/.*%.mp4",
+        {
+            {"X-Frame-Options","SAMEORIGIN",}, --this file can only be embeded within a iframe on the same domain name stops hotlinking and leeching
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.webm",
+        {
+            {"X-Frame-Options","SAMEORIGIN",}, --this file can only be embeded within a iframe on the same domain name stops hotlinking and leeching
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.ogg",
+        {
+            {"X-Frame-Options","SAMEORIGIN",}, --this file can only be embeded within a iframe on the same domain name stops hotlinking and leeching
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.flv",
+        {
+            {"X-Frame-Options","SAMEORIGIN",}, --this file can only be embeded within a iframe on the same domain name stops hotlinking and leeching
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.mov",
+        {
+            {"X-Frame-Options","SAMEORIGIN",}, --this file can only be embeded within a iframe on the same domain name stops hotlinking and leeching
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    --music file formats
+    {
+        "%/.*%.mp3",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.m4a",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.aac",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.oga",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.flac",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
+    {
+        "%/.*%.wav",
+        {
+            {"Cache-Control","max-age=315360000, stale-while-revalidate=315360000, stale-if-error=315360000, public, immutable",}, --cache headers to save server bandwidth.
+            {"Pragma","public",},
+        },
+    },
 }
 
 --[[
@@ -1355,23 +1355,23 @@ Localized vars for use later
 Header Modifications
 ]]
 local function header_modification()
-	local custom_headers_length = #custom_headers
-	for i=1,custom_headers_length do --for each host in our table
-		local v = custom_headers[i]
-		if string.match(URL, v[1]) then --if our host matches one in the table
-			local table_length = #v[2]
-			for first=1,table_length do --for each arg in our table
-				local value1 = v[2][first][1]
-				local value2 = v[2][first][2]
-				if value1 ~= nil and value2 ~= nil then
-					ngx.header[value1] = value2
-				end
-				if value2 == nil then
-					ngx.header[value1] = nil --remove the header
-				end
-			end
-		end
-	end
+    local custom_headers_length = #custom_headers
+    for i=1,custom_headers_length do --for each host in our table
+        local v = custom_headers[i]
+        if string.match(URL, v[1]) then --if our host matches one in the table
+            local table_length = #v[2]
+            for first=1,table_length do --for each arg in our table
+                local value1 = v[2][first][1]
+                local value2 = v[2][first][2]
+                if value1 ~= nil and value2 ~= nil then
+                    ngx.header[value1] = value2
+                end
+                if value2 == nil then
+                    ngx.header[value1] = nil --remove the header
+                end
+            end
+        end
+    end
 end
 header_modification()
 --[[
@@ -1380,50 +1380,50 @@ End Header Modifications
 
 --automatically figure out the IP address of the connecting Client
 if remote_addr == "auto" then
-	if ngx.var.http_cf_connecting_ip ~= nil then
-		remote_addr = ngx.var.http_cf_connecting_ip
-	elseif ngx.var.http_x_forwarded_for ~= nil then
-		remote_addr = ngx.var.http_x_forwarded_for
-	else
-		remote_addr = ngx.var.remote_addr
-	end
+    if ngx.var.http_cf_connecting_ip ~= nil then
+        remote_addr = ngx.var.http_cf_connecting_ip
+    elseif ngx.var.http_x_forwarded_for ~= nil then
+        remote_addr = ngx.var.http_x_forwarded_for
+    else
+        remote_addr = ngx.var.remote_addr
+    end
 end
 if ip_whitelist_remote_addr == "auto" then
-	if ngx.var.http_cf_connecting_ip ~= nil then
-		ip_whitelist_remote_addr = ngx.var.http_cf_connecting_ip
-	elseif ngx.var.http_x_forwarded_for ~= nil then
-		ip_whitelist_remote_addr = ngx.var.http_x_forwarded_for
-	else
-		ip_whitelist_remote_addr = ngx.var.remote_addr
-	end
+    if ngx.var.http_cf_connecting_ip ~= nil then
+        ip_whitelist_remote_addr = ngx.var.http_cf_connecting_ip
+    elseif ngx.var.http_x_forwarded_for ~= nil then
+        ip_whitelist_remote_addr = ngx.var.http_x_forwarded_for
+    else
+        ip_whitelist_remote_addr = ngx.var.remote_addr
+    end
 end
 if ip_blacklist_remote_addr == "auto" then
-	if ngx.var.http_cf_connecting_ip ~= nil then
-		ip_blacklist_remote_addr = ngx.var.http_cf_connecting_ip
-	elseif ngx.var.http_x_forwarded_for ~= nil then
-		ip_blacklist_remote_addr = ngx.var.http_x_forwarded_for
-	else
-		ip_blacklist_remote_addr = ngx.var.remote_addr
-	end
+    if ngx.var.http_cf_connecting_ip ~= nil then
+        ip_blacklist_remote_addr = ngx.var.http_cf_connecting_ip
+    elseif ngx.var.http_x_forwarded_for ~= nil then
+        ip_blacklist_remote_addr = ngx.var.http_x_forwarded_for
+    else
+        ip_blacklist_remote_addr = ngx.var.remote_addr
+    end
 end
 
 --[[
 headers to restore original visitor IP addresses at your origin web server
 ]]
 local function header_append_ip()
-	local custom_headers_length = #send_ip_to_backend_custom_headers
-	for i=1,custom_headers_length do --for each host in our table
-		local v = custom_headers[i]
-		if string.match(URL, v[1]) then --if our host matches one in the table
-			local table_length = #v[2]
-			for first=1,table_length do --for each arg in our table
-				local value1 = v[2][first][1]
-				if value1 ~= nil then
-					ngx.req.set_header(value1, remote_addr)
-				end
-			end
-		end
-	end
+    local custom_headers_length = #send_ip_to_backend_custom_headers
+    for i=1,custom_headers_length do --for each host in our table
+        local v = custom_headers[i]
+        if string.match(URL, v[1]) then --if our host matches one in the table
+            local table_length = #v[2]
+            for first=1,table_length do --for each arg in our table
+                local value1 = v[2][first][1]
+                if value1 ~= nil then
+                    ngx.req.set_header(value1, remote_addr)
+                end
+            end
+        end
+    end
 end
 header_append_ip()
 --[[
@@ -1432,37 +1432,37 @@ End headers to restore original visitor IP addresses at your origin web server
 
 --if host of site is a tor website connecting clients will be tor network clients
 if string.match(string.lower(host), ".onion") then
-	remote_addr = "tor"
+    remote_addr = "tor"
 end
 if remote_addr == "tor" then
-	remote_addr = tor_remote_addr
+    remote_addr = tor_remote_addr
 end
 
 --[[
 Query String Remove arguments
 ]]
 local function query_string_remove_args()
-	local args = ngx.req.get_uri_args() --grab our query string args and put them into a table
-	local modified = nil
+    local args = ngx.req.get_uri_args() --grab our query string args and put them into a table
+    local modified = nil
 
-	local query_string_remove_args_table_length = #query_string_remove_args_table
-	for i=1,query_string_remove_args_table_length do --for each host in our table
-		local v = query_string_remove_args_table[i]
-		if string.match(URL, v[1]) then --if our host matches one in the table
-			local table_length = #v[2]
-			for i=1,table_length do --for each arg in our table
-				local value = v[2][i]
-				args[value] = nil --remove the arguement from the args table
-				modified = 1 --set args as modified
-			end
-			break --break out of the for each loop pointless to keep searching the rest since we matched our host
-		end
-	end
-	if modified == 1 then --need to set our args as our new modified one
-		ngx.req.set_uri_args(args) --set the args on the server as our new ordered args check ngx.var.args
-	else
-		return --carry on script functions
-	end
+    local query_string_remove_args_table_length = #query_string_remove_args_table
+    for i=1,query_string_remove_args_table_length do --for each host in our table
+        local v = query_string_remove_args_table[i]
+        if string.match(URL, v[1]) then --if our host matches one in the table
+            local table_length = #v[2]
+            for i=1,table_length do --for each arg in our table
+                local value = v[2][i]
+                args[value] = nil --remove the arguement from the args table
+                modified = 1 --set args as modified
+            end
+            break --break out of the for each loop pointless to keep searching the rest since we matched our host
+        end
+    end
+    if modified == 1 then --need to set our args as our new modified one
+        ngx.req.set_uri_args(args) --set the args on the server as our new ordered args check ngx.var.args
+    else
+        return --carry on script functions
+    end
 end
 query_string_remove_args()
 --[[
@@ -1471,39 +1471,39 @@ Query String Remove arguments
 
 --if a table has a value inside of it
 local function has_value(table_, val)
-	for key, value in next, table_ do
-		if value == val then
-			return true
-		end
-	end
-	return false
+    for key, value in next, table_ do
+        if value == val then
+            return true
+        end
+    end
+    return false
 end
 
 --[[
 Query String Expected arguments Whitelist only
 ]]
 local function query_string_expected_args_only()
-	local args = ngx.req.get_uri_args() --grab our query string args and put them into a table
-	local modified = nil
+    local args = ngx.req.get_uri_args() --grab our query string args and put them into a table
+    local modified = nil
 
-	local query_string_expected_args_only_table_length = #query_string_expected_args_only_table
-	for i=1,query_string_expected_args_only_table_length do --for each host in our table
-		local v = query_string_expected_args_only_table[i]
-		if string.match(URL, v[1]) then --if our host matches one in the table
-			for key, value in next, args do
-				if has_value(v[2], tostring(key)) == false then
-					args[key] = nil --remove the arguement from the args table
-					modified = 1 --set args as modified
-				end
-			end
-			break --break out of the for each loop pointless to keep searching the rest since we matched our host
-		end
-	end
-	if modified == 1 then --need to set our args as our new modified one
-		ngx.req.set_uri_args(args) --set the args on the server as our new ordered args check ngx.var.args
-	else
-		return --carry on script functions
-	end
+    local query_string_expected_args_only_table_length = #query_string_expected_args_only_table
+    for i=1,query_string_expected_args_only_table_length do --for each host in our table
+        local v = query_string_expected_args_only_table[i]
+        if string.match(URL, v[1]) then --if our host matches one in the table
+            for key, value in next, args do
+                if has_value(v[2], tostring(key)) == false then
+                    args[key] = nil --remove the arguement from the args table
+                    modified = 1 --set args as modified
+                end
+            end
+            break --break out of the for each loop pointless to keep searching the rest since we matched our host
+        end
+    end
+    if modified == 1 then --need to set our args as our new modified one
+        ngx.req.set_uri_args(args) --set the args on the server as our new ordered args check ngx.var.args
+    else
+        return --carry on script functions
+    end
 end
 query_string_expected_args_only()
 --[[
@@ -1514,27 +1514,27 @@ Query String Expected arguments Whitelist only
 Query String Sort
 ]]
 local function query_string_sort()
-	local allow_site = nil
-	local query_string_sort_table_length = #query_string_sort_table
-	for i=1,query_string_sort_table_length do --for each host in our table
-		local v = query_string_sort_table[i]
-		if string.match(URL, v[1]) then --if our host matches one in the table
-			if v[2] == 1 then --run query string sort
-				allow_site = 2 --run query string sort
-			end
-			if v[2] == 0 then --bypass
-				allow_site = 1 --do not run query string sort
-			end
-			break --break out of the for each loop pointless to keep searching the rest since we matched our host
-		end
-	end
-	if allow_site == 2 then --sort our query string
-		local args = ngx.req.get_uri_args() --grab our query string args and put them into a table
-		table.sort(args) --sort our query string args table into order
-		ngx.req.set_uri_args(args) --set the args on the server as our new ordered args check ngx.var.args
-	else --allow_site was 1
-		return --carry on script functions
-	end
+    local allow_site = nil
+    local query_string_sort_table_length = #query_string_sort_table
+    for i=1,query_string_sort_table_length do --for each host in our table
+        local v = query_string_sort_table[i]
+        if string.match(URL, v[1]) then --if our host matches one in the table
+            if v[2] == 1 then --run query string sort
+                allow_site = 2 --run query string sort
+            end
+            if v[2] == 0 then --bypass
+                allow_site = 1 --do not run query string sort
+            end
+            break --break out of the for each loop pointless to keep searching the rest since we matched our host
+        end
+    end
+    if allow_site == 2 then --sort our query string
+        local args = ngx.req.get_uri_args() --grab our query string args and put them into a table
+        table.sort(args) --sort our query string args table into order
+        ngx.req.set_uri_args(args) --set the args on the server as our new ordered args check ngx.var.args
+    else --allow_site was 1
+        return --carry on script functions
+    end
 end
 query_string_sort()
 --[[
@@ -1545,669 +1545,669 @@ End Query String Sort
 Start IP range function
 ]]
 local function ip_address_in_range(input_ip, client_connecting_ip)
-	if string.match(input_ip, "/") then --input ip is a subnet
-		--do nothing
-	else
-		return
-	end
+    if string.match(input_ip, "/") then --input ip is a subnet
+        --do nothing
+    else
+        return
+    end
 
-	local ip_type = nil
-	if string.match(input_ip, "%:") and string.match(client_connecting_ip, "%:") then --if both input and connecting ip are ipv6 addresses
-		--ipv6
-		ip_type = 1
-	elseif string.match(input_ip, "%.") and string.match(client_connecting_ip, "%.") then --if both input and connecting ip are ipv4 addresses
-		--ipv4
-		ip_type = 2
-	else
-		return
-	end
-	if ip_type == nil then
-		--input and connecting IP one is ipv4 and one is ipv6
-		return
-	end
+    local ip_type = nil
+    if string.match(input_ip, "%:") and string.match(client_connecting_ip, "%:") then --if both input and connecting ip are ipv6 addresses
+        --ipv6
+        ip_type = 1
+    elseif string.match(input_ip, "%.") and string.match(client_connecting_ip, "%.") then --if both input and connecting ip are ipv4 addresses
+        --ipv4
+        ip_type = 2
+    else
+        return
+    end
+    if ip_type == nil then
+        --input and connecting IP one is ipv4 and one is ipv6
+        return
+    end
 
-	if ip_type == 1 then --ipv6
+    if ip_type == 1 then --ipv6
 
-		local function explode(string, divide)
-			if divide == '' then return false end
-			local pos, arr = 0, {}
-			local arr_table_length = 1
-			--for each divider found
-			for st, sp in function() return string.find(string, divide, pos, true) end do
-				arr[arr_table_length] = string.sub(string, pos, st - 1 ) --attach chars left of current divider
-				arr_table_length=arr_table_length+1
-				pos = sp + 1 --jump past current divider
-			end
-				arr[arr_table_length] = string.sub(string, pos) -- Attach chars right of last divider
-				arr_table_length=arr_table_length+1
-			return arr
-		end
+        local function explode(string, divide)
+            if divide == '' then return false end
+            local pos, arr = 0, {}
+            local arr_table_length = 1
+            --for each divider found
+            for st, sp in function() return string.find(string, divide, pos, true) end do
+                arr[arr_table_length] = string.sub(string, pos, st - 1 ) --attach chars left of current divider
+                arr_table_length=arr_table_length+1
+                pos = sp + 1 --jump past current divider
+            end
+                arr[arr_table_length] = string.sub(string, pos) -- Attach chars right of last divider
+                arr_table_length=arr_table_length+1
+            return arr
+        end
 
-		--[[
-		Input IP
-		]]
-		--validate actual ip
-		local a, b, ip, mask = input_ip:find('([%w:]+)/(%d+)')
+        --[[
+        Input IP
+        ]]
+        --validate actual ip
+        local a, b, ip, mask = input_ip:find('([%w:]+)/(%d+)')
 
-		--get ip bits
-		local ipbits = explode(ip, ':')
+        --get ip bits
+        local ipbits = explode(ip, ':')
 
-		--now to build an expanded ip
-		local zeroblock
-		local ipbits_length = #ipbits
-		for i=1,ipbits_length do
-			local k = i
-			local v = ipbits[i]
-			--length 0? we're at the :: bit
-			if v:len() == 0 then
-				zeroblock = k
+        --now to build an expanded ip
+        local zeroblock
+        local ipbits_length = #ipbits
+        for i=1,ipbits_length do
+            local k = i
+            local v = ipbits[i]
+            --length 0? we're at the :: bit
+            if v:len() == 0 then
+                zeroblock = k
 
-				--length not 0 but not 4, prepend 0's
-			elseif v:len() < 4 then
-				local padding = 4 - v:len()
-				for i = 1, padding do
-					ipbits[k] = 0 .. ipbits[k]
-				end
-			end
-		end
-		if zeroblock and #ipbits < 8 then
-			--remove zeroblock
-			ipbits[zeroblock] = '0000'
-			local padding = 8 - #ipbits
+                --length not 0 but not 4, prepend 0's
+            elseif v:len() < 4 then
+                local padding = 4 - v:len()
+                for i = 1, padding do
+                    ipbits[k] = 0 .. ipbits[k]
+                end
+            end
+        end
+        if zeroblock and #ipbits < 8 then
+            --remove zeroblock
+            ipbits[zeroblock] = '0000'
+            local padding = 8 - #ipbits
 
-			for i = 1, padding do
-				ipbits[zeroblock] = '0000'
-				--ipbits_length=ipbits_length+1
-			end
-		end
-		--[[
-		End Input IP
-		]]
+            for i = 1, padding do
+                ipbits[zeroblock] = '0000'
+                --ipbits_length=ipbits_length+1
+            end
+        end
+        --[[
+        End Input IP
+        ]]
 
-		--[[
-		Client IP
-		]]
-		--validate actual ip
-		local a, b, clientip, mask_client = client_connecting_ip:find('([%w:]+)')
+        --[[
+        Client IP
+        ]]
+        --validate actual ip
+        local a, b, clientip, mask_client = client_connecting_ip:find('([%w:]+)')
 
-		--get ip bits
-		local ipbits_client = explode(clientip, ':')
+        --get ip bits
+        local ipbits_client = explode(clientip, ':')
 
-		--now to build an expanded ip
-		local zeroblock_client
-		local ipbits_client_length = #ipbits_client
-		for i=1,ipbits_client_length do
-			local k = i
-			local v = ipbits_client[i]
-			--length 0? we're at the :: bit
-			if v:len() == 0 then
-				zeroblock_client = k
+        --now to build an expanded ip
+        local zeroblock_client
+        local ipbits_client_length = #ipbits_client
+        for i=1,ipbits_client_length do
+            local k = i
+            local v = ipbits_client[i]
+            --length 0? we're at the :: bit
+            if v:len() == 0 then
+                zeroblock_client = k
 
-				--length not 0 but not 4, prepend 0's
-			elseif v:len() < 4 then
-				local padding = 4 - v:len()
-				for i = 1, padding do
-					ipbits_client[k] = 0 .. ipbits_client[k]
-				end
-			end
-		end
-		if zeroblock_client and #ipbits_client < 8 then
-			--remove zeroblock
-			ipbits_client[zeroblock_client] = '0000'
-			local padding = 8 - #ipbits_client
+                --length not 0 but not 4, prepend 0's
+            elseif v:len() < 4 then
+                local padding = 4 - v:len()
+                for i = 1, padding do
+                    ipbits_client[k] = 0 .. ipbits_client[k]
+                end
+            end
+        end
+        if zeroblock_client and #ipbits_client < 8 then
+            --remove zeroblock
+            ipbits_client[zeroblock_client] = '0000'
+            local padding = 8 - #ipbits_client
 
-			for i = 1, padding do
-				ipbits_client[zeroblock_client] = '0000'
-				--ipbits_client_length=ipbits_client_length+1
-			end
-		end
-		--[[
-		End Client IP
-		]]
+            for i = 1, padding do
+                ipbits_client[zeroblock_client] = '0000'
+                --ipbits_client_length=ipbits_client_length+1
+            end
+        end
+        --[[
+        End Client IP
+        ]]
 
-		local expanded_ip_count = (ipbits[1] or "0000") .. ':' .. (ipbits[2] or "0000") .. ':' .. (ipbits[3] or "0000") .. ':' .. (ipbits[4] or "0000") .. ':' .. (ipbits[5] or "0000") .. ':' .. (ipbits[6] or "0000") .. ':' .. (ipbits[7] or "0000") .. ':' .. (ipbits[8] or "0000")
-		expanded_ip_count = ngx.re.gsub(expanded_ip_count, ":", "", ngx_re_options)
+        local expanded_ip_count = (ipbits[1] or "0000") .. ':' .. (ipbits[2] or "0000") .. ':' .. (ipbits[3] or "0000") .. ':' .. (ipbits[4] or "0000") .. ':' .. (ipbits[5] or "0000") .. ':' .. (ipbits[6] or "0000") .. ':' .. (ipbits[7] or "0000") .. ':' .. (ipbits[8] or "0000")
+        expanded_ip_count = ngx.re.gsub(expanded_ip_count, ":", "", ngx_re_options)
 
-		local client_connecting_ip_count = (ipbits_client[1] or "0000") .. ':' .. (ipbits_client[2] or "0000") .. ':' .. (ipbits_client[3] or "0000") .. ':' .. (ipbits_client[4] or "0000") .. ':' .. (ipbits_client[5] or "0000") .. ':' .. (ipbits_client[6] or "0000") .. ':' .. (ipbits_client[7] or "0000") .. ':' .. (ipbits_client[8] or "0000")
-		client_connecting_ip_count = ngx.re.gsub(client_connecting_ip_count, ":", "", ngx_re_options)
+        local client_connecting_ip_count = (ipbits_client[1] or "0000") .. ':' .. (ipbits_client[2] or "0000") .. ':' .. (ipbits_client[3] or "0000") .. ':' .. (ipbits_client[4] or "0000") .. ':' .. (ipbits_client[5] or "0000") .. ':' .. (ipbits_client[6] or "0000") .. ':' .. (ipbits_client[7] or "0000") .. ':' .. (ipbits_client[8] or "0000")
+        client_connecting_ip_count = ngx.re.gsub(client_connecting_ip_count, ":", "", ngx_re_options)
 
-		--generate wildcard from mask
-		local indent = mask / 4
+        --generate wildcard from mask
+        local indent = mask / 4
 
-		expanded_ip_count = string.sub(expanded_ip_count, 0, indent)
-		client_connecting_ip_count = string.sub(client_connecting_ip_count, 0, indent)
+        expanded_ip_count = string.sub(expanded_ip_count, 0, indent)
+        client_connecting_ip_count = string.sub(client_connecting_ip_count, 0, indent)
 
-		local client_connecting_ip_expanded = ngx.re.gsub(client_connecting_ip_count, "....", "%1:", ngx_re_options)
-		client_connecting_ip_expanded = ngx.re.gsub(client_connecting_ip_count, ":$", "", ngx_re_options)
-		local expanded_ip = ngx.re.gsub(expanded_ip_count, "....", "%1:", ngx_re_options)
-		expanded_ip = ngx.re.gsub(expanded_ip_count, ":$", "", ngx_re_options)
+        local client_connecting_ip_expanded = ngx.re.gsub(client_connecting_ip_count, "....", "%1:", ngx_re_options)
+        client_connecting_ip_expanded = ngx.re.gsub(client_connecting_ip_count, ":$", "", ngx_re_options)
+        local expanded_ip = ngx.re.gsub(expanded_ip_count, "....", "%1:", ngx_re_options)
+        expanded_ip = ngx.re.gsub(expanded_ip_count, ":$", "", ngx_re_options)
 
-		local wildcardbits = {}
-		local wildcardbits_table_length = 1
-		for i = 0, indent - 1 do
-			wildcardbits[wildcardbits_table_length] = 'f'
-			wildcardbits_table_length=wildcardbits_table_length+1
-		end
-		for i = 0, 31 - indent do
-			wildcardbits[wildcardbits_table_length] = '0'
-			wildcardbits_table_length=wildcardbits_table_length+1
-		end
-		--convert into 8 string array each w/ 4 chars
-		local count, index, wildcard = 1, 1, {}
-		local wildcardbits_length = #wildcardbits
-		for i=1,wildcardbits_length do
-			local k = i
-			local v = wildcardbits[i]
-			if count > 4 then
-				count = 1
-				index = index + 1
-			end
-			if not wildcard[index] then wildcard[index] = '' end
-			wildcard[index] = wildcard[index] .. v
-			count = count + 1
-		end
+        local wildcardbits = {}
+        local wildcardbits_table_length = 1
+        for i = 0, indent - 1 do
+            wildcardbits[wildcardbits_table_length] = 'f'
+            wildcardbits_table_length=wildcardbits_table_length+1
+        end
+        for i = 0, 31 - indent do
+            wildcardbits[wildcardbits_table_length] = '0'
+            wildcardbits_table_length=wildcardbits_table_length+1
+        end
+        --convert into 8 string array each w/ 4 chars
+        local count, index, wildcard = 1, 1, {}
+        local wildcardbits_length = #wildcardbits
+        for i=1,wildcardbits_length do
+            local k = i
+            local v = wildcardbits[i]
+            if count > 4 then
+                count = 1
+                index = index + 1
+            end
+            if not wildcard[index] then wildcard[index] = '' end
+            wildcard[index] = wildcard[index] .. v
+            count = count + 1
+        end
 
-			--loop each letter in each ipbit group
-			local topip = {}
-			local bottomip = {}
-			local ipbits_length = #ipbits
-			for i=1,ipbits_length do
-				local k = i
-				local v = ipbits[i]
-				local topbit = ''
-				local bottombit = ''
-				for i = 1, 4 do
-					local wild = wildcard[k]:sub(i, i)
-					local norm = v:sub(i, i)
-					if wild == 'f' then
-						topbit = topbit .. norm
-						bottombit = bottombit .. norm
-					else
-						topbit = topbit .. '0'
-						bottombit = bottombit .. 'f'
-					end
-				end
-				topip[k] = topbit
-				bottomip[k] = bottombit
-			end
+            --loop each letter in each ipbit group
+            local topip = {}
+            local bottomip = {}
+            local ipbits_length = #ipbits
+            for i=1,ipbits_length do
+                local k = i
+                local v = ipbits[i]
+                local topbit = ''
+                local bottombit = ''
+                for i = 1, 4 do
+                    local wild = wildcard[k]:sub(i, i)
+                    local norm = v:sub(i, i)
+                    if wild == 'f' then
+                        topbit = topbit .. norm
+                        bottombit = bottombit .. norm
+                    else
+                        topbit = topbit .. '0'
+                        bottombit = bottombit .. 'f'
+                    end
+                end
+                topip[k] = topbit
+                bottomip[k] = bottombit
+            end
 
-		--count ips in mask
-		local ipcount = math.pow(2, 128 - mask)
+        --count ips in mask
+        local ipcount = math.pow(2, 128 - mask)
 
-		if expanded_ip == client_connecting_ip_expanded then
-			--print("ipv6 is in range")
-			return true
-		end
+        if expanded_ip == client_connecting_ip_expanded then
+            --print("ipv6 is in range")
+            return true
+        end
 
-		--output
-		--[[
-		print()
-		print('indent' .. indent)
-		print('client_ip numeric : ' .. client_connecting_ip_count )
-		print('input ip numeric : ' .. expanded_ip_count )
-		print('client_ip : ' .. client_connecting_ip_expanded )
-		print('input ip : ' .. expanded_ip )
-		print()
-		print( '###### INFO ######' )
-		print( 'IP in: ' .. ip )
-		print( '=> Expanded IP: ' .. (ipbits[1] or "0000") .. ':' .. (ipbits[2] or "0000") .. ':' .. (ipbits[3] or "0000") .. ':' .. (ipbits[4] or "0000") .. ':' .. (ipbits[5] or "0000") .. ':' .. (ipbits[6] or "0000") .. ':' .. (ipbits[7] or "0000") .. ':' .. (ipbits[8] or "0000") )
-		print( 'Mask in: /' .. mask )
-		print( '=> Mask Wildcard: ' .. (wildcard[1] or "0000") .. ':' .. (wildcard[2] or "0000") .. ':' .. (wildcard[3] or "0000") .. ':' .. (wildcard[4] or "0000") .. ':' .. (wildcard[5] or "0000") .. ':' .. (wildcard[6] or "0000") .. ':' .. (wildcard[7] or "0000") .. ':' .. (wildcard[8] or "0000") )
-		print( '\n###### BLOCK ######' )
-		print( '#IP\'s: ' .. ipcount )
-		print( 'Range Start: ' .. (topip[1] or "0000") .. ':' .. (topip[2] or "0000") .. ':' .. (topip[3] or "0000") .. ':' .. (topip[4] or "0000") .. ':' .. (topip[5] or "0000") .. ':' .. (topip[6] or "0000") .. ':' .. (topip[7] or "0000") .. ':' .. (topip[8] or "0000") )
-		print( 'Range End: ' .. (bottomip[1] or "ffff") .. ':' .. (bottomip[2] or "ffff") .. ':' .. (bottomip[3] or "ffff") .. ':' .. (bottomip[4] or "ffff") .. ':' .. (bottomip[5] or "ffff") .. ':' .. (bottomip[6] or "ffff") .. ':' .. (bottomip[7] or "ffff") .. ':' .. (bottomip[8] or "ffff") )
-		]]
+        --output
+        --[[
+        print()
+        print('indent' .. indent)
+        print('client_ip numeric : ' .. client_connecting_ip_count )
+        print('input ip numeric : ' .. expanded_ip_count )
+        print('client_ip : ' .. client_connecting_ip_expanded )
+        print('input ip : ' .. expanded_ip )
+        print()
+        print( '###### INFO ######' )
+        print( 'IP in: ' .. ip )
+        print( '=> Expanded IP: ' .. (ipbits[1] or "0000") .. ':' .. (ipbits[2] or "0000") .. ':' .. (ipbits[3] or "0000") .. ':' .. (ipbits[4] or "0000") .. ':' .. (ipbits[5] or "0000") .. ':' .. (ipbits[6] or "0000") .. ':' .. (ipbits[7] or "0000") .. ':' .. (ipbits[8] or "0000") )
+        print( 'Mask in: /' .. mask )
+        print( '=> Mask Wildcard: ' .. (wildcard[1] or "0000") .. ':' .. (wildcard[2] or "0000") .. ':' .. (wildcard[3] or "0000") .. ':' .. (wildcard[4] or "0000") .. ':' .. (wildcard[5] or "0000") .. ':' .. (wildcard[6] or "0000") .. ':' .. (wildcard[7] or "0000") .. ':' .. (wildcard[8] or "0000") )
+        print( '\n###### BLOCK ######' )
+        print( '#IP\'s: ' .. ipcount )
+        print( 'Range Start: ' .. (topip[1] or "0000") .. ':' .. (topip[2] or "0000") .. ':' .. (topip[3] or "0000") .. ':' .. (topip[4] or "0000") .. ':' .. (topip[5] or "0000") .. ':' .. (topip[6] or "0000") .. ':' .. (topip[7] or "0000") .. ':' .. (topip[8] or "0000") )
+        print( 'Range End: ' .. (bottomip[1] or "ffff") .. ':' .. (bottomip[2] or "ffff") .. ':' .. (bottomip[3] or "ffff") .. ':' .. (bottomip[4] or "ffff") .. ':' .. (bottomip[5] or "ffff") .. ':' .. (bottomip[6] or "ffff") .. ':' .. (bottomip[7] or "ffff") .. ':' .. (bottomip[8] or "ffff") )
+        ]]
 
-	end
+    end
 
-	if ip_type == 2 then --ipv4
+    if ip_type == 2 then --ipv4
 
-		local a, b, ip1, ip2, ip3, ip4, mask = input_ip:find('(%d+).(%d+).(%d+).(%d+)/(%d+)')
-		local ip = { tonumber( ip1 ), tonumber( ip2 ), tonumber( ip3 ), tonumber( ip4 ) }
-		local a, b, client_ip1, client_ip2, client_ip3, client_ip4 = client_connecting_ip:find('(%d+).(%d+).(%d+).(%d+)')
-		local client_ip = { tonumber( client_ip1 ), tonumber( client_ip2 ), tonumber( client_ip3 ), tonumber( client_ip4 ) }
+        local a, b, ip1, ip2, ip3, ip4, mask = input_ip:find('(%d+).(%d+).(%d+).(%d+)/(%d+)')
+        local ip = { tonumber( ip1 ), tonumber( ip2 ), tonumber( ip3 ), tonumber( ip4 ) }
+        local a, b, client_ip1, client_ip2, client_ip3, client_ip4 = client_connecting_ip:find('(%d+).(%d+).(%d+).(%d+)')
+        local client_ip = { tonumber( client_ip1 ), tonumber( client_ip2 ), tonumber( client_ip3 ), tonumber( client_ip4 ) }
 
-		--list masks => wildcard
-		local masks = {
-			[1] = { 127, 255, 255, 255 },
-			[2] = { 63, 255, 255, 255 },
-			[3] = { 31, 255, 255, 255 },
-			[4] = { 15, 255, 255, 255 },
-			[5] = { 7, 255, 255, 255 },
-			[6] = { 3, 255, 255, 255 },
-			[7] = { 1, 255, 255, 255 },
-			[8] = { 0, 255, 255, 255 },
-			[9] = { 0, 127, 255, 255 },
-			[10] = { 0, 63, 255, 255 },
-			[11] = { 0, 31, 255, 255 },
-			[12] = { 0, 15, 255, 255 },
-			[13] = { 0, 7, 255, 255 },
-			[14] = { 0, 3, 255, 255 },
-			[15] = { 0, 1, 255, 255 },
-			[16] = { 0, 0, 255, 255 },
-			[17] = { 0, 0, 127, 255 },
-			[18] = { 0, 0, 63, 255 },
-			[19] = { 0, 0, 31, 255 },
-			[20] = { 0, 0, 15, 255 },
-			[21] = { 0, 0, 7, 255 },
-			[22] = { 0, 0, 3, 255 },
-			[23] = { 0, 0, 1, 255 },
-			[24] = { 0, 0, 0, 255 },
-			[25] = { 0, 0, 0, 127 },
-			[26] = { 0, 0, 0, 63 },
-			[27] = { 0, 0, 0, 31 },
-			[28] = { 0, 0, 0, 15 },
-			[29] = { 0, 0, 0, 7 },
-			[30] = { 0, 0, 0, 3 },
-			[31] = { 0, 0, 0, 1 }
-		}
+        --list masks => wildcard
+        local masks = {
+            [1] = { 127, 255, 255, 255 },
+            [2] = { 63, 255, 255, 255 },
+            [3] = { 31, 255, 255, 255 },
+            [4] = { 15, 255, 255, 255 },
+            [5] = { 7, 255, 255, 255 },
+            [6] = { 3, 255, 255, 255 },
+            [7] = { 1, 255, 255, 255 },
+            [8] = { 0, 255, 255, 255 },
+            [9] = { 0, 127, 255, 255 },
+            [10] = { 0, 63, 255, 255 },
+            [11] = { 0, 31, 255, 255 },
+            [12] = { 0, 15, 255, 255 },
+            [13] = { 0, 7, 255, 255 },
+            [14] = { 0, 3, 255, 255 },
+            [15] = { 0, 1, 255, 255 },
+            [16] = { 0, 0, 255, 255 },
+            [17] = { 0, 0, 127, 255 },
+            [18] = { 0, 0, 63, 255 },
+            [19] = { 0, 0, 31, 255 },
+            [20] = { 0, 0, 15, 255 },
+            [21] = { 0, 0, 7, 255 },
+            [22] = { 0, 0, 3, 255 },
+            [23] = { 0, 0, 1, 255 },
+            [24] = { 0, 0, 0, 255 },
+            [25] = { 0, 0, 0, 127 },
+            [26] = { 0, 0, 0, 63 },
+            [27] = { 0, 0, 0, 31 },
+            [28] = { 0, 0, 0, 15 },
+            [29] = { 0, 0, 0, 7 },
+            [30] = { 0, 0, 0, 3 },
+            [31] = { 0, 0, 0, 1 }
+        }
 
-		--get wildcard
-		local wildcard = masks[tonumber( mask )]
+        --get wildcard
+        local wildcard = masks[tonumber( mask )]
 
-		--number of ips in mask
-		local ipcount = math.pow(2, ( 32 - mask ))
+        --number of ips in mask
+        local ipcount = math.pow(2, ( 32 - mask ))
 
-		--network IP (route/bottom IP)
-		local bottomip = {}
-		local ip_length = #ip
-		for i=1,ip_length do
-			local k = i
-			local v = ip[i]
-			--wildcard = 0?
-			if wildcard[k] == 0 then
-				bottomip[k] = v
-			elseif wildcard[k] == 255 then
-				bottomip[k] = 0
-			else
-				local mod = v % (wildcard[k] + 1)
-				bottomip[k] = v - mod
-			end
-		end
+        --network IP (route/bottom IP)
+        local bottomip = {}
+        local ip_length = #ip
+        for i=1,ip_length do
+            local k = i
+            local v = ip[i]
+            --wildcard = 0?
+            if wildcard[k] == 0 then
+                bottomip[k] = v
+            elseif wildcard[k] == 255 then
+                bottomip[k] = 0
+            else
+                local mod = v % (wildcard[k] + 1)
+                bottomip[k] = v - mod
+            end
+        end
 
-		--use network ip + wildcard to get top ip
-		local topip = {}
-		local bottomip_length = #bottomip
-		for i=1,bottomip_length do
-			local k = i
-			local v = bottomip[i]
-			topip[k] = v + wildcard[k]
-		end
+        --use network ip + wildcard to get top ip
+        local topip = {}
+        local bottomip_length = #bottomip
+        for i=1,bottomip_length do
+            local k = i
+            local v = bottomip[i]
+            topip[k] = v + wildcard[k]
+        end
 
-		--is input ip = network ip?
-		local isnetworkip = ( ip[1] == bottomip[1] and ip[2] == bottomip[2] and ip[3] == bottomip[3] and ip[4] == bottomip[4] )
-		local isbroadcastip = ( ip[1] == topip[1] and ip[2] == topip[2] and ip[3] == topip[3] and ip[4] == topip[4] )
+        --is input ip = network ip?
+        local isnetworkip = ( ip[1] == bottomip[1] and ip[2] == bottomip[2] and ip[3] == bottomip[3] and ip[4] == bottomip[4] )
+        local isbroadcastip = ( ip[1] == topip[1] and ip[2] == topip[2] and ip[3] == topip[3] and ip[4] == topip[4] )
 
-		local ip1 = tostring(ip1)
-		local ip2 = tostring(ip2)
-		local ip3 = tostring(ip3)
-		local ip4 = tostring(ip4)
-		local client_ip1 = tostring(client_ip1)
-		local client_ip2 = tostring(client_ip2)
-		local client_ip3 = tostring(client_ip3)
-		local client_ip4 = tostring(client_ip4)
-		local in_range_low_end1 = tostring(bottomip[1])
-		local in_range_low_end2 = tostring(bottomip[2])
-		local in_range_low_end3 = tostring(bottomip[3])
-		local in_range_low_end4 = tostring(bottomip[4])
-		local in_range_top_end1 = tostring(topip[1])
-		local in_range_top_end2 = tostring(topip[2])
-		local in_range_top_end3 = tostring(topip[3])
-		local in_range_top_end4 = tostring(topip[4])
+        local ip1 = tostring(ip1)
+        local ip2 = tostring(ip2)
+        local ip3 = tostring(ip3)
+        local ip4 = tostring(ip4)
+        local client_ip1 = tostring(client_ip1)
+        local client_ip2 = tostring(client_ip2)
+        local client_ip3 = tostring(client_ip3)
+        local client_ip4 = tostring(client_ip4)
+        local in_range_low_end1 = tostring(bottomip[1])
+        local in_range_low_end2 = tostring(bottomip[2])
+        local in_range_low_end3 = tostring(bottomip[3])
+        local in_range_low_end4 = tostring(bottomip[4])
+        local in_range_top_end1 = tostring(topip[1])
+        local in_range_top_end2 = tostring(topip[2])
+        local in_range_top_end3 = tostring(topip[3])
+        local in_range_top_end4 = tostring(topip[4])
 
-		if tonumber(mask) == 1 then --127, 255, 255, 255
-			if client_ip1 >= in_range_low_end1 --in range low end
-			and client_ip1 <= in_range_top_end1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 2 then --63, 255, 255, 255
-			if client_ip1 >= in_range_low_end1 --in range low end
-			and client_ip1 <= in_range_top_end1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 3 then --31, 255, 255, 255
-			if client_ip1 >= in_range_low_end1 --in range low end
-			and client_ip1 <= in_range_top_end1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 4 then --15, 255, 255, 255
-			if client_ip1 >= in_range_low_end1 --in range low end
-			and client_ip1 <= in_range_top_end1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 5 then --7, 255, 255, 255
-			if client_ip1 >= in_range_low_end1 --in range low end
-			and client_ip1 <= in_range_top_end1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 6 then --3, 255, 255, 255
-			if client_ip1 >= in_range_low_end1 --in range low end
-			and client_ip1 <= in_range_top_end1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 7 then --1, 255, 255, 255
-			if client_ip1 >= in_range_low_end1 --in range low end
-			and client_ip1 <= in_range_top_end1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 8 then --0, 255, 255, 255
-			if ip1 == client_ip1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 9 then --0, 127, 255, 255
-			if ip1 == client_ip1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 10 then --0, 63, 255, 255
-			if ip1 == client_ip1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 11 then --0, 31, 255, 255
-			if ip1 == client_ip1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 12 then --0, 15, 255, 255
-			if ip1 == client_ip1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 13 then --0, 7, 255, 255
-			if ip1 == client_ip1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 14 then --0, 3, 255, 255
-			if ip1 == client_ip1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 15 then --0, 1, 255, 255
-			if ip1 == client_ip1 
-			and client_ip2 >= in_range_low_end2 --in range low end
-			and client_ip2 <= in_range_top_end2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 16 then --0, 0, 255, 255
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 17 then --0, 0, 127, 255
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 18 then --0, 0, 63, 255
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 19 then --0, 0, 31, 255
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 20 then --0, 0, 15, 255
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 21 then --0, 0, 7, 255
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 22 then --0, 0, 3, 255
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 23 then --0, 0, 1, 255
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and client_ip3 >= in_range_low_end3 --in range low end
-			and client_ip3 <= in_range_top_end3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 24 then --0, 0, 0, 255
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and ip3 == client_ip3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 25 then --0, 0, 0, 127
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and ip3 == client_ip3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 26 then --0, 0, 0, 63
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and ip3 == client_ip3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 27 then --0, 0, 0, 31
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and ip3 == client_ip3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 28 then --0, 0, 0, 15
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and ip3 == client_ip3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 29 then --0, 0, 0, 7
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and ip3 == client_ip3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 30 then --0, 0, 0, 3
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and ip3 == client_ip3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
-		if tonumber(mask) == 31 then --0, 0, 0, 1
-			if ip1 == client_ip1 
-			and ip2 == client_ip2 
-			and ip3 == client_ip3 
-			and client_ip4 >= in_range_low_end4 --in range low end
-			and client_ip4 <= in_range_top_end4 then --in range top end
-				return true
-			end
-		end
+        if tonumber(mask) == 1 then --127, 255, 255, 255
+            if client_ip1 >= in_range_low_end1 --in range low end
+            and client_ip1 <= in_range_top_end1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 2 then --63, 255, 255, 255
+            if client_ip1 >= in_range_low_end1 --in range low end
+            and client_ip1 <= in_range_top_end1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 3 then --31, 255, 255, 255
+            if client_ip1 >= in_range_low_end1 --in range low end
+            and client_ip1 <= in_range_top_end1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 4 then --15, 255, 255, 255
+            if client_ip1 >= in_range_low_end1 --in range low end
+            and client_ip1 <= in_range_top_end1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 5 then --7, 255, 255, 255
+            if client_ip1 >= in_range_low_end1 --in range low end
+            and client_ip1 <= in_range_top_end1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 6 then --3, 255, 255, 255
+            if client_ip1 >= in_range_low_end1 --in range low end
+            and client_ip1 <= in_range_top_end1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 7 then --1, 255, 255, 255
+            if client_ip1 >= in_range_low_end1 --in range low end
+            and client_ip1 <= in_range_top_end1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 8 then --0, 255, 255, 255
+            if ip1 == client_ip1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 9 then --0, 127, 255, 255
+            if ip1 == client_ip1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 10 then --0, 63, 255, 255
+            if ip1 == client_ip1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 11 then --0, 31, 255, 255
+            if ip1 == client_ip1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 12 then --0, 15, 255, 255
+            if ip1 == client_ip1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 13 then --0, 7, 255, 255
+            if ip1 == client_ip1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 14 then --0, 3, 255, 255
+            if ip1 == client_ip1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 15 then --0, 1, 255, 255
+            if ip1 == client_ip1 
+            and client_ip2 >= in_range_low_end2 --in range low end
+            and client_ip2 <= in_range_top_end2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 16 then --0, 0, 255, 255
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 17 then --0, 0, 127, 255
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 18 then --0, 0, 63, 255
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 19 then --0, 0, 31, 255
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 20 then --0, 0, 15, 255
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 21 then --0, 0, 7, 255
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 22 then --0, 0, 3, 255
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 23 then --0, 0, 1, 255
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and client_ip3 >= in_range_low_end3 --in range low end
+            and client_ip3 <= in_range_top_end3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 24 then --0, 0, 0, 255
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and ip3 == client_ip3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 25 then --0, 0, 0, 127
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and ip3 == client_ip3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 26 then --0, 0, 0, 63
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and ip3 == client_ip3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 27 then --0, 0, 0, 31
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and ip3 == client_ip3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 28 then --0, 0, 0, 15
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and ip3 == client_ip3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 29 then --0, 0, 0, 7
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and ip3 == client_ip3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 30 then --0, 0, 0, 3
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and ip3 == client_ip3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
+        if tonumber(mask) == 31 then --0, 0, 0, 1
+            if ip1 == client_ip1 
+            and ip2 == client_ip2 
+            and ip3 == client_ip3 
+            and client_ip4 >= in_range_low_end4 --in range low end
+            and client_ip4 <= in_range_top_end4 then --in range top end
+                return true
+            end
+        end
 
-		--output
-		--[[
-		print()
-		print( '###### INFO ######' )
-		print( 'IP in: ' .. ip[1] .. '.' .. ip[2] .. '.' .. ip[3] .. '.' .. ip[4]  )
-		print( 'Mask in: /' .. mask )
-		print( '=> Mask Wildcard: ' .. wildcard[1] .. '.' .. wildcard[2] .. '.' .. wildcard[3] .. '.' .. wildcard[4]  )
-		print( '=> in IP is network-ip: ' .. tostring( isnetworkip ) )
-		print( '=> in IP is broadcast-ip: ' .. tostring( isbroadcastip ) )
-		print( '\n###### BLOCK ######' )
-		print( '#IP\'s: ' .. ipcount )
-		print( 'Bottom/Network: ' .. bottomip[1] .. '.' .. bottomip[2] .. '.' .. bottomip[3] .. '.' .. bottomip[4] .. '/' .. mask )
-		print( 'Top/Broadcast: ' .. topip[1] .. '.' .. topip[2] .. '.' .. topip[3] .. '.' .. topip[4] )
-		print( 'Subnet Range: ' .. bottomip[1] .. '.' .. bottomip[2] .. '.' .. bottomip[3] .. '.' .. bottomip[4] .. ' - ' .. topip[1] .. '.' .. topip[2] .. '.' .. topip[3] .. '.' .. topip[4] )
-		print( 'Host Range: ' .. bottomip[1] .. '.' .. bottomip[2] .. '.' .. bottomip[3] .. '.' .. bottomip[4] + 1 .. ' - ' .. topip[1] .. '.' .. topip[2] .. '.' .. topip[3] .. '.' .. topip[4] - 1 )
-		]]
+        --output
+        --[[
+        print()
+        print( '###### INFO ######' )
+        print( 'IP in: ' .. ip[1] .. '.' .. ip[2] .. '.' .. ip[3] .. '.' .. ip[4]  )
+        print( 'Mask in: /' .. mask )
+        print( '=> Mask Wildcard: ' .. wildcard[1] .. '.' .. wildcard[2] .. '.' .. wildcard[3] .. '.' .. wildcard[4]  )
+        print( '=> in IP is network-ip: ' .. tostring( isnetworkip ) )
+        print( '=> in IP is broadcast-ip: ' .. tostring( isbroadcastip ) )
+        print( '\n###### BLOCK ######' )
+        print( '#IP\'s: ' .. ipcount )
+        print( 'Bottom/Network: ' .. bottomip[1] .. '.' .. bottomip[2] .. '.' .. bottomip[3] .. '.' .. bottomip[4] .. '/' .. mask )
+        print( 'Top/Broadcast: ' .. topip[1] .. '.' .. topip[2] .. '.' .. topip[3] .. '.' .. topip[4] )
+        print( 'Subnet Range: ' .. bottomip[1] .. '.' .. bottomip[2] .. '.' .. bottomip[3] .. '.' .. bottomip[4] .. ' - ' .. topip[1] .. '.' .. topip[2] .. '.' .. topip[3] .. '.' .. topip[4] )
+        print( 'Host Range: ' .. bottomip[1] .. '.' .. bottomip[2] .. '.' .. bottomip[3] .. '.' .. bottomip[4] + 1 .. ' - ' .. topip[1] .. '.' .. topip[2] .. '.' .. topip[3] .. '.' .. topip[4] - 1 )
+        ]]
 
-	end
+    end
 
 end
 --[[
 usage
 if ip_address_in_range("255.255.0.0/17", ngx.var.remote_addr) == true then --ipv4
-	print("IPv4 in range")
+    print("IPv4 in range")
 end
 if ip_address_in_range("2a02:0c68::/29", ngx.var.remote_addr) == true then --ipv6
-	print("IPv6 in range")
+    print("IPv6 in range")
 end
 ]]
 --[[
@@ -2216,237 +2216,237 @@ End IP range function
 
 --[[WAF Web Application Firewall POST Request arguments filter]]
 local function WAF_Post_Requests()
-	if next(WAF_POST_Request_table) ~= nil then --Check Post filter table has rules inside it
+    if next(WAF_POST_Request_table) ~= nil then --Check Post filter table has rules inside it
 
-		ngx.req.read_body() --Grab the request Body
-		local read_request_body_args = (ngx.req.get_body_data() or "") --Put the request body arguments into a variable
-		local args = (ngx.decode_args(read_request_body_args) or "") --Put the Post args in to a table
+        ngx.req.read_body() --Grab the request Body
+        local read_request_body_args = (ngx.req.get_body_data() or "") --Put the request body arguments into a variable
+        local args = (ngx.decode_args(read_request_body_args) or "") --Put the Post args in to a table
 
-		if next(args) ~= nil then --Check Post args table has contents	
+        if next(args) ~= nil then --Check Post args table has contents    
 
-			local arguement1 = nil --create empty variable
-			local arguement2 = nil --create empty variable
+            local arguement1 = nil --create empty variable
+            local arguement2 = nil --create empty variable
 
-			local WAF_table_length = #WAF_POST_Request_table
-			for key, value in next, args do
+            local WAF_table_length = #WAF_POST_Request_table
+            for key, value in next, args do
 
-				for i=1,WAF_table_length do
-					arguement1 = nil --reset to nil each loop
-					arguement2 = nil --reset to nil each loop
-					local value = WAF_POST_Request_table[i] --put table value into variable
-					local argument_name = value[1] or "" --get the WAF TABLE argument name or empty
-					local argument_value = value[2] or "" --get the WAF TABLE arguement value or empty
-					local args_name = tostring(key) or "" --variable to store POST data argument name
-					local args_value = tostring(value) or "" --variable to store POST data argument value
-					if string.match(args_name, argument_name) then --if the argument name in my table matches the one in the POST request
-						arguement1 = 1
-					end
-					if string.match(args_value, argument_value) then --if the argument value in my table matches the one the POST request
-						arguement2 = 1
-					end
-					if arguement1 and arguement2 then --if what would of been our empty vars have been changed to not empty meaning a WAF match then block the request
-						local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
-						return output
-					end
-				end
-			end
-		end
-	end
+                for i=1,WAF_table_length do
+                    arguement1 = nil --reset to nil each loop
+                    arguement2 = nil --reset to nil each loop
+                    local value = WAF_POST_Request_table[i] --put table value into variable
+                    local argument_name = value[1] or "" --get the WAF TABLE argument name or empty
+                    local argument_value = value[2] or "" --get the WAF TABLE arguement value or empty
+                    local args_name = tostring(key) or "" --variable to store POST data argument name
+                    local args_value = tostring(value) or "" --variable to store POST data argument value
+                    if string.match(args_name, argument_name) then --if the argument name in my table matches the one in the POST request
+                        arguement1 = 1
+                    end
+                    if string.match(args_value, argument_value) then --if the argument value in my table matches the one the POST request
+                        arguement2 = 1
+                    end
+                    if arguement1 and arguement2 then --if what would of been our empty vars have been changed to not empty meaning a WAF match then block the request
+                        local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
+                        return output
+                    end
+                end
+            end
+        end
+    end
 end
 WAF_Post_Requests()
 --[[End WAF Web Application Firewall POST Request arguments filter]]
 
 --[[WAF Web Application Firewall Header Request arguments filter]]
 local function WAF_Header_Requests()
-	if next(WAF_Header_Request_table) ~= nil then --Check Header filter table has rules inside it
+    if next(WAF_Header_Request_table) ~= nil then --Check Header filter table has rules inside it
 
-		local argument_request_headers = ngx.req.get_headers() --get our client request headers and put them into a table
+        local argument_request_headers = ngx.req.get_headers() --get our client request headers and put them into a table
 
-		if next(argument_request_headers) ~= nil then --Check Header args table has contents	
+        if next(argument_request_headers) ~= nil then --Check Header args table has contents    
 
-			local arguement1 = nil --create empty variable
-			local arguement2 = nil --create empty variable
+            local arguement1 = nil --create empty variable
+            local arguement2 = nil --create empty variable
 
-			local WAF_table_length = #WAF_Header_Request_table
-			for key, value in next, argument_request_headers do
+            local WAF_table_length = #WAF_Header_Request_table
+            for key, value in next, argument_request_headers do
 
-				for i=1,WAF_table_length do
-					arguement1 = nil --reset to nil each loop
-					arguement2 = nil --reset to nil each loop
-					local value = WAF_Header_Request_table[i] --put table value into variable
-					local argument_name = value[1] or "" --get the WAF TABLE argument name or empty
-					local argument_value = value[2] or "" --get the WAF TABLE arguement value or empty
-					local args_name = tostring(key) or "" --variable to store Header data argument name
-					local args_value = tostring(ngx.req.get_headers()[args_name]) or ""
-					if string.match(args_name, argument_name) then --if the argument name in my table matches the one in the request
-						arguement1 = 1
-					end
-					if string.match(args_value, argument_value) then --if the argument value in my table matches the one the request
-						arguement2 = 1
-					end
-					if arguement1 and arguement2 then --if what would of been our empty vars have been changed to not empty meaning a WAF match then block the request
-						local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
-						return output
-					end
-				end
-			end
-		end
-	end
+                for i=1,WAF_table_length do
+                    arguement1 = nil --reset to nil each loop
+                    arguement2 = nil --reset to nil each loop
+                    local value = WAF_Header_Request_table[i] --put table value into variable
+                    local argument_name = value[1] or "" --get the WAF TABLE argument name or empty
+                    local argument_value = value[2] or "" --get the WAF TABLE arguement value or empty
+                    local args_name = tostring(key) or "" --variable to store Header data argument name
+                    local args_value = tostring(ngx.req.get_headers()[args_name]) or ""
+                    if string.match(args_name, argument_name) then --if the argument name in my table matches the one in the request
+                        arguement1 = 1
+                    end
+                    if string.match(args_value, argument_value) then --if the argument value in my table matches the one the request
+                        arguement2 = 1
+                    end
+                    if arguement1 and arguement2 then --if what would of been our empty vars have been changed to not empty meaning a WAF match then block the request
+                        local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
+                        return output
+                    end
+                end
+            end
+        end
+    end
 end
 WAF_Header_Requests()
 --[[End WAF Web Application Firewall Header Request arguments filter]]
 
 --[[WAF Web Application Firewall Query String Request arguments filter]]
 local function WAF_query_string_Request()
-	if next(WAF_query_string_Request_table) ~= nil then --Check query string filter table has rules inside it
+    if next(WAF_query_string_Request_table) ~= nil then --Check query string filter table has rules inside it
 
-		local args = ngx.req.get_uri_args() --grab our query string args and put them into a table
+        local args = ngx.req.get_uri_args() --grab our query string args and put them into a table
 
-		if next(args) ~= nil then --Check query string args table has contents
+        if next(args) ~= nil then --Check query string args table has contents
 
-			local arguement1 = nil --create empty variable
-			local arguement2 = nil --create empty variable
+            local arguement1 = nil --create empty variable
+            local arguement2 = nil --create empty variable
 
-			local WAF_table_length = #WAF_query_string_Request_table
-			for key, value in next, args do
+            local WAF_table_length = #WAF_query_string_Request_table
+            for key, value in next, args do
 
-				for i=1,WAF_table_length do
-					arguement1 = nil --reset to nil each loop
-					arguement2 = nil --reset to nil each loop
-					local value = WAF_query_string_Request_table[i] --put table value into variable
-					local argument_name = value[1] or "" --get the WAF TABLE argument name or empty
-					local argument_value = value[2] or "" --get the WAF TABLE arguement value or empty
-					local args_name = tostring(key) or "" --variable to store query string data argument name
-					local args_value = tostring(ngx.req.get_uri_args()[args_name]) or "" --variable to store query string data argument value
-					if string.match(args_name, argument_name) then --if the argument name in my table matches the one in the request
-						arguement1 = 1
-					end
-					if string.match(args_value, argument_value) then --if the argument value in my table matches the one the request
-						arguement2 = 1
-					end
-					if arguement1 and arguement2 then --if what would of been our empty vars have been changed to not empty meaning a WAF match then block the request
-						local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
-						return output
-					end
-				end
-			end
-		end
-	end
+                for i=1,WAF_table_length do
+                    arguement1 = nil --reset to nil each loop
+                    arguement2 = nil --reset to nil each loop
+                    local value = WAF_query_string_Request_table[i] --put table value into variable
+                    local argument_name = value[1] or "" --get the WAF TABLE argument name or empty
+                    local argument_value = value[2] or "" --get the WAF TABLE arguement value or empty
+                    local args_name = tostring(key) or "" --variable to store query string data argument name
+                    local args_value = tostring(ngx.req.get_uri_args()[args_name]) or "" --variable to store query string data argument value
+                    if string.match(args_name, argument_name) then --if the argument name in my table matches the one in the request
+                        arguement1 = 1
+                    end
+                    if string.match(args_value, argument_value) then --if the argument value in my table matches the one the request
+                        arguement2 = 1
+                    end
+                    if arguement1 and arguement2 then --if what would of been our empty vars have been changed to not empty meaning a WAF match then block the request
+                        local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
+                        return output
+                    end
+                end
+            end
+        end
+    end
 end
 WAF_query_string_Request()
 --[[End WAF Web Application Firewall Query String Request arguments filter]]
 
 --[[WAF Web Application Firewall URI Request arguments filter]]
 local function WAF_URI_Request()
-	if next(WAF_URI_Request_table) ~= nil then --Check Post filter table has rules inside it
+    if next(WAF_URI_Request_table) ~= nil then --Check Post filter table has rules inside it
 
-		--[[
-		Because ngx.var.uri is a bit stupid I strip the query string of the request uri.
-		The reason for this it is subject to normalisation
-		Consecutive / characters are replace by a single / 
-		and URL encoded characters are decoded 
-		but then your back end webserver / application recieve the encoded uri!?
-		So to keep the security strong I match the same version your web application would need protecting from (Yes the encoded copy that could contain malicious / exploitable contents)
-		]]
-		local args = string.gsub(request_uri, "?.*", "") --remove the query string from the uri
-		
-		local WAF_table_length = #WAF_URI_Request_table
-		for i=1,WAF_table_length do --for each host in our table
-			local v = WAF_URI_Request_table[i]
-			if string.match(URL, v[1]) then --if our host matches one in the table
-				if string.match(args, v[2]) then
-					local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
-					return output
-				end
-			end
-		end
-	end
+        --[[
+        Because ngx.var.uri is a bit stupid I strip the query string of the request uri.
+        The reason for this it is subject to normalisation
+        Consecutive / characters are replace by a single / 
+        and URL encoded characters are decoded 
+        but then your back end webserver / application recieve the encoded uri!?
+        So to keep the security strong I match the same version your web application would need protecting from (Yes the encoded copy that could contain malicious / exploitable contents)
+        ]]
+        local args = string.gsub(request_uri, "?.*", "") --remove the query string from the uri
+        
+        local WAF_table_length = #WAF_URI_Request_table
+        for i=1,WAF_table_length do --for each host in our table
+            local v = WAF_URI_Request_table[i]
+            if string.match(URL, v[1]) then --if our host matches one in the table
+                if string.match(args, v[2]) then
+                    local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
+                    return output
+                end
+            end
+        end
+    end
 end
 WAF_URI_Request()
 --[[End WAF Web Application Firewall URI Request arguments filter]]
 
 --function to check if ip address is whitelisted to bypass our auth
 local function check_ip_whitelist(ip_table)
-	local ip_table_length = #ip_table
-	for i=1,ip_table_length do
-		local value = ip_table[i]
-		if value == ip_whitelist_remote_addr then --if our ip address matches with one in the whitelist
-			local output = ngx.exit(ngx.OK) --Go to content
-			return output
-		elseif ip_address_in_range(value, ip_whitelist_remote_addr) == true then
-			local output = ngx.exit(ngx.OK) --Go to content
-			return output
-		end
-	end
+    local ip_table_length = #ip_table
+    for i=1,ip_table_length do
+        local value = ip_table[i]
+        if value == ip_whitelist_remote_addr then --if our ip address matches with one in the whitelist
+            local output = ngx.exit(ngx.OK) --Go to content
+            return output
+        elseif ip_address_in_range(value, ip_whitelist_remote_addr) == true then
+            local output = ngx.exit(ngx.OK) --Go to content
+            return output
+        end
+    end
 
-	return --no ip was in the whitelist
+    return --no ip was in the whitelist
 end
 check_ip_whitelist(ip_whitelist) --run whitelist check function
 
 local function check_ip_blacklist(ip_table)
-	local ip_table_length = #ip_table
-	for i=1,ip_table_length do
-		local value = ip_table[i]
-		if value == ip_blacklist_remote_addr then
-			local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
-			return output
-		elseif ip_address_in_range(value, ip_blacklist_remote_addr) == true then
-			local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
-			return output
-		end
-	end
+    local ip_table_length = #ip_table
+    for i=1,ip_table_length do
+        local value = ip_table[i]
+        if value == ip_blacklist_remote_addr then
+            local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
+            return output
+        elseif ip_address_in_range(value, ip_blacklist_remote_addr) == true then
+            local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
+            return output
+        end
+    end
 
-	return --no ip was in blacklist
+    return --no ip was in blacklist
 end
 check_ip_blacklist(ip_blacklist) --run blacklist check function
 
 local function check_user_agent_blacklist(user_agent_table)
-	local user_agent_table_length = #user_agent_table
-	for i=1,user_agent_table_length do
-		local value = user_agent_table[i]
-		if value[2] == 1 then --case insensative
-			user_agent_blacklist_var = string.lower(user_agent_blacklist_var)
-			value[1] = string.lower(value[1])
-		end
-		if value[2] == 2 then --case sensative
-		end
-		if value[2] == 3 then --regex case sensative
-		end
-		if value[2] == 4 then --regex lower case insensative
-			user_agent_blacklist_var = string.lower(user_agent_blacklist_var)
-		end
-		if string.match(user_agent_blacklist_var, value[1])then
-			local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
-			return output
-		end
-	end
+    local user_agent_table_length = #user_agent_table
+    for i=1,user_agent_table_length do
+        local value = user_agent_table[i]
+        if value[2] == 1 then --case insensative
+            user_agent_blacklist_var = string.lower(user_agent_blacklist_var)
+            value[1] = string.lower(value[1])
+        end
+        if value[2] == 2 then --case sensative
+        end
+        if value[2] == 3 then --regex case sensative
+        end
+        if value[2] == 4 then --regex lower case insensative
+            user_agent_blacklist_var = string.lower(user_agent_blacklist_var)
+        end
+        if string.match(user_agent_blacklist_var, value[1])then
+            local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
+            return output
+        end
+    end
 
-	return --no user agent was in blacklist
+    return --no user agent was in blacklist
 end
 check_user_agent_blacklist(user_agent_blacklist_table) --run user agent blacklist check function
 
 local function check_user_agent_whitelist(user_agent_table)
-	local user_agent_table_length = #user_agent_table
-	for i=1,user_agent_table_length do
-		local value = user_agent_table[i]
-		if value[2] == 1 then --case insensative
-			user_agent_whitelist_var = string.lower(user_agent_whitelist_var)
-			value[1] = string.lower(value[1])
-		end
-		if value[2] == 2 then --case sensative
-		end
-		if value[2] == 3 then --regex case sensative
-		end
-		if value[2] == 4 then --regex lower case insensative
-			user_agent_whitelist_var = string.lower(user_agent_whitelist_var)
-		end
-		if string.match(user_agent_whitelist_var, value[1]) then
-			local output = ngx.exit(ngx.OK) --Go to content
-			return output
-		end
-	end
+    local user_agent_table_length = #user_agent_table
+    for i=1,user_agent_table_length do
+        local value = user_agent_table[i]
+        if value[2] == 1 then --case insensative
+            user_agent_whitelist_var = string.lower(user_agent_whitelist_var)
+            value[1] = string.lower(value[1])
+        end
+        if value[2] == 2 then --case sensative
+        end
+        if value[2] == 3 then --regex case sensative
+        end
+        if value[2] == 4 then --regex lower case insensative
+            user_agent_whitelist_var = string.lower(user_agent_whitelist_var)
+        end
+        if string.match(user_agent_whitelist_var, value[1]) then
+            local output = ngx.exit(ngx.OK) --Go to content
+            return output
+        end
+    end
 
-	return --no user agent was in whitelist
+    return --no user agent was in whitelist
 end
 check_user_agent_whitelist(user_agent_whitelist_table) --run user agent whitelist check function
 
@@ -2455,11 +2455,11 @@ math.randomseed(os.time())
 
 --function to encrypt strings with our secret key / password provided
 local function calculate_signature(str)
-	local output = ngx.encode_base64(ngx.hmac_sha1(secret, str))
-	output = ngx.re.gsub(output, "[+]", "-", ngx_re_options) --Replace + with -
-	output = ngx.re.gsub(output, "[/]", "_", ngx_re_options) --Replace / with _
-	output = ngx.re.gsub(output, "[=]", "", ngx_re_options) --Remove =
-	return output
+    local output = ngx.encode_base64(ngx.hmac_sha1(secret, str))
+    output = ngx.re.gsub(output, "[+]", "-", ngx_re_options) --Replace + with -
+    output = ngx.re.gsub(output, "[/]", "_", ngx_re_options) --Replace / with _
+    output = ngx.re.gsub(output, "[=]", "", ngx_re_options) --Remove =
+    return output
 end
 --calculate_signature(str)
 
@@ -2488,207 +2488,207 @@ charset_table_length=charset_table_length+1
 local stringrandom_table = {} --create table to store our generated vars to avoid duplicates
 local stringrandom_table_new_length = 1
 local function stringrandom(length)
-	--math.randomseed(os.time())
-	if length > 0 then
-		local output = stringrandom(length - 1) .. charset[math.random(1, #charset)]
-		local duplicate_found = 0 --mark if we find a duplicate or not
-		local stringrandom_table_length = #stringrandom_table
-		for i=1,stringrandom_table_length do --for each value in our generated var table
-			if stringrandom_table[i] == output then --if a value in our table matches our generated var
-				duplicate_found = 1 --mark as duplicate var
-				output = "_" .. output --append an underscore to the duplicate var
-				stringrandom_table[stringrandom_table_new_length] = output --insert to the table
-				stringrandom_table_new_length=stringrandom_table_new_length+1
-				break --break out of for each loop since we found a duplicate
-			end
-		end
-		if duplicate_found == 0 then --if no duplicate found
-			stringrandom_table[stringrandom_table_new_length] = output --insert the output to our table
-			stringrandom_table_new_length=stringrandom_table_new_length+1
-		end
-		return output
-	else
-		return ""
-	end
+    --math.randomseed(os.time())
+    if length > 0 then
+        local output = stringrandom(length - 1) .. charset[math.random(1, #charset)]
+        local duplicate_found = 0 --mark if we find a duplicate or not
+        local stringrandom_table_length = #stringrandom_table
+        for i=1,stringrandom_table_length do --for each value in our generated var table
+            if stringrandom_table[i] == output then --if a value in our table matches our generated var
+                duplicate_found = 1 --mark as duplicate var
+                output = "_" .. output --append an underscore to the duplicate var
+                stringrandom_table[stringrandom_table_new_length] = output --insert to the table
+                stringrandom_table_new_length=stringrandom_table_new_length+1
+                break --break out of for each loop since we found a duplicate
+            end
+        end
+        if duplicate_found == 0 then --if no duplicate found
+            stringrandom_table[stringrandom_table_new_length] = output --insert the output to our table
+            stringrandom_table_new_length=stringrandom_table_new_length+1
+        end
+        return output
+    else
+        return ""
+    end
 end
 --stringrandom(10)
 
 local stringrandom_length = "" --create our random length variable
 if dynamic_javascript_vars_length == 1 then --if our javascript random var length is to be static
-	stringrandom_length = dynamic_javascript_vars_length_static --set our length as our static value
+    stringrandom_length = dynamic_javascript_vars_length_static --set our length as our static value
 else --it is to be dynamic
-	stringrandom_length = math.random(dynamic_javascript_vars_length_start, dynamic_javascript_vars_length_end) --set our length to be our dynamic min and max value
+    stringrandom_length = math.random(dynamic_javascript_vars_length_start, dynamic_javascript_vars_length_end) --set our length to be our dynamic min and max value
 end
 
 --shuffle table function
 local function shuffle(tbl)
-	local tbl_length = #tbl
-	for i = tbl_length, 2, -1 do
-		local j = math.random(i)
-		tbl[i], tbl[j] = tbl[j], tbl[i]
-	end
-	return tbl
+    local tbl_length = #tbl
+    for i = tbl_length, 2, -1 do
+        local j = math.random(i)
+        tbl[i], tbl[j] = tbl[j], tbl[i]
+    end
+    return tbl
 end
 
 --for my javascript Hex output
 local function sep(str, patt, re)
-	local rstr = str:gsub(patt, "%1%" .. re)
-	--local rstr = ngx.re.gsub(str, patt, "%1%" .. re, ngx_re_options) --this has a major issue no idea why need to investigate more
-	return rstr:sub(1, #rstr - #re)
+    local rstr = str:gsub(patt, "%1%" .. re)
+    --local rstr = ngx.re.gsub(str, patt, "%1%" .. re, ngx_re_options) --this has a major issue no idea why need to investigate more
+    return rstr:sub(1, #rstr - #re)
 end
 
 local function stringtohex(str)
-	--return ngx.re.gsub(str, ".", function (c) print(tostring(c[0])) return string.format('%02X', string.byte(c[0])) end, ngx_re_options) --this has a major issue no idea why need to investigate more
-	return str:gsub('.', function (c)
-		return string.format('%02X', string.byte(c))
-	end)
+    --return ngx.re.gsub(str, ".", function (c) print(tostring(c[0])) return string.format('%02X', string.byte(c[0])) end, ngx_re_options) --this has a major issue no idea why need to investigate more
+    return str:gsub('.', function (c)
+        return string.format('%02X', string.byte(c))
+    end)
 end
 
 --encrypt_javascript function
 local function encrypt_javascript(string1, type, defer_async, num_encrypt, encrypt_type, methods) --Function to generate encrypted/obfuscated output
-	local output = "" --Empty var
+    local output = "" --Empty var
 
-	if type == 0 then
-		type = math.random(3, 5) --Random encryption
-	end
+    if type == 0 then
+        type = math.random(3, 5) --Random encryption
+    end
 
-	if type == 1 or type == nil then --No encryption
-		if defer_async == "0" or defer_async == nil then --Browser default loading / execution order
-			output = "<script type=\"text/javascript\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. string1 .. "</script>"
-		end
-		if defer_async == "1" then --Defer
-			output = "<script type=\"text/javascript\" defer=\"defer\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. string1 .. "</script>"
-		end
-		if defer_async == "2" then --Async
-			output = "<script type=\"text/javascript\" async=\"async\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. string1 .. "</script>"
-		end
-	end
+    if type == 1 or type == nil then --No encryption
+        if defer_async == "0" or defer_async == nil then --Browser default loading / execution order
+            output = "<script type=\"text/javascript\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. string1 .. "</script>"
+        end
+        if defer_async == "1" then --Defer
+            output = "<script type=\"text/javascript\" defer=\"defer\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. string1 .. "</script>"
+        end
+        if defer_async == "2" then --Async
+            output = "<script type=\"text/javascript\" async=\"async\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. string1 .. "</script>"
+        end
+    end
 
-	--https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
-	--pass other encrypted outputs through this too ?
-	if type == 2 then --Base64 Data URI
-		local base64_data_uri = string1
+    --https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
+    --pass other encrypted outputs through this too ?
+    if type == 2 then --Base64 Data URI
+        local base64_data_uri = string1
 
-		if tonumber(num_encrypt) ~= nil then --If number of times extra to rencrypt is set
-			for i=1, #num_encrypt do --for each number
-				string1 = ngx.encode_base64(base64_data_uri)
-			end
-		end
+        if tonumber(num_encrypt) ~= nil then --If number of times extra to rencrypt is set
+            for i=1, #num_encrypt do --for each number
+                string1 = ngx.encode_base64(base64_data_uri)
+            end
+        end
 
-		if defer_async == "0" or defer_async == nil then --Browser default loading / execution order
-			output = "<script type=\"text/javascript\" src=\"data:text/javascript;base64," .. ngx.encode_base64(string1) .. "\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\"></script>"
-		end
-		if defer_async == "1" then --Defer
-			output = "<script type=\"text/javascript\" src=\"data:text/javascript;base64," .. ngx.encode_base64(string1) .. "\" defer=\"defer\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\"></script>"
-		end
-		if defer_async == "2" then --Async
-			output = "<script type=\"text/javascript\" src=\"data:text/javascript;base64," .. ngx.encode_base64(string1) .. "\" async=\"async\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\"></script>"
-		end
-	end
+        if defer_async == "0" or defer_async == nil then --Browser default loading / execution order
+            output = "<script type=\"text/javascript\" src=\"data:text/javascript;base64," .. ngx.encode_base64(string1) .. "\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\"></script>"
+        end
+        if defer_async == "1" then --Defer
+            output = "<script type=\"text/javascript\" src=\"data:text/javascript;base64," .. ngx.encode_base64(string1) .. "\" defer=\"defer\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\"></script>"
+        end
+        if defer_async == "2" then --Async
+            output = "<script type=\"text/javascript\" src=\"data:text/javascript;base64," .. ngx.encode_base64(string1) .. "\" async=\"async\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\"></script>"
+        end
+    end
 
-	if type == 3 then --Hex
-		local hex_output = stringtohex(string1) --ndk.set_var.set_encode_hex(string1) --Encode string in hex
-		local hexadecimal_x = "" --Create var
-		local encrypt_type_origin = encrypt_type --Store var passed to function in local var
+    if type == 3 then --Hex
+        local hex_output = stringtohex(string1) --ndk.set_var.set_encode_hex(string1) --Encode string in hex
+        local hexadecimal_x = "" --Create var
+        local encrypt_type_origin = encrypt_type --Store var passed to function in local var
 
-		if tonumber(encrypt_type) == nil or tonumber(encrypt_type) <= 0 then
-			encrypt_type = math.random(2, 2) --Random encryption
-		end
-		--I was inspired by http://www.hightools.net/javascript-encrypter.php so i built it myself
-		if tonumber(encrypt_type) == 1 then
-			hexadecimal_x = "%" .. sep(hex_output, "%x%x", "%") --hex output insert a char every 2 chars %x%x
-		end
-		if tonumber(encrypt_type) == 2 then
-			hexadecimal_x = string.char(92) .. "x" .. sep(hex_output, "%x%x", string.char(92) .. "x") --hex output insert a char every 2 chars %x%x
-		end
+        if tonumber(encrypt_type) == nil or tonumber(encrypt_type) <= 0 then
+            encrypt_type = math.random(2, 2) --Random encryption
+        end
+        --I was inspired by http://www.hightools.net/javascript-encrypter.php so i built it myself
+        if tonumber(encrypt_type) == 1 then
+            hexadecimal_x = "%" .. sep(hex_output, "%x%x", "%") --hex output insert a char every 2 chars %x%x
+        end
+        if tonumber(encrypt_type) == 2 then
+            hexadecimal_x = string.char(92) .. "x" .. sep(hex_output, "%x%x", string.char(92) .. "x") --hex output insert a char every 2 chars %x%x
+        end
 
-		--TODO: Fix this.
-		--num_encrypt = "3" --test var
-		if tonumber(num_encrypt) ~= nil then --If number of times extra to rencrypt is set
-			for i=1, num_encrypt do --for each number
-				if tonumber(encrypt_type) ~= nil then
-					encrypt_type = math.random(1, 2) --Random encryption
-					if tonumber(encrypt_type) == 1 then
-						--hexadecimal_x = "%" .. sep(ndk.set_var.set_encode_hex("eval(decodeURIComponent('" .. hexadecimal_x .. "'))"), "%x%x", "%") --hex output insert a char every 2 chars %x%x
-					end
-					if tonumber(encrypt_type) == 2 then
-						--hexadecimal_x = "\\x" .. sep(ndk.set_var.set_encode_hex("eval(decodeURIComponent('" .. hexadecimal_x .. "'))"), "%x%x", "\\x") --hex output insert a char every 2 chars %x%x
-					end
-				end
-			end
-		end
+        --TODO: Fix this.
+        --num_encrypt = "3" --test var
+        if tonumber(num_encrypt) ~= nil then --If number of times extra to rencrypt is set
+            for i=1, num_encrypt do --for each number
+                if tonumber(encrypt_type) ~= nil then
+                    encrypt_type = math.random(1, 2) --Random encryption
+                    if tonumber(encrypt_type) == 1 then
+                        --hexadecimal_x = "%" .. sep(ndk.set_var.set_encode_hex("eval(decodeURIComponent('" .. hexadecimal_x .. "'))"), "%x%x", "%") --hex output insert a char every 2 chars %x%x
+                    end
+                    if tonumber(encrypt_type) == 2 then
+                        --hexadecimal_x = "\\x" .. sep(ndk.set_var.set_encode_hex("eval(decodeURIComponent('" .. hexadecimal_x .. "'))"), "%x%x", "\\x") --hex output insert a char every 2 chars %x%x
+                    end
+                end
+            end
+        end
 
-		if defer_async == "0" or defer_async == nil then --Browser default loading / execution order
-			--https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent
-			output = "<script type=\"text/javascript\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">eval(decodeURIComponent(escape('" .. hexadecimal_x .. "')));</script>"
-		end
-		if defer_async == "1" then --Defer
-			output = "<script type=\"text/javascript\" defer=\"defer\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">eval(decodeURIComponent(escape('" .. hexadecimal_x .. "')));</script>"
-		end
-		if defer_async == "2" then --Defer
-			output = "<script type=\"text/javascript\" async=\"async\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">eval(decodeURIComponent(escape('" .. hexadecimal_x .. "')));</script>"
-		end
-	end
+        if defer_async == "0" or defer_async == nil then --Browser default loading / execution order
+            --https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent
+            output = "<script type=\"text/javascript\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">eval(decodeURIComponent(escape('" .. hexadecimal_x .. "')));</script>"
+        end
+        if defer_async == "1" then --Defer
+            output = "<script type=\"text/javascript\" defer=\"defer\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">eval(decodeURIComponent(escape('" .. hexadecimal_x .. "')));</script>"
+        end
+        if defer_async == "2" then --Defer
+            output = "<script type=\"text/javascript\" async=\"async\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">eval(decodeURIComponent(escape('" .. hexadecimal_x .. "')));</script>"
+        end
+    end
 
-	if type == 4 then --Base64 javascript decode
-		local base64_javascript = "eval(decodeURIComponent(escape(window.atob('" .. ngx.encode_base64(string1) .. "'))))"
+    if type == 4 then --Base64 javascript decode
+        local base64_javascript = "eval(decodeURIComponent(escape(window.atob('" .. ngx.encode_base64(string1) .. "'))))"
 
-		if tonumber(num_encrypt) ~= nil then --If number of times extra to rencrypt is set
-			for i=1, num_encrypt do --for each number
-				base64_javascript = "eval(decodeURIComponent(escape(window.atob('" .. ngx.encode_base64(base64_javascript) .. "'))))"
-			end
-		end
+        if tonumber(num_encrypt) ~= nil then --If number of times extra to rencrypt is set
+            for i=1, num_encrypt do --for each number
+                base64_javascript = "eval(decodeURIComponent(escape(window.atob('" .. ngx.encode_base64(base64_javascript) .. "'))))"
+            end
+        end
 
-		if defer_async == "0" or defer_async == nil then --Browser default loading / execution order
-			output = "<script type=\"text/javascript\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. base64_javascript .. "</script>"
-		end
-		if defer_async == "1" then --Defer
-			output = "<script type=\"text/javascript\" defer=\"defer\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. base64_javascript .. "</script>"
-		end
-		if defer_async == "2" then --Defer
-			output = "<script type=\"text/javascript\" async=\"async\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. base64_javascript .. "</script>"
-		end
-	end
+        if defer_async == "0" or defer_async == nil then --Browser default loading / execution order
+            output = "<script type=\"text/javascript\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. base64_javascript .. "</script>"
+        end
+        if defer_async == "1" then --Defer
+            output = "<script type=\"text/javascript\" defer=\"defer\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. base64_javascript .. "</script>"
+        end
+        if defer_async == "2" then --Defer
+            output = "<script type=\"text/javascript\" async=\"async\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. base64_javascript .. "</script>"
+        end
+    end
 
-	if type == 5 then --Conor Mcknight's Javascript Scrambler (Obfuscate Javascript by putting it into vars and shuffling them like a deck of cards)
-		local base64_javascript = ngx.encode_base64(string1) --base64 encode our script
+    if type == 5 then --Conor Mcknight's Javascript Scrambler (Obfuscate Javascript by putting it into vars and shuffling them like a deck of cards)
+        local base64_javascript = ngx.encode_base64(string1) --base64 encode our script
 
-		local l = #base64_javascript --count number of chars our variable has
-		local i = 0 --keep track of how many times we pass through
-		local r = math.random(1, l) --randomize where to split string
-		local chunks = {} --create our chunks table for string storage
-		local chunks_table_length = 1
-		local chunks_order = {} --create our chunks table for string storage that stores the value only
-		local chunks_order_table_length = 1
-		local random_var = nil --create our random string variable to use
+        local l = #base64_javascript --count number of chars our variable has
+        local i = 0 --keep track of how many times we pass through
+        local r = math.random(1, l) --randomize where to split string
+        local chunks = {} --create our chunks table for string storage
+        local chunks_table_length = 1
+        local chunks_order = {} --create our chunks table for string storage that stores the value only
+        local chunks_order_table_length = 1
+        local random_var = nil --create our random string variable to use
 
-		while i <= l do
-			random_var = stringrandom(stringrandom_length) --create a random variable name to use
-			chunks_order[chunks_order_table_length] = "_" .. random_var .. "" --insert the value into our ordered table
-			chunks_order_table_length=chunks_order_table_length+1
-			chunks[chunks_table_length] = 'var _' .. random_var .. '="' .. base64_javascript:sub(i,i+r).. '";' --insert our value into our table we will scramble
-			chunks_table_length=chunks_table_length+1
+        while i <= l do
+            random_var = stringrandom(stringrandom_length) --create a random variable name to use
+            chunks_order[chunks_order_table_length] = "_" .. random_var .. "" --insert the value into our ordered table
+            chunks_order_table_length=chunks_order_table_length+1
+            chunks[chunks_table_length] = 'var _' .. random_var .. '="' .. base64_javascript:sub(i,i+r).. '";' --insert our value into our table we will scramble
+            chunks_table_length=chunks_table_length+1
 
-			i = i+r+1
-		end
+            i = i+r+1
+        end
 
-		shuffle(chunks) --scramble our table
+        shuffle(chunks) --scramble our table
 
-		output = table.concat(chunks, "") --put our scrambled table into string
-		output = output .. "eval(decodeURIComponent(escape(window.atob(" .. table.concat(chunks_order, " + " ) .. "))));" --put our scrambled table and ordered table into a string
-		
-		if defer_async == "0" or defer_async == nil then --Browser default loading / execution order
-			output = "<script type=\"text/javascript\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. output .. "</script>"
-		end
-		if defer_async == "1" then --Defer
-			output = "<script type=\"text/javascript\" defer=\"defer\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. output .. "</script>"
-		end
-		if defer_async == "2" then --Defer
-			output = "<script type=\"text/javascript\" async=\"async\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. output .. "</script>"
-		end
-	end
+        output = table.concat(chunks, "") --put our scrambled table into string
+        output = output .. "eval(decodeURIComponent(escape(window.atob(" .. table.concat(chunks_order, " + " ) .. "))));" --put our scrambled table and ordered table into a string
+        
+        if defer_async == "0" or defer_async == nil then --Browser default loading / execution order
+            output = "<script type=\"text/javascript\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. output .. "</script>"
+        end
+        if defer_async == "1" then --Defer
+            output = "<script type=\"text/javascript\" defer=\"defer\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. output .. "</script>"
+        end
+        if defer_async == "2" then --Defer
+            output = "<script type=\"text/javascript\" async=\"async\" charset=\"" .. default_charset .. "\" data-cfasync=\"false\">" .. output .. "</script>"
+        end
+    end
 
-	return output
+    return output
 end
 --end encrypt_javascript function
 
@@ -2698,29 +2698,29 @@ local currentdate = "" --make current date a empty var
 
 --Make sure our current date is in align with expires_time variable so that the auth page only shows when the cookie expires
 if expire_time <= 60 then --less than equal to one minute
-	currentdate = os.date("%M",os.time()-24*60*60) --Current minute
+    currentdate = os.date("%M",os.time()-24*60*60) --Current minute
 end
 if expire_time > 60 then --greater than one minute
-	currentdate = os.date("%H",os.time()-24*60*60) --Current hour
+    currentdate = os.date("%H",os.time()-24*60*60) --Current hour
 end
 if expire_time > 3600 then --greater than one hour
-	currentdate = os.date("%d",os.time()-24*60*60) --Current day of the year
+    currentdate = os.date("%d",os.time()-24*60*60) --Current day of the year
 end
 if expire_time > 86400 then --greater than one day
-	currentdate = os.date("%W",os.time()-24*60*60) --Current week
+    currentdate = os.date("%W",os.time()-24*60*60) --Current week
 end
 if expire_time > 6048000 then --greater than one week
-	currentdate = os.date("%m",os.time()-24*60*60) --Current month
+    currentdate = os.date("%m",os.time()-24*60*60) --Current month
 end
 if expire_time > 2628000 then --greater than one month
-	currentdate = os.date("%Y",os.time()-24*60*60) --Current year
+    currentdate = os.date("%Y",os.time()-24*60*60) --Current year
 end
 if expire_time > 31536000 then --greater than one year
-	currentdate = os.date("%z",os.time()-24*60*60) --Current time zone
+    currentdate = os.date("%z",os.time()-24*60*60) --Current time zone
 end
 
 local expected_header_status = 200
-local authentication_page_status_output = 503
+local authentication_page_status_output = 202
 
 
 --Put our vars into storage for use later on
@@ -2733,24 +2733,24 @@ local cookie_name_encrypted_start_and_end_date_original = cookie_name_encrypted_
 Start Tor detection
 ]]
 if x_tor_header == 2 then --if x-tor-header is dynamic
-	x_tor_header_name = calculate_signature(tor_remote_addr .. x_tor_header_name .. currentdate) --make the header unique to the client and for todays date encrypted so every 24 hours this will change and can't be guessed by bots gsub because header bug with underscores so underscore needs to be removed
-	x_tor_header_name = ngx.re.gsub(x_tor_header_name, "_", "", ngx_re_options) --replace underscore with nothing
-	x_tor_header_name_allowed = calculate_signature(tor_remote_addr .. x_tor_header_name_allowed .. currentdate) --make the header unique to the client and for todays date encrypted so every 24 hours this will change and can't be guessed by bots gsub because header bug with underscores so underscore needs to be removed
-	x_tor_header_name_allowed = ngx.re.gsub(x_tor_header_name_allowed, "_", "", ngx_re_options) --replace underscore with nothing
-	x_tor_header_name_blocked = calculate_signature(tor_remote_addr .. x_tor_header_name_blocked .. currentdate) --make the header unique to the client and for todays date encrypted so every 24 hours this will change and can't be guessed by bots gsub because header bug with underscores so underscore needs to be removed
-	x_tor_header_name_blocked = ngx.re.gsub(x_tor_header_name_blocked, "_", "", ngx_re_options) --replace underscore with nothing
+    x_tor_header_name = calculate_signature(tor_remote_addr .. x_tor_header_name .. currentdate) --make the header unique to the client and for todays date encrypted so every 24 hours this will change and can't be guessed by bots gsub because header bug with underscores so underscore needs to be removed
+    x_tor_header_name = ngx.re.gsub(x_tor_header_name, "_", "", ngx_re_options) --replace underscore with nothing
+    x_tor_header_name_allowed = calculate_signature(tor_remote_addr .. x_tor_header_name_allowed .. currentdate) --make the header unique to the client and for todays date encrypted so every 24 hours this will change and can't be guessed by bots gsub because header bug with underscores so underscore needs to be removed
+    x_tor_header_name_allowed = ngx.re.gsub(x_tor_header_name_allowed, "_", "", ngx_re_options) --replace underscore with nothing
+    x_tor_header_name_blocked = calculate_signature(tor_remote_addr .. x_tor_header_name_blocked .. currentdate) --make the header unique to the client and for todays date encrypted so every 24 hours this will change and can't be guessed by bots gsub because header bug with underscores so underscore needs to be removed
+    x_tor_header_name_blocked = ngx.re.gsub(x_tor_header_name_blocked, "_", "", ngx_re_options) --replace underscore with nothing
 end
 
 if encrypt_anti_ddos_cookies == 2 then --if Anti-DDoS Cookies are to be encrypted
-	cookie_tor = calculate_signature(tor_remote_addr .. cookie_tor .. currentdate) --encrypt our tor cookie name
-	cookie_tor_value_allow = calculate_signature(tor_remote_addr .. cookie_tor_value_allow .. currentdate) --encrypt our tor cookie value for allow
-	cookie_tor_value_block = calculate_signature(tor_remote_addr .. cookie_tor_value_block .. currentdate) --encrypt our tor cookie value for block
+    cookie_tor = calculate_signature(tor_remote_addr .. cookie_tor .. currentdate) --encrypt our tor cookie name
+    cookie_tor_value_allow = calculate_signature(tor_remote_addr .. cookie_tor_value_allow .. currentdate) --encrypt our tor cookie value for allow
+    cookie_tor_value_block = calculate_signature(tor_remote_addr .. cookie_tor_value_block .. currentdate) --encrypt our tor cookie value for block
 end
 
 --block tor function to block traffic from tor users
 local function blocktor()
-	local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
-	return output
+    local output = ngx.exit(ngx.HTTP_FORBIDDEN) --deny user access
+    return output
 end
 
 --check the connecting client to see if they have our required matching tor cookie name in their request
@@ -2758,25 +2758,25 @@ local tor_cookie_name = "cookie_" .. cookie_tor
 local tor_cookie_value = ngx.var[tor_cookie_name] or ""
 
 if tor_cookie_value == cookie_tor_value_allow then --if their cookie value matches the value we expect
-	if tor == 2 then --perform check if tor users should be allowed or blocked if tor users already browsing your site have been granted access and you change this setting you want them to be blocked now so this makes sure they are denied any further access before their cookie expires
-		blocktor()
-	end
-	remote_addr = tor_remote_addr --set the remote_addr as the tor_remote_addr value
+    if tor == 2 then --perform check if tor users should be allowed or blocked if tor users already browsing your site have been granted access and you change this setting you want them to be blocked now so this makes sure they are denied any further access before their cookie expires
+        blocktor()
+    end
+    remote_addr = tor_remote_addr --set the remote_addr as the tor_remote_addr value
 end
 
 if tor_cookie_value == cookie_tor_value_block then --if the provided cookie value matches our block cookie value
-	blocktor()
+    blocktor()
 end
 
 local cookie_tor_value = "" --create variable to store if tor should be allowed or disallowed
 local x_tor_header_name_value = "" --create variable to store our expected header value
 
 if tor == 1 then --if tor users should be allowed
-	cookie_tor_value = cookie_tor_value_allow --set our value as our expected allow value
-	x_tor_header_name_value = x_tor_header_name_allowed --set our value as our expected allow value
+    cookie_tor_value = cookie_tor_value_allow --set our value as our expected allow value
+    x_tor_header_name_value = x_tor_header_name_allowed --set our value as our expected allow value
 else --tor users should be blocked
-	cookie_tor_value = cookie_tor_value_block --set our value as our expected block value
-	x_tor_header_name_value = x_tor_header_name_blocked --set our value as our expected block value
+    cookie_tor_value = cookie_tor_value_block --set our value as our expected block value
+    x_tor_header_name_value = x_tor_header_name_blocked --set our value as our expected block value
 end
 --[[
 End Tor detection
@@ -2786,103 +2786,103 @@ End Tor detection
 Authorization / Restricted Access Area Box
 ]]
 if encrypt_anti_ddos_cookies == 2 then --if Anti-DDoS Cookies are to be encrypted
-	authorization_cookie = calculate_signature(remote_addr .. authorization_cookie .. currentdate) --encrypt our auth box session cookie name
+    authorization_cookie = calculate_signature(remote_addr .. authorization_cookie .. currentdate) --encrypt our auth box session cookie name
 end
 
 local function check_authorization(authorization, authorization_dynamic)
-	if authorization == 0 or nil then --auth box disabled
-		return
-	end
+    if authorization == 0 or nil then --auth box disabled
+        return
+    end
 
-	local expected_cookie_value = nil
-	local remote_addr = tor_remote_addr --set for compatibility with Tor Clients
-	if authorization == 2 then --Cookie sessions
-		local cookie_name = "cookie_" .. authorization_cookie
-		local cookie_value = ngx.var[cookie_name] or ""
-		expected_cookie_value = calculate_signature(remote_addr .. "authenticate" .. currentdate) --encrypt our expected cookie value
-		if cookie_value == expected_cookie_value then --cookie value client gave us matches what we expect it to be
-			ngx.exit(ngx.OK) --Go to content
-		end
-	end
+    local expected_cookie_value = nil
+    local remote_addr = tor_remote_addr --set for compatibility with Tor Clients
+    if authorization == 2 then --Cookie sessions
+        local cookie_name = "cookie_" .. authorization_cookie
+        local cookie_value = ngx.var[cookie_name] or ""
+        expected_cookie_value = calculate_signature(remote_addr .. "authenticate" .. currentdate) --encrypt our expected cookie value
+        if cookie_value == expected_cookie_value then --cookie value client gave us matches what we expect it to be
+            ngx.exit(ngx.OK) --Go to content
+        end
+    end
 
-	local allow_site = nil
-	local authorization_display_user_details = nil
-	local authorization_paths_length = #authorization_paths
-	for i=1,authorization_paths_length do --for each host in our table
-		local v = authorization_paths[i]
-		if string.match(URL, v[2]) then --if our host matches one in the table
-			if v[1] == 1 then --Showbox
-				allow_site = 1 --showbox
-			end
-			if v[1] == 2 then --Don't show box
-				allow_site = 2 --don't show box
-			end
-			authorization_display_user_details = v[3] --to show our username/password or to not display it
-			break --break out of the for each loop pointless to keep searching the rest since we matched our host
-		end
-	end
-	if allow_site == 1 then --checks passed site allowed grant direct access
-		--showbox
-	else --allow_site was 2
-		return --carry on script functions to display auth page
-	end
+    local allow_site = nil
+    local authorization_display_user_details = nil
+    local authorization_paths_length = #authorization_paths
+    for i=1,authorization_paths_length do --for each host in our table
+        local v = authorization_paths[i]
+        if string.match(URL, v[2]) then --if our host matches one in the table
+            if v[1] == 1 then --Showbox
+                allow_site = 1 --showbox
+            end
+            if v[1] == 2 then --Don't show box
+                allow_site = 2 --don't show box
+            end
+            authorization_display_user_details = v[3] --to show our username/password or to not display it
+            break --break out of the for each loop pointless to keep searching the rest since we matched our host
+        end
+    end
+    if allow_site == 1 then --checks passed site allowed grant direct access
+        --showbox
+    else --allow_site was 2
+        return --carry on script functions to display auth page
+    end
 
-	local allow_access = nil
-	local authorization_username = nil
-	local authorization_password = nil
+    local allow_access = nil
+    local authorization_username = nil
+    local authorization_password = nil
 
-	local req_headers = ngx.req.get_headers() --get all request headers
+    local req_headers = ngx.req.get_headers() --get all request headers
 
-	if authorization_dynamic == 0 then --static
-		local authorization_logins_length = #authorization_logins
-		for i=1,authorization_logins_length do --for each login
-			local value = authorization_logins[i]
-			authorization_username = value[1] --username
-			authorization_password = value[2] --password
-			local base64_expected = authorization_username .. ":" .. authorization_password --convert to browser format
-			base64_expected = ngx.encode_base64(base64_expected) --base64 encode like browser format
-			local authroization_user_pass = "Basic " .. base64_expected --append Basic to start like browser header does
-			if req_headers["Authorization"] == authroization_user_pass then --if the details match what we expect
-				if authorization == 2 then --Cookie sessions
-					set_cookie1 = authorization_cookie.."="..expected_cookie_value.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";"
-					set_cookies = {set_cookie1}
-					ngx.header["Set-Cookie"] = set_cookies --send client a cookie for their session to be valid
-				end
-				allow_access = 1 --grant access
-				break --break out foreach loop since our user and pass was correct
-			end
-		end
-	end
-	if authorization_dynamic == 1 then --dynamic
-		authorization_username = calculate_signature(remote_addr .. "username" .. currentdate) --encrypt username
-		authorization_password = calculate_signature(remote_addr .. "password" .. currentdate) --encrypt password
-		authorization_username = string.sub(authorization_username, 1, authorization_dynamic_length) --change username to set length
-		authorization_password = string.sub(authorization_password, 1, authorization_dynamic_length) --change password to set length
+    if authorization_dynamic == 0 then --static
+        local authorization_logins_length = #authorization_logins
+        for i=1,authorization_logins_length do --for each login
+            local value = authorization_logins[i]
+            authorization_username = value[1] --username
+            authorization_password = value[2] --password
+            local base64_expected = authorization_username .. ":" .. authorization_password --convert to browser format
+            base64_expected = ngx.encode_base64(base64_expected) --base64 encode like browser format
+            local authroization_user_pass = "Basic " .. base64_expected --append Basic to start like browser header does
+            if req_headers["Authorization"] == authroization_user_pass then --if the details match what we expect
+                if authorization == 2 then --Cookie sessions
+                    set_cookie1 = authorization_cookie.."="..expected_cookie_value.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";"
+                    set_cookies = {set_cookie1}
+                    ngx.header["Set-Cookie"] = set_cookies --send client a cookie for their session to be valid
+                end
+                allow_access = 1 --grant access
+                break --break out foreach loop since our user and pass was correct
+            end
+        end
+    end
+    if authorization_dynamic == 1 then --dynamic
+        authorization_username = calculate_signature(remote_addr .. "username" .. currentdate) --encrypt username
+        authorization_password = calculate_signature(remote_addr .. "password" .. currentdate) --encrypt password
+        authorization_username = string.sub(authorization_username, 1, authorization_dynamic_length) --change username to set length
+        authorization_password = string.sub(authorization_password, 1, authorization_dynamic_length) --change password to set length
 
-		local base64_expected = authorization_username .. ":" .. authorization_password --convert to browser format
-		base64_expected = ngx.encode_base64(base64_expected) --base64 encode like browser format
-		local authroization_user_pass = "Basic " .. base64_expected --append Basic to start like browser header does
-		if req_headers["Authorization"] == authroization_user_pass then --if the details match what we expect
-			if authorization == 2 then --Cookie sessions
-				set_cookie1 = authorization_cookie.."="..expected_cookie_value.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";"
-				set_cookies = {set_cookie1}
-				ngx.header["Set-Cookie"] = set_cookies --send client a cookie for their session to be valid
-			end
-			allow_access = 1 --grant access
-		end
-	end
+        local base64_expected = authorization_username .. ":" .. authorization_password --convert to browser format
+        base64_expected = ngx.encode_base64(base64_expected) --base64 encode like browser format
+        local authroization_user_pass = "Basic " .. base64_expected --append Basic to start like browser header does
+        if req_headers["Authorization"] == authroization_user_pass then --if the details match what we expect
+            if authorization == 2 then --Cookie sessions
+                set_cookie1 = authorization_cookie.."="..expected_cookie_value.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";"
+                set_cookies = {set_cookie1}
+                ngx.header["Set-Cookie"] = set_cookies --send client a cookie for their session to be valid
+            end
+            allow_access = 1 --grant access
+        end
+    end
 
-	if allow_access == 1 then
-		ngx.exit(ngx.OK) --Go to content
-	else
-		ngx.status = ngx.HTTP_UNAUTHORIZED --send client unathorized header
-		if authorization_display_user_details == 0 then
-			ngx.header['WWW-Authenticate'] = 'Basic realm="' .. authorization_message .. '", charset="' .. default_charset .. '"' --send client a box to input required username and password fields
-		else
-			ngx.header['WWW-Authenticate'] = 'Basic realm="' .. authorization_message .. ' ' .. authorization_username_message .. ' ' .. authorization_username .. ' ' .. authorization_password_message .. ' ' .. authorization_password .. '", charset="' .. default_charset .. '"' --send client a box to input required username and password fields
-		end
-		ngx.exit(ngx.HTTP_UNAUTHORIZED) --deny access any further
-	end
+    if allow_access == 1 then
+        ngx.exit(ngx.OK) --Go to content
+    else
+        ngx.status = ngx.HTTP_UNAUTHORIZED --send client unathorized header
+        if authorization_display_user_details == 0 then
+            ngx.header['WWW-Authenticate'] = 'Basic realm="' .. authorization_message .. '", charset="' .. default_charset .. '"' --send client a box to input required username and password fields
+        else
+            ngx.header['WWW-Authenticate'] = 'Basic realm="' .. authorization_message .. ' ' .. authorization_username_message .. ' ' .. authorization_username .. ' ' .. authorization_password_message .. ' ' .. authorization_password .. '", charset="' .. default_charset .. '"' --send client a box to input required username and password fields
+        end
+        ngx.exit(ngx.HTTP_UNAUTHORIZED) --deny access any further
+    end
 end
 check_authorization(authorization, authorization_dynamic)
 --[[
@@ -2894,32 +2894,32 @@ master switch
 ]]
 --master switch check
 local function check_master_switch()
-	if master_switch == 2 then --script disabled
-		local output = ngx.exit(ngx.OK) --Go to content
-		return output
-	end
-	if master_switch == 3 then --custom host selection
-		local allow_site = nil
-		local master_switch_custom_hosts_length = #master_switch_custom_hosts
-		for i=1,master_switch_custom_hosts_length do --for each host in our table
-			local v = master_switch_custom_hosts[i]
-			if string.match(URL, v[2]) then --if our host matches one in the table
-				if v[1] == 1 then --run auth
-					allow_site = 2 --run auth checks
-				end
-				if v[1] == 2 then --bypass
-					allow_site = 1 --bypass auth achecks
-				end
-				break --break out of the for each loop pointless to keep searching the rest since we matched our host
-			end
-		end
-		if allow_site == 1 then --checks passed site allowed grant direct access
-			local output = ngx.exit(ngx.OK) --Go to content
-			return output
-		else --allow_site was 2 to disallow direct access we matched a host to protect
-			return --carry on script functions to display auth page
-		end
-	end
+    if master_switch == 2 then --script disabled
+        local output = ngx.exit(ngx.OK) --Go to content
+        return output
+    end
+    if master_switch == 3 then --custom host selection
+        local allow_site = nil
+        local master_switch_custom_hosts_length = #master_switch_custom_hosts
+        for i=1,master_switch_custom_hosts_length do --for each host in our table
+            local v = master_switch_custom_hosts[i]
+            if string.match(URL, v[2]) then --if our host matches one in the table
+                if v[1] == 1 then --run auth
+                    allow_site = 2 --run auth checks
+                end
+                if v[1] == 2 then --bypass
+                    allow_site = 1 --bypass auth achecks
+                end
+                break --break out of the for each loop pointless to keep searching the rest since we matched our host
+            end
+        end
+        if allow_site == 1 then --checks passed site allowed grant direct access
+            local output = ngx.exit(ngx.OK) --Go to content
+            return output
+        else --allow_site was 2 to disallow direct access we matched a host to protect
+            return --carry on script functions to display auth page
+        end
+    end
 end
 check_master_switch()
 --[[
@@ -2929,106 +2929,106 @@ master switch
 local answer = calculate_signature(remote_addr) --create our encrypted unique identification for the user visiting the website.
 
 if x_auth_header == 2 then --if x-auth-header is dynamic
-	x_auth_header_name = calculate_signature(remote_addr .. x_auth_header_name .. currentdate) --make the header unique to the client and for todays date encrypted so every 24 hours this will change and can't be guessed by bots gsub because header bug with underscores so underscore needs to be removed
-	x_auth_header_name = ngx.re.gsub(x_auth_header_name, "_", "", ngx_re_options) --replace underscore with nothing
+    x_auth_header_name = calculate_signature(remote_addr .. x_auth_header_name .. currentdate) --make the header unique to the client and for todays date encrypted so every 24 hours this will change and can't be guessed by bots gsub because header bug with underscores so underscore needs to be removed
+    x_auth_header_name = ngx.re.gsub(x_auth_header_name, "_", "", ngx_re_options) --replace underscore with nothing
 end
 
 if encrypt_anti_ddos_cookies == 2 then --if Anti-DDoS Cookies are to be encrypted
-	--make the cookies unique to the client and for todays date encrypted so every 24 hours this will change and can't be guessed by bots
-	challenge = calculate_signature(remote_addr .. challenge .. currentdate)
-	cookie_name_start_date = calculate_signature(remote_addr .. cookie_name_start_date .. currentdate)
-	cookie_name_end_date = calculate_signature(remote_addr .. cookie_name_end_date .. currentdate)
-	cookie_name_encrypted_start_and_end_date = calculate_signature(remote_addr .. cookie_name_encrypted_start_and_end_date .. currentdate)
+    --make the cookies unique to the client and for todays date encrypted so every 24 hours this will change and can't be guessed by bots
+    challenge = calculate_signature(remote_addr .. challenge .. currentdate)
+    cookie_name_start_date = calculate_signature(remote_addr .. cookie_name_start_date .. currentdate)
+    cookie_name_end_date = calculate_signature(remote_addr .. cookie_name_end_date .. currentdate)
+    cookie_name_encrypted_start_and_end_date = calculate_signature(remote_addr .. cookie_name_encrypted_start_and_end_date .. currentdate)
 end
 
 --[[
 Grant access function to either grant or deny user access to our website
 ]]
 local function grant_access()
-	--our uid cookie
-	local cookie_name = "cookie_" .. challenge
-	local cookie_value = ngx.var[cookie_name] or ""
-	--our start date cookie
-	local cookie_name_start_date_name = "cookie_" .. cookie_name_start_date
-	local cookie_name_start_date_value = ngx.var[cookie_name_start_date_name] or ""
-	local cookie_name_start_date_value_unix = tonumber(cookie_name_start_date_value)
-	--our end date cookie
-	local cookie_name_end_date_name = "cookie_" .. cookie_name_end_date
-	local cookie_name_end_date_value = ngx.var[cookie_name_end_date_name] or ""
-	--our start date and end date combined to a unique id
-	local cookie_name_encrypted_start_and_end_date_name = "cookie_" .. cookie_name_encrypted_start_and_end_date
-	local cookie_name_encrypted_start_and_end_date_value = ngx.var[cookie_name_encrypted_start_and_end_date_name] or ""
+    --our uid cookie
+    local cookie_name = "cookie_" .. challenge
+    local cookie_value = ngx.var[cookie_name] or ""
+    --our start date cookie
+    local cookie_name_start_date_name = "cookie_" .. cookie_name_start_date
+    local cookie_name_start_date_value = ngx.var[cookie_name_start_date_name] or ""
+    local cookie_name_start_date_value_unix = tonumber(cookie_name_start_date_value)
+    --our end date cookie
+    local cookie_name_end_date_name = "cookie_" .. cookie_name_end_date
+    local cookie_name_end_date_value = ngx.var[cookie_name_end_date_name] or ""
+    --our start date and end date combined to a unique id
+    local cookie_name_encrypted_start_and_end_date_name = "cookie_" .. cookie_name_encrypted_start_and_end_date
+    local cookie_name_encrypted_start_and_end_date_value = ngx.var[cookie_name_encrypted_start_and_end_date_name] or ""
 
-	if cookie_value ~= answer then --if cookie value not equal to or matching our expected cookie they should be giving us
-		return --return to refresh the page so it tries again
-	end
+    if cookie_value ~= answer then --if cookie value not equal to or matching our expected cookie they should be giving us
+        return --return to refresh the page so it tries again
+    end
 
-	--if x-auth-answer is correct to the user unique id time stamps etc meaning browser figured it out then set a new cookie that grants access without needed these checks
-	local req_headers = ngx.req.get_headers() --get all request headers
-	if req_headers["x-requested-with"] == "XMLHttpRequest" then --if request header matches request type of XMLHttpRequest
-		if req_headers[x_tor_header_name] == x_tor_header_name_value and req_headers[x_auth_header_name] == JavascriptPuzzleVars_answer then --if the header and value are what we expect then the client is legitimate
-			remote_addr = tor_remote_addr --set as our defined static tor variable to use
-			
-			challenge = calculate_signature(remote_addr .. challenge_original .. currentdate) --create our encrypted unique identification for the user visiting the website again. (Stops a double page refresh loop)
-			answer = calculate_signature(remote_addr) --create our answer again under the new remote_addr (Stops a double page refresh loop)
-			cookie_name_start_date = calculate_signature(remote_addr .. cookie_name_start_date_original .. currentdate) --create our cookie_name_start_date again under the new remote_addr (Stops a double page refresh loop)
-			cookie_name_end_date = calculate_signature(remote_addr .. cookie_name_end_date_original .. currentdate) --create our cookie_name_end_date again under the new remote_addr (Stops a double page refresh loop)
-			cookie_name_encrypted_start_and_end_date = calculate_signature(remote_addr .. cookie_name_encrypted_start_and_end_date_original .. currentdate) --create our cookie_name_encrypted_start_and_end_date again under the new remote_addr (Stops a double page refresh loop)
+    --if x-auth-answer is correct to the user unique id time stamps etc meaning browser figured it out then set a new cookie that grants access without needed these checks
+    local req_headers = ngx.req.get_headers() --get all request headers
+    if req_headers["x-requested-with"] == "XMLHttpRequest" then --if request header matches request type of XMLHttpRequest
+        if req_headers[x_tor_header_name] == x_tor_header_name_value and req_headers[x_auth_header_name] == JavascriptPuzzleVars_answer then --if the header and value are what we expect then the client is legitimate
+            remote_addr = tor_remote_addr --set as our defined static tor variable to use
+            
+            challenge = calculate_signature(remote_addr .. challenge_original .. currentdate) --create our encrypted unique identification for the user visiting the website again. (Stops a double page refresh loop)
+            answer = calculate_signature(remote_addr) --create our answer again under the new remote_addr (Stops a double page refresh loop)
+            cookie_name_start_date = calculate_signature(remote_addr .. cookie_name_start_date_original .. currentdate) --create our cookie_name_start_date again under the new remote_addr (Stops a double page refresh loop)
+            cookie_name_end_date = calculate_signature(remote_addr .. cookie_name_end_date_original .. currentdate) --create our cookie_name_end_date again under the new remote_addr (Stops a double page refresh loop)
+            cookie_name_encrypted_start_and_end_date = calculate_signature(remote_addr .. cookie_name_encrypted_start_and_end_date_original .. currentdate) --create our cookie_name_encrypted_start_and_end_date again under the new remote_addr (Stops a double page refresh loop)
 
-			set_cookie1 = challenge.."="..answer.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --apply our uid cookie incase javascript setting this cookies time stamp correctly has issues
-			set_cookie2 = cookie_name_start_date.."="..currenttime.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start date cookie
-			set_cookie3 = cookie_name_end_date.."="..(currenttime+expire_time).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --end date cookie
-			set_cookie4 = cookie_name_encrypted_start_and_end_date.."="..calculate_signature(remote_addr .. currenttime .. (currenttime+expire_time) ).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start and end date combined to unique id
-			set_cookie5 = cookie_tor.."="..cookie_tor_value.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --create our tor cookie to identify the client as a tor user
+            local set_cookie1 = challenge.."="..answer.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --apply our uid cookie incase javascript setting this cookies time stamp correctly has issues
+            local set_cookie2 = cookie_name_start_date.."="..currenttime.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start date cookie
+            local set_cookie3 = cookie_name_end_date.."="..(currenttime+expire_time).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --end date cookie
+            local set_cookie4 = cookie_name_encrypted_start_and_end_date.."="..calculate_signature(remote_addr .. currenttime .. (currenttime+expire_time) ).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start and end date combined to unique id
+            local set_cookie5 = cookie_tor.."="..cookie_tor_value.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --create our tor cookie to identify the client as a tor user
 
-			set_cookies = {set_cookie1 , set_cookie2 , set_cookie3 , set_cookie4, set_cookie5}
-			ngx.header["Set-Cookie"] = set_cookies
-			ngx.header["X-Content-Type-Options"] = "nosniff"
-			ngx.header["X-Frame-Options"] = "SAMEORIGIN"
-			ngx.header["X-XSS-Protection"] = "1; mode=block"
-			ngx.header["Cache-Control"] = "public, max-age=0 no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
-			ngx.header["Pragma"] = "no-cache"
-			ngx.header["Expires"] = "0"
-			ngx.header["Content-Type"] = "text/html; charset=" .. default_charset
-			ngx.status = expected_header_status
-			ngx.exit(ngx.HTTP_NO_CONTENT)
-		end
-		if req_headers[x_auth_header_name] == JavascriptPuzzleVars_answer then --if the answer header provided by the browser Javascript matches what our Javascript puzzle answer should be
-			set_cookie1 = challenge.."="..cookie_value.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --apply our uid cookie incase javascript setting this cookies time stamp correctly has issues
-			set_cookie2 = cookie_name_start_date.."="..currenttime.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start date cookie
-			set_cookie3 = cookie_name_end_date.."="..(currenttime+expire_time).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --end date cookie
-			set_cookie4 = cookie_name_encrypted_start_and_end_date.."="..calculate_signature(remote_addr .. currenttime .. (currenttime+expire_time) ).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start and end date combined to unique id
+            local set_cookies = {set_cookie1 , set_cookie2 , set_cookie3 , set_cookie4, set_cookie5}
+            ngx.header["Set-Cookie"] = set_cookies
+            ngx.header["X-Content-Type-Options"] = "nosniff"
+            ngx.header["X-Frame-Options"] = "SAMEORIGIN"
+            ngx.header["X-XSS-Protection"] = "1; mode=block"
+            ngx.header["Cache-Control"] = "public, max-age=0 no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
+            ngx.header["Pragma"] = "no-cache"
+            ngx.header["Expires"] = "0"
+            ngx.header["Content-Type"] = "text/html; charset=" .. default_charset
+            ngx.status = expected_header_status
+            ngx.exit(ngx.HTTP_NO_CONTENT)
+        end
+        if req_headers[x_auth_header_name] == JavascriptPuzzleVars_answer then --if the answer header provided by the browser Javascript matches what our Javascript puzzle answer should be
+            local set_cookie1 = challenge.."="..cookie_value.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --apply our uid cookie incase javascript setting this cookies time stamp correctly has issues
+            local set_cookie2 = cookie_name_start_date.."="..currenttime.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start date cookie
+            local set_cookie3 = cookie_name_end_date.."="..(currenttime+expire_time).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --end date cookie
+            local set_cookie4 = cookie_name_encrypted_start_and_end_date.."="..calculate_signature(remote_addr .. currenttime .. (currenttime+expire_time) ).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start and end date combined to unique id
 
-			set_cookies = {set_cookie1 , set_cookie2 , set_cookie3 , set_cookie4}
-			ngx.header["Set-Cookie"] = set_cookies
-			ngx.header["X-Content-Type-Options"] = "nosniff"
-			ngx.header["X-Frame-Options"] = "SAMEORIGIN"
-			ngx.header["X-XSS-Protection"] = "1; mode=block"
-			ngx.header["Cache-Control"] = "public, max-age=0 no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
-			ngx.header["Pragma"] = "no-cache"
-			ngx.header["Expires"] = "0"
-			ngx.header["Content-Type"] = "text/html; charset=" .. default_charset
-			ngx.status = expected_header_status
-			ngx.exit(ngx.HTTP_NO_CONTENT)
-		end
-	end
+            local set_cookies = {set_cookie1 , set_cookie2 , set_cookie3 , set_cookie4}
+            ngx.header["Set-Cookie"] = set_cookies
+            ngx.header["X-Content-Type-Options"] = "nosniff"
+            ngx.header["X-Frame-Options"] = "SAMEORIGIN"
+            ngx.header["X-XSS-Protection"] = "1; mode=block"
+            ngx.header["Cache-Control"] = "public, max-age=0 no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
+            ngx.header["Pragma"] = "no-cache"
+            ngx.header["Expires"] = "0"
+            ngx.header["Content-Type"] = "text/html; charset=" .. default_charset
+            ngx.status = expected_header_status
+            ngx.exit(ngx.HTTP_NO_CONTENT)
+        end
+    end
 
-	if cookie_name_start_date_value ~= nil and cookie_name_end_date_value ~= nil and cookie_name_encrypted_start_and_end_date_value ~= nil then --if all our cookies exist
-		local cookie_name_end_date_value_unix = tonumber(cookie_name_end_date_value) or nil --convert our cookie end date provided by the user into a unix time stamp
-		if cookie_name_end_date_value_unix == nil or cookie_name_end_date_value_unix == "" then --if our cookie end date date in unix does not exist
-			return --return to refresh the page so it tries again
-		end
-		if cookie_name_end_date_value_unix <= currenttime then --if our cookie end date is less than or equal to the current date meaning the users authentication time expired
-			return --return to refresh the page so it tries again
-		end
-		if cookie_name_encrypted_start_and_end_date_value ~= calculate_signature(remote_addr .. cookie_name_start_date_value_unix .. cookie_name_end_date_value_unix) then --if users authentication encrypted cookie not equal to or matching our expected cookie they should be giving us
-			return --return to refresh the page so it tries again
-		end
-	end
-	--else all checks passed bypass our firewall and show page content
+    if cookie_name_start_date_value ~= nil and cookie_name_end_date_value ~= nil and cookie_name_encrypted_start_and_end_date_value ~= nil then --if all our cookies exist
+        local cookie_name_end_date_value_unix = tonumber(cookie_name_end_date_value) or nil --convert our cookie end date provided by the user into a unix time stamp
+        if cookie_name_end_date_value_unix == nil or cookie_name_end_date_value_unix == "" then --if our cookie end date date in unix does not exist
+            return --return to refresh the page so it tries again
+        end
+        if cookie_name_end_date_value_unix <= currenttime then --if our cookie end date is less than or equal to the current date meaning the users authentication time expired
+            return --return to refresh the page so it tries again
+        end
+        if cookie_name_encrypted_start_and_end_date_value ~= calculate_signature(remote_addr .. cookie_name_start_date_value_unix .. cookie_name_end_date_value_unix) then --if users authentication encrypted cookie not equal to or matching our expected cookie they should be giving us
+            return --return to refresh the page so it tries again
+        end
+    end
+    --else all checks passed bypass our firewall and show page content
 
-	local output = ngx.exit(ngx.OK) --Go to content
-	return output
+    local output = ngx.exit(ngx.OK) --Go to content
+    return output
 end
 --grant_access()
 
@@ -3052,24 +3052,24 @@ then if GET request response had specific passed security check response header
 run window.location.reload(); Javascript
 ]]
 if javascript_REQUEST_TYPE == 3 then --Dynamic Random request
-	javascript_REQUEST_TYPE = math.random (1, 2) --Randomize between 1 and 2
+    javascript_REQUEST_TYPE = math.random (1, 2) --Randomize between 1 and 2
 end
 if javascript_REQUEST_TYPE == 1 then --GET request
-	javascript_REQUEST_TYPE = "GET"
+    javascript_REQUEST_TYPE = "GET"
 end
 if javascript_REQUEST_TYPE == 2 then --POST request
-	javascript_REQUEST_TYPE = "POST"
+    javascript_REQUEST_TYPE = "POST"
 end
 
 local javascript_POST_headers = "" --Create empty var
 local javascript_POST_data = "" --Create empty var
 
 if javascript_REQUEST_TYPE == "POST" then
-	-- https://www.w3schools.com/xml/tryit.asp?filename=tryajax_post2
-	javascript_POST_headers = [[xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    -- https://www.w3schools.com/xml/tryit.asp?filename=tryajax_post2
+    javascript_POST_headers = [[xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 ]]
 
-	javascript_POST_data = [["name1=Henry&name2=Ford"]]
+    javascript_POST_data = [["name1=Henry&name2=Ford"]]
 
 end
 
@@ -3093,7 +3093,7 @@ if ((sw == ww) && (sh == wh)) {
 }
 //v = true; //test var nulled out used for debugging purpose
 if (v == true) {
-	xhttp.setRequestHeader(']] .. x_tor_header_name .. [[', ']] .. x_tor_header_name_value .. [[');
+    xhttp.setRequestHeader(']] .. x_tor_header_name .. [[', ']] .. x_tor_header_name_value .. [[');
 }
 ]]
 --[[
@@ -3102,13 +3102,13 @@ End Tor Browser Checks
 
 local javascript_REQUEST_headers = [[
 xhttp.setRequestHeader(']] .. x_auth_header_name .. [[', ]] .. JavascriptPuzzleVariable_name .. [[); //make the answer what ever the browser figures it out to be
-			xhttp.setRequestHeader('X-Requested-with', 'XMLHttpRequest');
-			xhttp.setRequestHeader('X-Requested-TimeStamp', '');
-			xhttp.setRequestHeader('X-Requested-TimeStamp-Expire', '');
-			xhttp.setRequestHeader('X-Requested-TimeStamp-Combination', '');
-			xhttp.setRequestHeader('X-Requested-Type', 'GET');
-			xhttp.setRequestHeader('X-Requested-Type-Combination', 'GET'); //Encrypted for todays date
-			xhttp.withCredentials = true;
+            xhttp.setRequestHeader('X-Requested-with', 'XMLHttpRequest');
+            xhttp.setRequestHeader('X-Requested-TimeStamp', '');
+            xhttp.setRequestHeader('X-Requested-TimeStamp-Expire', '');
+            xhttp.setRequestHeader('X-Requested-TimeStamp-Combination', '');
+            xhttp.setRequestHeader('X-Requested-Type', 'GET');
+            xhttp.setRequestHeader('X-Requested-Type-Combination', 'GET'); //Encrypted for todays date
+            xhttp.withCredentials = true;
 ]] .. javascript_detect_tor
 
 local JavascriptPuzzleVariable = [[
@@ -3118,40 +3118,40 @@ var ]] .. JavascriptPuzzleVariable_name .. [[=]] .. JavascriptPuzzleVars ..[[;
 -- https://www.w3schools.com/xml/tryit.asp?filename=try_dom_xmlhttprequest
 local javascript_anti_ddos = [[
 (function(){
-	var a = function() {try{return !!window.addEventListener} catch(e) {return !1} },
-	b = function(b, c) {a() ? document.addEventListener("DOMContentLoaded", b, c) : document.attachEvent("onreadystatechange", b)};
-	b(function(){
-		var timeleft = ]] .. refresh_auth .. [[;
-		var downloadTimer = setInterval(function(){
-			timeleft--;
-			document.getElementById("countdowntimer").textContent = timeleft;
-			if(timeleft <= 0)
-			clearInterval(downloadTimer);
-		},1000);
-		setTimeout(function(){
-			var now = new Date();
-			var time = now.getTime();
-			time += 300 * 1000;
-			now.setTime(time);
-			document.cookie = ']] .. challenge .. [[=]] .. answer .. [[' + '; expires=' + ']] .. ngx.cookie_time(currenttime+expire_time) .. [[' + '; path=/';
-			//javascript puzzle for browser to figure out to get answer
-			]] .. JavascriptVars_opening .. [[
-			]] .. JavascriptPuzzleVariable .. [[
-			]] .. JavascriptVars_closing .. [[
-			//end javascript puzzle
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (xhttp.readyState === 4) {
-					document.getElementById("status").innerHTML = "Refresh your page.";
-					location.reload(true);
-				}
-			};
-			xhttp.open("]] .. javascript_REQUEST_TYPE .. [[", "]] .. request_uri .. [[", true);
-			]] .. javascript_REQUEST_headers .. [[
-			]] .. javascript_POST_headers .. [[
-			xhttp.send(]] .. javascript_POST_data .. [[);
-		}, ]] .. refresh_auth+1 .. [[000); /*if correct data has been sent then the auth response will allow access*/
-	}, false);
+    var a = function() {try{return !!window.addEventListener} catch(e) {return !1} },
+    b = function(b, c) {a() ? document.addEventListener("DOMContentLoaded", b, c) : document.attachEvent("onreadystatechange", b)};
+    b(function(){
+        var timeleft = ]] .. refresh_auth .. [[;
+        var downloadTimer = setInterval(function(){
+            timeleft--;
+            document.getElementById("countdowntimer").textContent = timeleft;
+            if(timeleft <= 0)
+            clearInterval(downloadTimer);
+        },1000);
+        setTimeout(function(){
+            var now = new Date();
+            var time = now.getTime();
+            time += 300 * 1000;
+            now.setTime(time);
+            document.cookie = ']] .. challenge .. [[=]] .. answer .. [[' + '; expires=' + ']] .. ngx.cookie_time(currenttime+expire_time) .. [[' + '; path=/';
+            //javascript puzzle for browser to figure out to get answer
+            ]] .. JavascriptVars_opening .. [[
+            ]] .. JavascriptPuzzleVariable .. [[
+            ]] .. JavascriptVars_closing .. [[
+            //end javascript puzzle
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState === 4) {
+                    document.getElementById("status").innerHTML = "Refresh your page.";
+                    location.reload(true);
+                }
+            };
+            xhttp.open("]] .. javascript_REQUEST_TYPE .. [[", "]] .. request_uri .. [[", true);
+            ]] .. javascript_REQUEST_headers .. [[
+            ]] .. javascript_POST_headers .. [[
+            xhttp.send(]] .. javascript_POST_data .. [[);
+        }, ]] .. refresh_auth+1 .. [[000); /*if correct data has been sent then the auth response will allow access*/
+    }, false);
 })();
 ]]
 
@@ -3311,51 +3311,51 @@ end
 
 function _M:grant_access()
     --our uid cookie
-	local cookie_name = "cookie_" .. challenge
-	local cookie_value = ngx.var[cookie_name] or ""
-	--our start date cookie
-	local cookie_name_start_date_name = "cookie_" .. cookie_name_start_date
-	local cookie_name_start_date_value = ngx.var[cookie_name_start_date_name] or ""
-	local cookie_name_start_date_value_unix = tonumber(cookie_name_start_date_value)
-	--our end date cookie
-	local cookie_name_end_date_name = "cookie_" .. cookie_name_end_date
-	local cookie_name_end_date_value = ngx.var[cookie_name_end_date_name] or ""
-	--our start date and end date combined to a unique id
-	local cookie_name_encrypted_start_and_end_date_name = "cookie_" .. cookie_name_encrypted_start_and_end_date
-	local cookie_name_encrypted_start_and_end_date_value = ngx.var[cookie_name_encrypted_start_and_end_date_name] or ""
+    local cookie_name = "cookie_" .. challenge
+    local cookie_value = ngx.var[cookie_name] or ""
+    --our start date cookie
+    local cookie_name_start_date_name = "cookie_" .. cookie_name_start_date
+    local cookie_name_start_date_value = ngx.var[cookie_name_start_date_name] or ""
+    local cookie_name_start_date_value_unix = tonumber(cookie_name_start_date_value)
+    --our end date cookie
+    local cookie_name_end_date_name = "cookie_" .. cookie_name_end_date
+    local cookie_name_end_date_value = ngx.var[cookie_name_end_date_name] or ""
+    --our start date and end date combined to a unique id
+    local cookie_name_encrypted_start_and_end_date_name = "cookie_" .. cookie_name_encrypted_start_and_end_date
+    local cookie_name_encrypted_start_and_end_date_value = ngx.var[cookie_name_encrypted_start_and_end_date_name] or ""
 
-	if cookie_value ~= answer then --if cookie value not equal to or matching our expected cookie they should be giving us
-		return nil, "refresh the page so it tries again" --return to refresh the page so it tries again
-	end
+    if cookie_value ~= answer then --if cookie value not equal to or matching our expected cookie they should be giving us
+        return nil, "refresh the page so it tries again" --return to refresh the page so it tries again
+    end
 
-	--if x-auth-answer is correct to the user unique id time stamps etc meaning browser figured it out then set a new cookie that grants access without needed these checks
-	local req_headers = ngx.req.get_headers() --get all request headers
-	if req_headers["x-requested-with"] == "XMLHttpRequest" then --if request header matches request type of XMLHttpRequest
-		if req_headers[x_tor_header_name] == x_tor_header_name_value and req_headers[x_auth_header_name] == JavascriptPuzzleVars_answer then --if the header and value are what we expect then the client is legitimate
-			remote_addr = tor_remote_addr --set as our defined static tor variable to use
-			
-			challenge = calculate_signature(remote_addr .. challenge_original .. currentdate) --create our encrypted unique identification for the user visiting the website again. (Stops a double page refresh loop)
-			answer = calculate_signature(remote_addr) --create our answer again under the new remote_addr (Stops a double page refresh loop)
-			cookie_name_start_date = calculate_signature(remote_addr .. cookie_name_start_date_original .. currentdate) --create our cookie_name_start_date again under the new remote_addr (Stops a double page refresh loop)
-			cookie_name_end_date = calculate_signature(remote_addr .. cookie_name_end_date_original .. currentdate) --create our cookie_name_end_date again under the new remote_addr (Stops a double page refresh loop)
-			cookie_name_encrypted_start_and_end_date = calculate_signature(remote_addr .. cookie_name_encrypted_start_and_end_date_original .. currentdate) --create our cookie_name_encrypted_start_and_end_date again under the new remote_addr (Stops a double page refresh loop)
+    --if x-auth-answer is correct to the user unique id time stamps etc meaning browser figured it out then set a new cookie that grants access without needed these checks
+    local req_headers = ngx.req.get_headers() --get all request headers
+    if req_headers["x-requested-with"] == "XMLHttpRequest" then --if request header matches request type of XMLHttpRequest
+        if req_headers[x_tor_header_name] == x_tor_header_name_value and req_headers[x_auth_header_name] == JavascriptPuzzleVars_answer then --if the header and value are what we expect then the client is legitimate
+            remote_addr = tor_remote_addr --set as our defined static tor variable to use
+            
+            challenge = calculate_signature(remote_addr .. challenge_original .. currentdate) --create our encrypted unique identification for the user visiting the website again. (Stops a double page refresh loop)
+            answer = calculate_signature(remote_addr) --create our answer again under the new remote_addr (Stops a double page refresh loop)
+            cookie_name_start_date = calculate_signature(remote_addr .. cookie_name_start_date_original .. currentdate) --create our cookie_name_start_date again under the new remote_addr (Stops a double page refresh loop)
+            cookie_name_end_date = calculate_signature(remote_addr .. cookie_name_end_date_original .. currentdate) --create our cookie_name_end_date again under the new remote_addr (Stops a double page refresh loop)
+            cookie_name_encrypted_start_and_end_date = calculate_signature(remote_addr .. cookie_name_encrypted_start_and_end_date_original .. currentdate) --create our cookie_name_encrypted_start_and_end_date again under the new remote_addr (Stops a double page refresh loop)
 
-			set_cookie1 = challenge.."="..answer.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --apply our uid cookie incase javascript setting this cookies time stamp correctly has issues
-			set_cookie2 = cookie_name_start_date.."="..currenttime.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start date cookie
-			set_cookie3 = cookie_name_end_date.."="..(currenttime+expire_time).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --end date cookie
-			set_cookie4 = cookie_name_encrypted_start_and_end_date.."="..calculate_signature(remote_addr .. currenttime .. (currenttime+expire_time) ).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start and end date combined to unique id
-			set_cookie5 = cookie_tor.."="..cookie_tor_value.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --create our tor cookie to identify the client as a tor user
+            local set_cookie1 = challenge.."="..answer.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --apply our uid cookie incase javascript setting this cookies time stamp correctly has issues
+            local set_cookie2 = cookie_name_start_date.."="..currenttime.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start date cookie
+            local set_cookie3 = cookie_name_end_date.."="..(currenttime+expire_time).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --end date cookie
+            local set_cookie4 = cookie_name_encrypted_start_and_end_date.."="..calculate_signature(remote_addr .. currenttime .. (currenttime+expire_time) ).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start and end date combined to unique id
+            local set_cookie5 = cookie_tor.."="..cookie_tor_value.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --create our tor cookie to identify the client as a tor user
 
-			-- ngx.header["Set-Cookie"] = set_cookies
-			-- ngx.header["X-Content-Type-Options"] = "nosniff"
-			-- ngx.header["X-Frame-Options"] = "SAMEORIGIN"
-			-- ngx.header["X-XSS-Protection"] = "1; mode=block"
-			-- ngx.header["Cache-Control"] = "public, max-age=0 no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
-			-- ngx.header["Pragma"] = "no-cache"
-			-- ngx.header["Expires"] = "0"
-			-- ngx.header.content_type = "text/html; charset=" .. default_charset
-			-- ngx.status = expected_header_status
-			-- ngx.exit(ngx.HTTP_NO_CONTENT)
+            -- ngx.header["Set-Cookie"] = set_cookies
+            -- ngx.header["X-Content-Type-Options"] = "nosniff"
+            -- ngx.header["X-Frame-Options"] = "SAMEORIGIN"
+            -- ngx.header["X-XSS-Protection"] = "1; mode=block"
+            -- ngx.header["Cache-Control"] = "public, max-age=0 no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
+            -- ngx.header["Pragma"] = "no-cache"
+            -- ngx.header["Expires"] = "0"
+            -- ngx.header.content_type = "text/html; charset=" .. default_charset
+            -- ngx.status = expected_header_status
+            -- ngx.exit(ngx.HTTP_NO_CONTENT)
 
             return {
                 status = expected_header_status,
@@ -3371,29 +3371,29 @@ function _M:grant_access()
                     ["Content-Type"] = "text/html; charset=" .. default_charset,
                 }
             }
-		end
-		if req_headers[x_auth_header_name] == JavascriptPuzzleVars_answer then --if the answer header provided by the browser Javascript matches what our Javascript puzzle answer should be
-			set_cookie1 = challenge.."="..cookie_value.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --apply our uid cookie incase javascript setting this cookies time stamp correctly has issues
-			set_cookie2 = cookie_name_start_date.."="..currenttime.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start date cookie
-			set_cookie3 = cookie_name_end_date.."="..(currenttime+expire_time).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --end date cookie
-			set_cookie4 = cookie_name_encrypted_start_and_end_date.."="..calculate_signature(remote_addr .. currenttime .. (currenttime+expire_time) ).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start and end date combined to unique id
+        end
+        if req_headers[x_auth_header_name] == JavascriptPuzzleVars_answer then --if the answer header provided by the browser Javascript matches what our Javascript puzzle answer should be
+            local set_cookie1 = challenge.."="..cookie_value.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --apply our uid cookie incase javascript setting this cookies time stamp correctly has issues
+            local set_cookie2 = cookie_name_start_date.."="..currenttime.."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start date cookie
+            local set_cookie3 = cookie_name_end_date.."="..(currenttime+expire_time).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --end date cookie
+            local set_cookie4 = cookie_name_encrypted_start_and_end_date.."="..calculate_signature(remote_addr .. currenttime .. (currenttime+expire_time) ).."; path=/; expires=" .. ngx.cookie_time(currenttime+expire_time) .. "; Max-Age=" .. expire_time .. ";" --start and end date combined to unique id
 
-			-- set_cookies = {set_cookie1 , set_cookie2 , set_cookie3 , set_cookie4}
-			-- ngx.header["Set-Cookie"] = set_cookies
-			-- ngx.header["X-Content-Type-Options"] = "nosniff"
-			-- ngx.header["X-Frame-Options"] = "SAMEORIGIN"
-			-- ngx.header["X-XSS-Protection"] = "1; mode=block"
-			-- ngx.header["Cache-Control"] = "public, max-age=0 no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
-			-- ngx.header["Pragma"] = "no-cache"
-			-- ngx.header["Expires"] = "0"
-			-- ngx.header.content_type = "text/html; charset=" .. default_charset
-			-- ngx.status = expected_header_status
-			-- ngx.exit(ngx.HTTP_NO_CONTENT)
+            -- set_cookies = {set_cookie1 , set_cookie2 , set_cookie3 , set_cookie4}
+            -- ngx.header["Set-Cookie"] = set_cookies
+            -- ngx.header["X-Content-Type-Options"] = "nosniff"
+            -- ngx.header["X-Frame-Options"] = "SAMEORIGIN"
+            -- ngx.header["X-XSS-Protection"] = "1; mode=block"
+            -- ngx.header["Cache-Control"] = "public, max-age=0 no-store, no-cache, must-revalidate, post-check=0, pre-check=0"
+            -- ngx.header["Pragma"] = "no-cache"
+            -- ngx.header["Expires"] = "0"
+            -- ngx.header.content_type = "text/html; charset=" .. default_charset
+            -- ngx.status = expected_header_status
+            -- ngx.exit(ngx.HTTP_NO_CONTENT)
 
             return {
                 status = expected_header_status,
                 body = ngx.HTTP_NO_CONTENT,
-                headers = { 
+                headers = {
                     ["Set-Cookie"] = {set_cookie1 , set_cookie2 , set_cookie3 , set_cookie4},
                     ["X-Content-Type-Options"] = "nosniff",
                     ["X-Frame-Options"] = "SAMEORIGIN",
@@ -3404,25 +3404,25 @@ function _M:grant_access()
                     ["Content-Type"] = "text/html; charset=" .. default_charset,
                 }
             }
-		end
-	end
+        end
+    end
 
-	if cookie_name_start_date_value ~= nil and cookie_name_end_date_value ~= nil and cookie_name_encrypted_start_and_end_date_value ~= nil then --if all our cookies exist
-		local cookie_name_end_date_value_unix = tonumber(cookie_name_end_date_value) or nil --convert our cookie end date provided by the user into a unix time stamp
-		if cookie_name_end_date_value_unix == nil or cookie_name_end_date_value_unix == "" then --if our cookie end date date in unix does not exist
-			return nil, "refresh the page so it tries again" --return to refresh the page so it tries again
-		end
-		if cookie_name_end_date_value_unix <= currenttime then --if our cookie end date is less than or equal to the current date meaning the users authentication time expired
-			return nil, "refresh the page so it tries again"  --return to refresh the page so it tries again
-		end
-		if cookie_name_encrypted_start_and_end_date_value ~= calculate_signature(remote_addr .. cookie_name_start_date_value_unix .. cookie_name_end_date_value_unix) then --if users authentication encrypted cookie not equal to or matching our expected cookie they should be giving us
-			return nil, "refresh the page so it tries again" --return to refresh the page so it tries again
-		end
-	end
-	--else all checks passed bypass our firewall and show page content
+    if cookie_name_start_date_value ~= nil and cookie_name_end_date_value ~= nil and cookie_name_encrypted_start_and_end_date_value ~= nil then --if all our cookies exist
+        local cookie_name_end_date_value_unix = tonumber(cookie_name_end_date_value) or nil --convert our cookie end date provided by the user into a unix time stamp
+        if cookie_name_end_date_value_unix == nil or cookie_name_end_date_value_unix == "" then --if our cookie end date date in unix does not exist
+            return nil, "refresh the page so it tries again" --return to refresh the page so it tries again
+        end
+        if cookie_name_end_date_value_unix <= currenttime then --if our cookie end date is less than or equal to the current date meaning the users authentication time expired
+            return nil, "refresh the page so it tries again"  --return to refresh the page so it tries again
+        end
+        if cookie_name_encrypted_start_and_end_date_value ~= calculate_signature(remote_addr .. cookie_name_start_date_value_unix .. cookie_name_end_date_value_unix) then --if users authentication encrypted cookie not equal to or matching our expected cookie they should be giving us
+            return nil, "refresh the page so it tries again" --return to refresh the page so it tries again
+        end
+    end
+    --else all checks passed bypass our firewall and show page content
 
-	--local output = ngx.exit(ngx.OK) --Go to content
-	return ngx.OK, nil
+    --local output = ngx.exit(ngx.OK) --Go to content
+    return ngx.OK, nil
 end
 
 return _M
