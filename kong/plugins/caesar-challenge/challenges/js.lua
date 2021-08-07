@@ -25,6 +25,7 @@ end
 
 function _M:check_authorization(authorization, authorization_dynamic)
     return anti.check_authorization(authorization, authorization_dynamic)
+end
 
 function _M:challenge()
     res = {}
