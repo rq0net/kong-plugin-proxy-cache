@@ -3203,10 +3203,10 @@ remote_addr = ngx.var.remote_addr
 end
 
 local request_details = [[
-<div id="status" style="color:#bd2426;font-size:200%;">
+<div id="status">
 <noscript>Please turn JavaScript on and reload the page.<br></noscript>
 <p><small>数秒后，系统将自动跳转到请求页面</small></p>
-<p><small>Please allow up to <span id="countdowntimer">]] .. refresh_auth .. [[</span> seconds to automatic redirect &hellip;</small></p>
+<p><small>Please allow up to <span style="color:#bd2426;font-size:120%;" id="countdowntimer">]] .. refresh_auth .. [[</span> seconds to automatic redirect &hellip;</small></p>
 </div>
 <hr />
 <ol id="diagnose_info">
