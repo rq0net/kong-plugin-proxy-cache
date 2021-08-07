@@ -31,7 +31,7 @@ function _M:challenge()
     local res = {}
     res.status = anti.authentication_page_status_output
     res.body = anti.anti_ddos_html_output
-    res.header = {
+    res.headers = {
         content_type = "text/html; charset=" .. anti.default_charset
     }
   
