@@ -16,6 +16,9 @@ CaesarChallengeHandler.VERSION  = "0.0.2"
 CaesarChallengeHandler.PRIORITY = 100
 
 
+local CHALLENGE_PATH = "kong.plugins.caesar-challenge.challenges"
+
+
 function CaesarChallengeHandler:init_worker()
   -- Implement logic for the init_worker phase here (http/stream)
   kong.log.err("init_worker: test challenge!")
@@ -32,16 +35,18 @@ end
 
 -- https://stackoverflow.com/questions/64301671/how-to-set-proxy-http-version-in-lua-code-before-upstreaming-the-request-in-ngin
 function CaesarChallengeHandler:access(conf)
-  kong.log.err("access: testcookie!")
-  ngx.var.testcookie_var = "on"
+  kong.log.err("access: caesar challenges!")
 
-  local res = ngx.location.capture("@testcookie")
-  if res then
-      ngx.say("status: ", res.status)
-      ngx.say("body:")
-      ngx.print(res.body)
-      return
-  end
+
+  -- try to fetch the cached object from the computed cache key
+  local challenge = require(CHALLENGE_PATH)({
+    challenge_name = conf.challenge,
+    challenge_opts = conf[conf.challenge],
+  })
+
+  local res, err = challenge:challenge()
+
+  return kong.response.exit(res.status, res.body, res.headers)
 
   CaesarChallengeHandler.super.access(self)
 end
