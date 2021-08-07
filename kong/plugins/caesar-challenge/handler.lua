@@ -13,7 +13,7 @@ local BasePlugin  = require "kong.plugins.base_plugin"
 local CaesarChallengeHandler = BasePlugin:extend()
 
 CaesarChallengeHandler.VERSION  = "0.0.2"
-CaesarChallengeHandler.PRIORITY = 100
+CaesarChallengeHandler.PRIORITY = 90
 
 
 local CHALLENGE_PATH = "kong.plugins.caesar-challenge.challenges"
