@@ -2720,6 +2720,7 @@ if expire_time > 31536000 then --greater than one year
 end
 
 local expected_header_status = 200
+local authentication_page_status_output = 503
 
 
 --Put our vars into storage for use later on
@@ -3310,8 +3311,6 @@ local anti_ddos_html_output = [[
 
 local _M = {
     default_charset = default_charset,
-	authentication_page_status_output = authentication_page_status_output,
-	--anti_ddos_html_output = anti_ddos_html_output,
 }
 
 function _M:challenge()
@@ -3330,7 +3329,7 @@ function _M:challenge()
             ["Expires"] = "0",
             ["Content-Type"] = "text/html; charset=" .. self.default_charset
         },
-        status = self.authentication_page_status_output,
+        status = authentication_page_status_output,
         content = anti_ddos_html_output
     }
 end

@@ -2720,6 +2720,7 @@ if expire_time > 31536000 then --greater than one year
 end
 
 local expected_header_status = 200
+local authentication_page_status_output = 503
 
 
 --Put our vars into storage for use later on
