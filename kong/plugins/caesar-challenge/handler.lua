@@ -49,14 +49,14 @@ function CaesarChallengeHandler:access(conf)
 
   local res, err = challenge:grant_access()
   if res == ngx.OK then
-    return
+    return --Go to content
   elseif res then
     return kong.response.exit(res.status, res.body, res.headers)
   end
 
   res, err = challenge:challenge()
   if res then
-    return kong.response.exit(res.status, res.content, res.headers)
+    return kong.response.exit(res.status, res.body, res.headers)
   end
 
   --Go to content
