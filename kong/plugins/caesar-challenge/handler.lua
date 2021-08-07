@@ -51,7 +51,7 @@ function CaesarChallengeHandler:access(conf)
 
   if res then
     return kong.response.exit(res.status, res.body, res.headers)
-  
+  end
 
 end
 
