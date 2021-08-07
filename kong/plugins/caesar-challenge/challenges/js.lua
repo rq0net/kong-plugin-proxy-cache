@@ -27,6 +27,10 @@ function _M:check_authorization(authorization, authorization_dynamic)
     return anti.check_authorization(authorization, authorization_dynamic)
 end
 
+function _M:grant_access()
+    return anti:grant_access()
+end
+
 function _M:challenge()
     return anti:challenge()
 end

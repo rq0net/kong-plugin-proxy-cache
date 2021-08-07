@@ -64,7 +64,7 @@ http { #inside http block
 --[[
 This is a password that encrypts our puzzle and cookies unique to your sites and servers you should change this from the default.
 ]]
-local secret = " enigma" --Signature secret key --CHANGE ME FROM DEFAULT!
+local secret = " ddos-mitigation" --Signature secret key --CHANGE ME FROM DEFAULT!
 
 --[[
 Unique id to identify each individual user and machine trying to access your website IP address works well.
@@ -3421,8 +3421,8 @@ function _M:grant_access()
 	end
 	--else all checks passed bypass our firewall and show page content
 
-	local output = ngx.exit(ngx.OK) --Go to content
-	return output
+	--local output = ngx.exit(ngx.OK) --Go to content
+	return ngx.OK, nil
 end
 
 return _M
