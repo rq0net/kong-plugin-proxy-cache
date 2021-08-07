@@ -31,10 +31,6 @@ https://www.facebook.com/C0nw0nk
 
 ]]
 
-
-module(..., package.seeall)
-
-
 --[[
 Configuration :
 ]]
@@ -3308,3 +3304,10 @@ local anti_ddos_html_output = [[
 -- ngx.status = authentication_page_status_output
 -- ngx.say(anti_ddos_html_output)
 -- ngx.exit(ngx.HTTP_OK)
+
+
+return {
+	"default_charset": default_charset,
+	"authentication_page_status_output": authentication_page_status_output,
+	"anti_ddos_html_output": anti_ddos_html_output,
+}
