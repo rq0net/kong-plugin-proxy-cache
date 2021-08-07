@@ -37,7 +37,7 @@ end
 function CaesarChallengeHandler:access(conf)
   kong.log.err("access: caesar challenges!")
 
-  kong.log.err("access: caesar challenges!" .. conf.challenge .. conf[conf.challenge])
+  kong.log.err("access: caesar challenges!" .. conf.challenge .. conf[conf.challenge].dictionary_name)
 
 
   -- try to fetch the cached object from the computed cache key
