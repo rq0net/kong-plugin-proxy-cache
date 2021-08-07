@@ -31,7 +31,7 @@ function _M:challenge()
   res.body = anti.anti_ddos_html_output
   res.header.content_type = "text/html; charset=" .. anti.default_charset
 
-  return res
+  return res, nil
 end
 
 return _M

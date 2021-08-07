@@ -41,14 +41,14 @@ function CaesarChallengeHandler:access(conf)
 
 
   -- try to fetch the cached object from the computed cache key
-  -- local challenge = require(CHALLENGE_PATH)({
-  --   challenge_name = conf.challenge,
-  --   challenge_opts = conf[conf.challenge],
-  -- })
+  local challenge = require(CHALLENGE_PATH)({
+    challenge_name = conf.challenge,
+    challenge_opts = conf[conf.challenge],
+  })
 
-  -- local res, err = challenge:challenge()
+  local res, err = challenge:challenge()
 
-  -- return kong.response.exit(res.status, res.body, res.headers)
+  return kong.response.exit(res.status, res.body, res.headers)
 
 end
 
