@@ -32,7 +32,7 @@ https://www.facebook.com/C0nw0nk
 ]]
 
 
-module("anti", package.seeall)
+module(..., package.seeall)
 
 
 --[[
