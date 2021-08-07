@@ -2423,7 +2423,7 @@ local function check_user_agent_blacklist(user_agent_table)
 
     return --no user agent was in blacklist
 end
-check_user_agent_blacklist(user_agent_blacklist_table) --run user agent blacklist check function
+-- check_user_agent_blacklist(user_agent_blacklist_table) --run user agent blacklist check function
 
 local function check_user_agent_whitelist(user_agent_table)
     local user_agent_table_length = #user_agent_table
@@ -2448,7 +2448,7 @@ local function check_user_agent_whitelist(user_agent_table)
 
     return --no user agent was in whitelist
 end
-check_user_agent_whitelist(user_agent_whitelist_table) --run user agent whitelist check function
+-- check_user_agent_whitelist(user_agent_whitelist_table) --run user agent whitelist check function
 
 --to have better randomization upon encryption
 math.randomseed(os.time())
