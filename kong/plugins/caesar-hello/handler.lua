@@ -18,7 +18,7 @@ CaesarHelloHandler.PRIORITY = 100
 
 function CaesarHelloHandler:init_worker()
   -- Implement logic for the init_worker phase here (http/stream)
-  kong.log("init_worker: hello!")
+  kong.log("init_worker: CaesarHelloHandler!")
 end
 
 
