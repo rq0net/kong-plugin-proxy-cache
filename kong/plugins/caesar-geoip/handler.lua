@@ -4,7 +4,6 @@ local inspect = require 'inspect'
 local geoip = require "geoip.mmdb"
 
 local geoip_country_filename = '/usr/share/GeoLite2-Country.mmdb'
-local responses = require "kong.tools.responses"
 local singletons = require "kong.singletons"
 local BasePlugin  = require "kong.plugins.base_plugin"
 local setmetatable = setmetatable
@@ -61,8 +60,7 @@ function CaesarGeoipHandler:header_filter(conf)
   end
 
   if block == 1 then 
-    -- return ngx.exit(ngx.HTTP_ILLEGAL) 
-    return responses.send_HTTP_FORBIDDEN()
+    return kong.response.exit(ngx.HTTP_ILLEGAL)
   end
 end
 
