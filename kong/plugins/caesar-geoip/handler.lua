@@ -45,7 +45,7 @@ end
 function CaesarGeoipHandler:header_filter(conf)
   CaesarGeoipHandler.super.header_filter(self)
   local current_ip = ngx.var.remote_addr;
-  local country_code, err = self.db:lookup_value(current_ip, "country", "iso_code"))
+  local country_code, err = self.db:lookup_value(current_ip, "country", "iso_code")
 
   for i,line in ipairs(conf.blacklist_countries) do
     if line == country_code then
