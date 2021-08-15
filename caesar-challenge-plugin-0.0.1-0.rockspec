@@ -22,6 +22,7 @@ build = {
   modules = {
     ["kong.plugins.caesar-challenge.handler"]              = "kong/plugins/caesar-challenge/handler.lua",
     ["kong.plugins.caesar-challenge.schema"]               = "kong/plugins/caesar-challenge/schema.lua",
+    ["kong.plugins.caesar-challenge.utils"]               = "kong/plugins/caesar-challenge/utils.lua",
     ["kong.plugins.caesar-challenge.challenges"]           = "kong/plugins/caesar-challenge/challenges/init.lua",
     ["kong.plugins.caesar-challenge.challenges.anti"]        = "kong/plugins/caesar-challenge/challenges/anti.lua",
     ["kong.plugins.caesar-challenge.challenges.js"]        = "kong/plugins/caesar-challenge/challenges/js.lua",
