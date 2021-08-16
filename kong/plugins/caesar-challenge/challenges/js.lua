@@ -1539,7 +1539,7 @@ local function query_string_sort()
         return --carry on script functions
     end
 end
-query_string_sort()
+-- query_string_sort()
 --[[
 End Query String Sort
 ]]

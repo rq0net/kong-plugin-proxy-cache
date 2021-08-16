@@ -24,6 +24,7 @@ return {
                         "User-Agent",
                         "URI",
                         "Header",
+                        "Protocol"
                       },
                     },
                     match_needle = {

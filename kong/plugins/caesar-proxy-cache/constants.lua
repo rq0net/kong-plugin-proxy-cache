@@ -21,10 +21,11 @@ _M.CACHE_PATHES = {
 }
 
 _M.CONTENT_TYPES = {
-  ["MEDIAS"] = { "audio/.*", "video/.*", "application/x-shockwave-flash", "text/css"},
+  ["MEDIAS"] = { "audio/.*", "video/.*", "application/x-shockwave-flash", "text/css" },
   ["IMAGES"] = { "image/.*", "font/*" },
   ["PACKAGES"] = {"application/zip", "application/java-archive", "application/vnd.android.package-archive", "application/apk"},
   ["JS"] = {"text/javascript", "application/javascript"},
+  ["HTML"] = {"text/html","text/shtml"},
   ["*STATIC"] = {},
   ["*NONE"] = {},
   ["*AUTO"] = {},
