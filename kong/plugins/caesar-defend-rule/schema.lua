@@ -15,8 +15,7 @@ return {
               elements = {
                 type = "record",
                 fields = {
-                  {
-                    condition = {
+                  { condition = {
                       type = "string",
                       required = true,
                       one_of = {
@@ -26,12 +25,12 @@ return {
                         "Header",
                         "Protocol"
                       },
-                    },
-                    match_needle = {
+                  } },
+                  { match_needle = {
                       type = "string",
                       required = true,
-                    },
-                    action_code = {
+                  } },
+                  { action_code = {
                       type = "string",
                       required = true,
                       one_of = {
@@ -39,16 +38,15 @@ return {
                         ngx.HTTP_MOVED_TEMPORARILY,
                         ngx.HTTP_BAD_REQUEST,
                       },
-                    },
-                    action_value = {
+                  } },
+                  { action_value = {
                       type = "string",
                       required = false,
-                    },
-                    description = {
+                  } },
+                  { description = {
                       type = "string",
                       required = false,
-                    }
-                  }
+                  } }
                 },
               },
             },
