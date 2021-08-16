@@ -675,8 +675,6 @@ End IP range function
 ]]
 
 
-
-
 local function check_user_agent_blacklist(http_user_agent, user_agent_needle)
     local a1, a2 = string.lower(http_user_agent), string.lower(user_agent_needle)
     return string.match(http_user_agent, user_agent_needle)
