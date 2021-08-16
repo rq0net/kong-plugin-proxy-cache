@@ -73,7 +73,7 @@ function _plugin:access(conf)
       local rule = rule_list[i]
       if rule.condition == "IP" then
         local ip = auto_remote_addr
-        if utils2.ip_address_in_range(rule.match_needle, ip) == true
+        if utils2.ip_address_in_range(rule.match_needle, ip) == true then
           local output = self.do_action(rule)
           return output
         end

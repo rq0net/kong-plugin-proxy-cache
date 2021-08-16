@@ -1,5 +1,20 @@
+--[[
+Add to your nginx config http://nginx.org/en/docs/ngx_core_module.html#pcre_jit
+
+pcre_jit on;
+
+The options I enable to make regex cache for performance gains.
+j = enable PCRE JIT compilation
+o = compile-once mode (similar to Perl's /o modifier), to enable the worker-process-level compiled-regex cache
+]]
+local ngx_re_options = "jo" --boost regex performance by caching
+
+
+
 
 local _M = {}
+
+
 
 --[[
 Start IP range function

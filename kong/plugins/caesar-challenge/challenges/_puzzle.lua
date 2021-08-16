@@ -1,10 +1,11 @@
 _M = { _VERSION = "1.0" }
 
-local redis = require "resty.redis"
-local ck = require "resty.cookie"
+local redis      = require "resty.redis"
+local ck         = require "resty.cookie"
+local cjson      = require "cjson"
 
 
-local cjson = require "cjson"
+local ngx        = ngx
 local clientIP = ngx.var.remote_addr
 
 local sha1 = require "sha1"
@@ -45,7 +46,7 @@ local function Fetch(redis_connection, key, log_level)
   if not json then
      -- ngx.say("failed to get ipaddr ", err)
      ngx.log(log_level, "failed to get key ", err)
-     ngx.exit(nginx.HTTP_INTERNAL_SERVER_ERROR)
+     ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
      return
   end
 
@@ -62,7 +63,7 @@ local function Del(redis_connection, key, log_level)
   if not json then
      -- ngx.say("failed to get ipaddr ", err)
      ngx.log(log_level, "failed to delete key ", err)
-     ngx.exit(nginx.HTTP_INTERNAL_SERVER_ERROR)
+     ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
      return
   end
   return true
@@ -73,7 +74,7 @@ local function Set(redis_connection, key, data, ttl, log_level)
   ok, err = redis_connection:set(key, cjson.encode(data))
   if not ok then
     ngx.log(log_level, "failed to set key ", err)
-    ngx.exit(nginx.HTTP_INTERNAL_SERVER_ERROR)
+    ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
     return
   end
 
@@ -81,7 +82,7 @@ local function Set(redis_connection, key, data, ttl, log_level)
   ok, err = redis_connection:expire(key, ttl)
   if not ok then
     ngx.log(log_level, "failed to set key expire ", err)
-    ngx.exit(nginx.HTTP_INTERNAL_SERVER_ERROR)
+    ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
     return
   end
 

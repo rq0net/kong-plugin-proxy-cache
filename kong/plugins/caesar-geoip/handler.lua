@@ -8,7 +8,7 @@ local singletons = require "kong.singletons"
 local BasePlugin  = require "kong.plugins.base_plugin"
 local setmetatable = setmetatable
 
-local current_ip = '1.1.1.1'
+-- local current_ip = '1.1.1.1'
 
 local CaesarGeoipHandler = BasePlugin:extend()
 
@@ -43,6 +43,7 @@ end
 
 function CaesarGeoipHandler:header_filter(conf)
   CaesarGeoipHandler.super.header_filter(self)
+  local block = 0
   local current_ip = ngx.var.remote_addr;
   local country_code, err = self.db:lookup_value(current_ip, "country", "iso_code")
 
@@ -59,7 +60,7 @@ function CaesarGeoipHandler:header_filter(conf)
     end
   end
 
-  if block == 1 then 
+  if block == 1 then
     return kong.response.exit(ngx.HTTP_ILLEGAL)
   end
 end
