@@ -3,7 +3,7 @@ version = "0.0.1-0"
 
 source = {
   url = "git://github.com/rq0net/kong-plugin-proxy-cache",
-  tag = "0.0.8"
+  tag = "0.0.1"
 }
 
 supported_platforms = {"linux", "macosx"}

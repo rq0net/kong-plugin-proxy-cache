@@ -1,9 +1,9 @@
 package = "caesar-challenge-plugin"
-version = "0.0.1-0"
+version = "0.0.8-0"
 
 source = {
   url = "git://github.com/rq0net/kong-plugin-proxy-cache",
-  tag = "0.0.1"
+  tag = "0.0.8"
 }
 
 supported_platforms = {"linux", "macosx"}
