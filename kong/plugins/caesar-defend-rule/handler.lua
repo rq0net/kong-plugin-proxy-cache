@@ -7,6 +7,7 @@
 
 local require     = require
 local kong        = kong
+local ngx         = ngx
 local BasePlugin  = require "kong.plugins.base_plugin"
 local utils       = require "kong.tools.utils"
 local utils2      = require "kong.plugins.caesar-challenge.utils"
